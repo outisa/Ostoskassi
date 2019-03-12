@@ -5,7 +5,7 @@ tuotetta ei ole vielä olemassa, niin käytääjä voi lisätä kyseisen tuottee
 itse. Lisäksi käyttäjä voi poistaa ostoskassinsa kokonaan, luoda uuden 
 ostoskassin, tutkia tai muokata sen sisältöä. Käyttäjä pystyy lisäämään ja poistamaan tuotteen. 
 Lisäksi hän voi päivittää tuotteen hintaa ja pääsee näkemään olemassa olevat tuotteet.
-Jokaisella tuotteella on oma kategoria. Kategorioiden perusteella voidaan 
+Jokaisella tuotteella on oma kategoria. Kategorioiden avulla voidaan 
 tehdä hakuja, joiden perusteella nähdään paljonko on käytetty rahaa
 esimerkiksi herkkuihin asiakkaan ostoskasseissa.
 
@@ -17,6 +17,7 @@ Valmiit kategoriat (ei voida muuttaa):
 * Herkut
  
 Alustavat tietokantataulut:
+
 [Kayttaja|(pk)id:Integer, kayttajatunnus:String, sahkoposti:String, salasana:String]
 
 [Ostoskassi|(pk)id:Integer,(fk) kayttaja_id -> Kayttaja, yhteishinta:Double, ostosMaara:Integer]

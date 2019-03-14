@@ -18,6 +18,7 @@ Valmiit kategoriat (ei voida muuttaa):
 * Herkut
  
 Alustavat tietokantataulut:
+[![Tietokantataulujen väliset suhteet](/Tsoha_2019/tietokantataulu.png)]
 
 [Kayttaja|(pk)id:Integer, kayttajatunnus:String, sahkoposti:String, salasana:String]
 

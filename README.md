@@ -18,31 +18,47 @@ Valmiit kategoriat (ei voida muuttaa):
 * Herkut
  
 Alustavat tietokantataulut:
-[[Tietokantakaavio](https://github.com/outisa/Ostoskassi/blob/master/db259843.png)]
+[[Tietokantakaavio](Ostoskassi/db259843.png)]
 
 Tietokantakaavioiden lyhyt (vaillinainen) kuvaus:
 *Kayttaja:
-*id* on kokonaisluku ja samalla pääavain, joka luodaan automaattisesti tunnuksia tehdessä.
-*kayttajatunnus* on käyttäjän antama merkkijono.
-*sahkoposti* on käyttäjän antama merkkijono ja järjestelmään ei voida tehdä useita tunnuksia yhdellä sahkopostilla. 
-*salasana* on käyttäjän antama merkkijono
+
+**id** on kokonaisluku ja samalla pääavain, joka luodaan automaattisesti tunnuksia tehdessä.
+
+**kayttajatunnus** on käyttäjän antama merkkijono.
+
+**sahkoposti** on käyttäjän antama merkkijono ja järjestelmään ei voida tehdä useita tunnuksia yhdellä sahkopostilla. 
+
+**salasana** on käyttäjän antama merkkijono
 
 *Ostoskassi:
-*id* on kokonaisluku ja samalla taulun pääavain, joka muodostuu ostoskassia luodessa.
-*kayttaja_id* on kokonaisluku ja se viittaa kayttaja -tauluun.
-*yhteishinta* merkitään muodossa xxx.xx ja se muodostuu ostoskassiin lisättyjen tuotteiden hinnasta.
-*ostosMaara* on kokonaisluku ja se kertoo ostoskassiin lisättyjen tuotteiden yhteismäärän.
+
+**id** on kokonaisluku ja samalla taulun pääavain, joka muodostuu ostoskassia luodessa.
+
+**kayttaja_id** on kokonaisluku ja se viittaa kayttaja -tauluun.
+
+**yhteishinta** merkitään muodossa xxx.xx ja se muodostuu ostoskassiin lisättyjen tuotteiden hinnasta.
+
+**ostosMaara** on kokonaisluku ja se kertoo ostoskassiin lisättyjen tuotteiden yhteismäärän.
 
 *Tuote:
-*id* kokonaisluku ja taulun pääavain. Muodostuu automaattisesti luotaessa tuotetta.
-*nimi* on tuotteen nimeä kuvaava merkkijono.
-*hinta* on muotoa xxx.xx ja sen voi tarvittaessa muuttaa.
+
+**id** kokonaisluku ja taulun pääavain. Muodostuu automaattisesti luotaessa tuotetta.
+
+**nimi** on tuotteen nimeä kuvaava merkkijono.
+
+**hinta** on muotoa xxx.xx ja sen voi tarvittaessa muuttaa.
 
 *OstoskassiTuote
-*tuote_id* kokonaisluku, joka viittaa Tuote -tauluun.
-*ostoskassi_id* kokonaisluku, joka viittaa Ostoskassiin. 
-*tuoteMaara* kokonaisluku, joka kertoo kyseisen tuotteen määrän tuotteeseen liitetyssä ostoskassissa.
+
+**tuote_id** kokonaisluku, joka viittaa Tuote -tauluun.
+
+**ostoskassi_id** kokonaisluku, joka viittaa Ostoskassiin. 
+
+**tuoteMaara** kokonaisluku, joka kertoo kyseisen tuotteen määrän tuotteeseen liitetyssä ostoskassissa.
 
 *Kategoria
-*id* on kokonaisluku ja taulun pääavain.
-*kategoria* on merkkijonomuotoinen ja kertoo kategorian nimen. Käyttäjä ei voi muokata tätä osiota.
+
+**id** on kokonaisluku ja taulun pääavain.
+
+**kategoria** on merkkijonomuotoinen ja kertoo kategorian nimen. Käyttäjä ei voi muokata tätä osiota.

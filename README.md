@@ -23,7 +23,8 @@ Alustavat tietokantataulut:
 ![Tietokantataulu](db259843.png)
 
 Tietokantakaavioiden lyhyt (vaillinainen) kuvaus:
-*Kayttaja:
+
+**Kayttaja:**
 
 **id** on kokonaisluku ja samalla pääavain, joka luodaan automaattisesti tunnuksia tehdessä.
 
@@ -33,7 +34,7 @@ Tietokantakaavioiden lyhyt (vaillinainen) kuvaus:
 
 **salasana** on käyttäjän antama merkkijono
 
-*Ostoskassi:
+**Ostoskassi:**
 
 **id** on kokonaisluku ja samalla taulun pääavain, joka muodostuu ostoskassia luodessa.
 
@@ -43,7 +44,7 @@ Tietokantakaavioiden lyhyt (vaillinainen) kuvaus:
 
 **ostosMaara** on kokonaisluku ja se kertoo ostoskassiin lisättyjen tuotteiden yhteismäärän.
 
-*Tuote:
+**Tuote:**
 
 **id** kokonaisluku ja taulun pääavain. Muodostuu automaattisesti luotaessa tuotetta.
 
@@ -51,7 +52,7 @@ Tietokantakaavioiden lyhyt (vaillinainen) kuvaus:
 
 **hinta** on muotoa xxx.xx ja sen voi tarvittaessa muuttaa.
 
-*OstoskassiTuote
+**OstoskassiTuote**
 
 **tuote_id** kokonaisluku, joka viittaa Tuote -tauluun.
 
@@ -59,7 +60,7 @@ Tietokantakaavioiden lyhyt (vaillinainen) kuvaus:
 
 **tuoteMaara** kokonaisluku, joka kertoo kyseisen tuotteen määrän tuotteeseen liitetyssä ostoskassissa.
 
-*Kategoria
+**Kategoria**
 
 **id** on kokonaisluku ja taulun pääavain.
 

@@ -18,6 +18,8 @@ Valmiit kategoriat (ei voida muuttaa):
 * Herkut
  
 Alustavat tietokantataulut:
+
+
 ![Tietokantataulu](db259843.png)
 
 Tietokantakaavioiden lyhyt (vaillinainen) kuvaus:

@@ -18,7 +18,7 @@ Valmiit kategoriat (ei voida muuttaa):
 * Herkut
  
 Alustavat tietokantataulut:
-[[Tietokantakaavio](Ostoskassi/db259843.png)]
+[Tietokantakaavio](Ostoskassi/db259843.png)
 
 Tietokantakaavioiden lyhyt (vaillinainen) kuvaus:
 *Kayttaja:

@@ -18,22 +18,31 @@ Valmiit kategoriat (ei voida muuttaa):
 * Herkut
  
 Alustavat tietokantataulut:
-[![Tietokantataulujen väliset suhteet](/Tsoha_2019/tietokantatalulu.png)]
+[![Tietokantakaavio](/outisa/Ostoskassi/db259843.png)]
 
-[Kayttaja|(pk)id:Integer, kayttajatunnus:String, sahkoposti:String, salasana:String]
+Tietokantakaavioiden lyhyt (vaillinainen) kuvaus:
+*Kayttaja:
+*id* on kokonaisluku ja samalla pääavain, joka luodaan automaattisesti tunnuksia tehdessä.
+*kayttajatunnus* on käyttäjän antama merkkijono.
+*sahkoposti* on käyttäjän antama merkkijono ja järjestelmään ei voida tehdä useita tunnuksia yhdellä sahkopostilla. 
+*salasana* on käyttäjän antama merkkijono
 
-[Ostoskassi|(pk)id:Integer,(fk) kayttaja_id -> Kayttaja, yhteishinta:Double, ostosMaara:Integer]
+*Ostoskassi:
+*id* on kokonaisluku ja samalla taulun pääavain, joka muodostuu ostoskassia luodessa.
+*kayttaja_id* on kokonaisluku ja se viittaa kayttaja -tauluun.
+*yhteishinta* merkitään muodossa xxx.xx ja se muodostuu ostoskassiin lisättyjen tuotteiden hinnasta.
+*ostosMaara* on kokonaisluku ja se kertoo ostoskassiin lisättyjen tuotteiden yhteismäärän.
 
-[Tuote|(pk)id:Integer, nimi:String, hinta:Double]
+*Tuote:
+*id* kokonaisluku ja taulun pääavain. Muodostuu automaattisesti luotaessa tuotetta.
+*nimi* on tuotteen nimeä kuvaava merkkijono.
+*hinta* on muotoa xxx.xx ja sen voi tarvittaessa muuttaa.
 
-[OstoskassiTuote|(fk)tuote_id -> Tuote, (fk)ostoskassi_id -> Ostoskassi, tuoteMaara:Integer]
+*OstoskassiTuote
+*tuote_id* kokonaisluku, joka viittaa Tuote -tauluun.
+*ostoskassi_id* kokonaisluku, joka viittaa Ostoskassiin. 
+*tuoteMaara* kokonaisluku, joka kertoo kyseisen tuotteen määrän tuotteeseen liitetyssä ostoskassissa.
 
-[Kategoria|(pk)id:Integer, kategoria:String]
-
-[Kayttaja]1-*[Ostoskassi]
-
-[Ostoskassi]1-*[OstoskassiTuote]
-
-[OstoskassiTuote]*-1[Tuote]
-
-[Tuote]*-1[Kategoria]
+*Kategoria
+*id* on kokonaisluku ja taulun pääavain.
+*kategoria* on merkkijonomuotoinen ja kertoo kategorian nimen. Käyttäjä ei voi muokata tätä osiota.

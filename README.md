@@ -1,5 +1,5 @@
 ## Ostoskassi 
- Harjoitustyön aiheena on ostoskassi. Sovelluksen käyttäjä voi kirjautua
+Harjoitustyön aiheena on ostoskassi. Sovelluksen käyttäjä voi kirjautua
 ostoskassi -sovellukseen ja lisätä ostoslistalle haluamiaan tuotteita. Jos 
 tuotetta ei ole vielä olemassa, niin käyttäjä voi lisätä kyseisen tuotteen 
 itse. Lisäksi käyttäjä voi poistaa ostoskassinsa kokonaan, luoda uuden 
@@ -8,7 +8,7 @@ Käyttäjä pystyy lisäämään ja poistamaan tuotteen.
 Lisäksi hän voi päivittää tuotteen hintaa ja pääsee näkemään olemassa olevat tuotteet.
 Jokaisella tuotteella on oma kategoria. Kategorioiden avulla voidaan 
 tehdä hakuja, joiden perusteella nähdään paljonko rahaa on käytetty
-esimerkiksi herkkuihin asiakkaan ostoskasseissa.
+esimerkiksi herkkuihin kaikissa (asiakkaan) ostoskasseissa.
 
 Valmiit kategoriat (ei voida muuttaa):
 * Valmisruoat
@@ -52,7 +52,7 @@ Tietokantakaavioiden lyhyt (vaillinainen) kuvaus:
 
 **hinta** on muotoa xxx.xx ja sen voi tarvittaessa muuttaa.
 
-**OstoskassiTuote**
+**OstoskassiTuote:**
 
 **tuote_id** kokonaisluku, joka viittaa Tuote -tauluun.
 
@@ -60,7 +60,7 @@ Tietokantakaavioiden lyhyt (vaillinainen) kuvaus:
 
 **tuoteMaara** kokonaisluku, joka kertoo kyseisen tuotteen määrän tuotteeseen liitetyssä ostoskassissa.
 
-**Kategoria**
+**Kategoria:**
 
 **id** on kokonaisluku ja taulun pääavain.
 

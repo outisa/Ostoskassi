@@ -20,7 +20,7 @@ Valmiit kategoriat (ei voida muuttaa):
 Alustavat tietokantataulut:
 
 
-![Tietokantataulu](db259843.png)
+![Tietokantataulu](/documentation/tietokantakaavio.png)
 
 Tietokantakaavioiden lyhyt (vaillinainen) kuvaus:
 

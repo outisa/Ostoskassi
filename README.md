@@ -44,8 +44,8 @@ Tietokantakaavioiden lyhyt (vaillinainen) kuvaus:
 
 **ostosMaara** on kokonaisluku ja se kertoo ostoskassiin lisättyjen tuotteiden yhteismäärän.
 
-***edit 15.03.2019***  Ostoskassilla olisi hyvä olla myös nimi, jonka mukaan kassi voidaan hakea tai valita.
-Lisäksi ainakin luomispäivämäärä olisi hyvä olla olemassa.
+***edit 15.03.2019***  Ostoskassilla olisi hyvä olla myös nimi ja luomispäivämäärä, joiden mukaan kassi voidaan
+valita ja sen sisältö hakea.
 
 **Tuote:**
 

@@ -14,6 +14,6 @@ käyttäjä näkee paljonko rahaa on käytetty ostoskasseissa esimerkiksi herkku
 
 [Tietokantakaavio](https://github.com/outisa/Ostoskassi/blob/master/documentation/Tietokantakaavio.md)
 
-[Käyttötapaukset](https://github.com/outisa/Ostoskassi/blob/master/documentation/Tietokantakaavio.md)
+[Käyttötapaukset](https://github.com/outisa/Ostoskassi/blob/master/documentation/K%C3%A4ytt%C3%B6tapaukset.md)
 
 

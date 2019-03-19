@@ -11,9 +11,6 @@ Jokaisella tuotteella on oltava merkittynä jokin kategoria. Kategorioiden avull
 käyttäjä näkee paljonko rahaa on käytetty ostoskasseissa esimerkiksi herkkuihin.
 
 
- 
-Alustavat tietokantataulut:
-
 
 [Tietokantakaavio](https://github.com/outisa/Ostoskassi/blob/master/documentation/Tietokantakaavio.md)
 

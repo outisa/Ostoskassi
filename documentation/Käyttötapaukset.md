@@ -1,5 +1,7 @@
 
-### Ensimmäinen käyttötapaus
+### Kategorian luominen
+
+### Ostoskassin luominen
 
 * _Käyttäjä:_ sovelluksen käyttäjä
 
@@ -13,11 +15,11 @@
 
 * _Käyttötapauksen kulku:_ 
   
-  1. Käyttäjä luo uuden ostoskassin.
+1. Käyttäjä luo uuden ostoskassin.
 
-  2. Käyttäjä lisää ostoskassiin tuotteita ostoslistalta.
+2. Käyttäjä lisää ostoskassiin tuotteita ostoslistalta.
 
-  3. Käyttäjälle näytetään lista ostoskassin sisällöstä ja sen kokonaissumma.
+3. Käyttäjälle näytetään lista ostoskassin sisällöstä ja sen kokonaissumma.
 
 * _Poikkeuksellinen toiminta_
 
@@ -26,7 +28,7 @@
   2b. Käyttäjä ei löydä haluamaansa tuotetta listalta, jolloin se pitää lisätä ensin tuotelistaan.
 
 
-### Toinen käyttötapaus
+### Ostoskassin muokkaus
 
 * _Käyttäjä:_ sovelluksen käyttäjä
 
@@ -40,18 +42,18 @@
 
 * _Käyttötapauksen kulku:_
 
-  1. Käyttäjä avaa ostoskassin, jota hän haluaa muokata.
+1. Käyttäjä avaa ostoskassin, jota hän haluaa muokata.
 
-  2. Käyttäjä voi lisätä uuden tuotteen.
+2. Käyttäjä voi lisätä uuden tuotteen.
 
-  3. Käyttäjä voi poistaa kassista tuotteen.
+3. Käyttäjä voi poistaa kassista tuotteen.
 
 * _Poikkeuksellinen toiminta:_
 
   1a. Käyttäjän haluama tuote puuttuu listalta.
 
 
-### Kolmas käyttötapaus
+### Tuotelistan luominen
 
 * _Käyttäjä:_ sovelluksen käyttäjä
 
@@ -65,18 +67,18 @@
 
 * _Käyttötapauksen kulku:_
 
-  1. Käyttäjä lisää tuotteen nimen.
+1. Käyttäjä lisää tuotteen nimen.
 
-  2. Käyttäjä antaa tuotteelle hinnan.
+2. Käyttäjä antaa tuotteelle hinnan.
 
-  3. Käyttäjä määrittelee tuotteen kategorian valmiista kategorialistalta.
+3. Käyttäjä määrittelee tuotteen kategorian valmiista kategorialistalta.
 
 * _Pokkeuksellinen tilanne:_
 
   1a. Tuotteen nimi löytyy jo listalta.
 
 
-### Neljäs käyttötapaus
+### Tuotelistan päivitys
 
 * _Käyttäjä:_ Sovelluksen käyttäjä
 
@@ -90,7 +92,7 @@
 
 * _Käyttötapauksen kulku:_
 
-  1. Muokattava tuote valitaan päivitettäväksi.
+1. Muokattava tuote valitaan päivitettäväksi.
 
-  2. Päivitettävältä tuotteelta muokataan hinta tai kategoria. 
+2. Päivitettävältä tuotteelta muokataan hinta tai kategoria. 
  

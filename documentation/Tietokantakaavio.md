@@ -1,4 +1,3 @@
-Kuva tietokantakaaviosta sekä suomeksi että englanniksi. Englanninkielinen versio on otettu mukaan, koska itse sovelluksessa
-tietokantojen luomiseen on käytetty englanninkielisiä sarakkeiden nimiä.
+Kuva tietokantakaaviosta on englanniksi, sillä sovelluksessa olevat tietokantataulut ovat englanniksi.
 
 ![Tietokantakaavio](tietokantakaavio2.png)

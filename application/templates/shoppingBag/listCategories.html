@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+  <table>
+    <tr>
+      <th>Category</>
+    </tr>
+    {% for category in shoppingBag %}
+    <tr>
+      <td>{{ category.category }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('shoppingBag_update', categoryId=category.id) }}">
+          <input type="submit" value="Update category"/>
+          <input type="text" value="{{ category.category }}" name="newcategory"/>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

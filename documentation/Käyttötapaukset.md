@@ -4,31 +4,31 @@ _Tapahtuma:_ | Kategorian luominen
 _Käyttäjä:_ | Sovelluksen käyttäjä
 _Tavoite:_ | Kategorian luonti 
 _Laukaisija:_ | Kategorialista on tyhjä tai sieltä puuttuu haluttu kategoria.
-_Esiehto:_ | Käyttäjä on kirjautunut
+_Esiehto:_ | **Tulevaisuudessa** (Käyttäjä on kirjautunut) 
 _Jälkiehto:_ | Uusi kategoria on luotu
 _Käyttötapauksen kulku:_ | 1. Käyttäjä antaa kategorialle sitä kuvaavan nimen. 2. Käyttäjä lisää kategorian.
 
 **Toiminnallisuutta ei olla vielä luotu seuraavissa käyttötapauksissa:**
 
-_Tapahtuma:_ | Ostoskassin luominen
+_Tapahtuma:_ | Ostoslistan luominen
 --- | ---
  _Käyttäjä:_ | sovelluksen käyttäjä 
- _Tavoite:_ | Ostoskassin luominen
+ _Tavoite:_ | Ostoslistan luominen
 _Laukaisija:_ | Käyttäjän halu kirjata ostoslista. 
 _Esiehto:_ | Käyttäjä on kirjautunut sovellukseen ja tuotelistalle on lisätty tuotteita.
-_Jälkiehto:_ | Ostoskassiin on lisätty käyttäjän haluamat tuotteet.
- _Käyttötapauksen kulku:_  |1. Käyttäjä luo uuden ostoskassin.  2. Käyttäjä lisää ostoskassiin tuotteita tuotelistalta 3.Käyttäjälle näytetään lista ostoskassin sisällöstä ja sen kokonaissumma.
- _Poikkeuksellinen toiminta:_ | 2a. Ostoskassiin ei voi valita tuotteita, jos ostoslista on tyhjä. 2b. Käyttäjä ei löydä haluamaansa tuotetta listalta, jolloin se pitää lisätä ensin tuotelistaan.
+_Jälkiehto:_ | Ostoslistaan on lisätty käyttäjän haluamat tuotteet.
+ _Käyttötapauksen kulku:_  |1. Käyttäjä luo uuden ostoslistan.  2. Käyttäjä lisää ostoslistaan tuotteita tuotelistalta 3.Käyttäjälle näytetään lista ostoslistan sisällöstä ja sen kokonaissumma.
+ _Poikkeuksellinen toiminta:_ | 2a. Ostoslistaan ei voi valita tuotteita, jos tuotelista on tyhjä. 2b. Käyttäjä ei löydä haluamaansa tuotetta listalta, jolloin se pitää lisätä ensin tuotelistaan.
 
 
-_Tapahtuma:_ | Ostoskassin muokkaus
+_Tapahtuma:_ | Ostoslistan muokkaus
 --- | ---
 _Käyttäjä:_ | sovelluksen käyttäjä
-_Tavoite:_ | Ostoskassin muokkaus
-_Laukaisija:_ | Ostoskassin sisältö ei vastaa käyttäjän toiveita
-_Esiehto:_ | Ostoskassi on luotu ja käyttäjä on kirjautuneena
-_Jälkiehto:_ | Ostoskassin sisältö on muokattu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä avaa ostoskassin, jota hän haluaa muokata. 2. Käyttäjä voi lisätä uuden tuotteen. 3.Käyttäjä voi poistaa kassista tuotteen.
+_Tavoite:_ | Ostoslistan muokkaus
+_Laukaisija:_ | Ostoslistan sisältö ei vastaa käyttäjän toiveita
+_Esiehto:_ | Ostoslista on luotu ja käyttäjä on kirjautuneena
+_Jälkiehto:_ | Ostoslistan sisältö on muokattu
+_Käyttötapauksen kulku:_ | 1. Käyttäjä avaa sen ostoslistan, jota hän haluaa muokata. 2. Käyttäjä voi lisätä listaan uuden tuotteen. 3.Käyttäjä voi poistaa listalta tuotteen.
 _Poikkeuksellinen toiminta:_ | 1a. Käyttäjän haluama tuote puuttuu listalta.
 
 
@@ -59,6 +59,6 @@ _Käyttötapauksen kulku:_ | 1. Muokattava tuote valitaan päivitettäväksi. 2.
  _Käyttäjä:_ | Sovelluksen käyttäjä
  _Tavoite:_ | Haut kategorian tai tuotteen perusteella.
  _Laukaisija:_ | Halutaan tietää tuote tai kategoriakohtaiset menot
- _Esiehto:_ | Ainakin yksi ostoskassi on luotu
+ _Esiehto:_ | Ainakin yksi ostoslista on luotu
  _Jälkiehto:_ | Käyttäjällä saa haluamansa haun tulokset
  _Käyttötapauksen kulku:_ | 1. Valitaan haun tyyppi.

@@ -1,11 +1,12 @@
 ## Ostoskassi 
 Harjoitustyön aiheena on ostoskassi. Sovelluksen käyttäjä voi kirjautua
-ostoskassi -sovellukseen ja lisätä luomalleen ostoslistalle haluamiaan tuotteita. Alussa tuote ja kategoria -taulut ovat tyhjiä,
-joten käyttäjän tulee lisätä haluamansa tuotteet ja kategoriat itse ennen ostoskassin luontia. Lisäksi käyttäjä voi poistaa
-ostoskassinsa kokonaan, luoda uuden ostoskassin sekä tutkia ja muokata tuotteiden määrää ostoskassissa.
-Käyttäjä pystyy lisäämään ja poistamaan tuotteen tuote-taulusta sekä kategorian kategoria-taulusta. 
-Lisäksi hän voi päivittää tuotteen hintaa ja pääsee näkemään olemassa olevat tuotteet. Käyttäjä voi myös päivittää kategorian
-keksiessään sille vaikkapa kuvaavamman nimen.
+ostoskassi -sovellukseen ja lisätä luomalleen ostoslistalle haluamiaan tuotteita. Alussa tuotteita ei ole olemassa ja  
+kategorialista saattaa olla tyhjä, joten käyttäjän tulee lisätä haluamansa tuotteet ennen ostoslistan tekoa. Kategorialle annetaan 
+vain kategorian nimi sitä lisättäessä. Luotaessa uutta tuotetta annetaan sille nimi, hinta ja sille merkitään kategoria 
+kategorialistasta. Lisäksi käyttäjävoi poistaa ostoslistansa kokonaan, luoda uuden ostoslistan sekä tutkia ja muokata tuotteiden 
+määrää ostoslistassa. Käyttäjä pystyy myös poistamaan tuotteen ja hän voi päivittää tuotteen hinnan sekä hän pystyy selailemaan jo 
+olemassa olevia tuotteita. Käyttäjä voi myös päivittää kategorian keksiessään sille vaikkapa kuvaavamman nimen. Käyttäjä näkee myös
+kategoriat listana.
 
 Jokaisella tuotteella on oltava merkittynä jokin kategoria. Kategorioiden avulla voidaan tehdä hakuja, joiden perusteella 
 käyttäjä näkee paljonko rahaa on käytetty ostoskasseissa esimerkiksi herkkuihin.
@@ -15,5 +16,7 @@ käyttäjä näkee paljonko rahaa on käytetty ostoskasseissa esimerkiksi herkku
 [Tietokantakaavio](https://github.com/outisa/Ostoskassi/blob/master/documentation/Tietokantakaavio.md)
 
 [Käyttötapaukset](https://github.com/outisa/Ostoskassi/blob/master/documentation/K%C3%A4ytt%C3%B6tapaukset.md)
+
+[Ostoskassisovellus](https://ostoskassi-tsoha.herokuapp.com)
 
 

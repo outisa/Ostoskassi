@@ -3,3 +3,6 @@ __pycache__
 __init__.pyc
 views.pyc
 shoppingBag.db
+models.pyc
+forms.pyc
+

@@ -15,8 +15,7 @@ _Tavoite:_ | Kategorialistan luonti
 _Laukaisija:_ | Halutaan nähdä kaikki kategoriat
 _Esiehto:_ | **Tulevaisuudessa** (Käyttäjä on kirjautunut) 
 _Jälkiehto:_ | Kategoriat on listattu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa kategoriat nappia 2. Käyttäjä ohjautuu sivulle,
-jossa kategoriat ovat listattuna.
+_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa kategoriat nappia 2. Käyttäjä ohjautuu sivulle, jossa kategoriat ovat listattuna.
 
 
 _Tapahtuma:_ | Kategorioiden muokkaus
@@ -26,9 +25,7 @@ _Tavoite:_ | Kategorialistan muokkaus
 _Laukaisija:_ | Halutaan muokata jotakin kategoriaa sopivammaksi
 _Esiehto:_ | **Tulevaisuudessa** (Käyttäjä on kirjautunut) 
 _Jälkiehto:_ | Kategorian nimi on muokattu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa kategoriat nappia 2. Käyttäjä ohjautuu sivulle,
-jossa kategoriat ovat listattuna. 3. Käyttäjä kirjoittaa kategorialle uuden nimen tekstikenttään.
-4. Käyttäjä lisää uuden nimen kategorialle.
+_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa kategoriat nappia 2. Käyttäjä ohjautuu sivulle,jossa kategoriat ovat listattuna. 3. Käyttäjä kirjoittaa kategorialle uuden nimen tekstikenttään. 4. Käyttäjä lisää uuden nimen kategorialle.
  _Poikkeuksellinen toiminta:_ | 3a. Listalla ei ole yhtään kategoriaa.
  
 **Toiminnallisuutta ei olla vielä luotu seuraavissa käyttötapauksissa:**

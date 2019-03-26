@@ -10,7 +10,7 @@
     <tr>
       <td>{{ category.category }}</td>
       <td>
-        <form method="POST" action="{{ url_for('shoppingBag_update', categoryId=category.id) }}">
+        <form method="POST" action="{{ url_for('category_update', categoryId=category.id) }}">
           <input type="submit" value="Update category"/>
           <input type="text" value="{{ category.category }}" name="newcategory"/>
         </form>

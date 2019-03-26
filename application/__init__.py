@@ -9,8 +9,10 @@ db = SQLAlchemy(app)
 
 from application import views
 
-from application.shoppingBag import views
-from application.shoppingBag import models
+from application.category import views
+from application.category import models
+
+from application.auth import models
 
 
 db.create_all()

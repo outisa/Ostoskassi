@@ -1,8 +1,0 @@
-{% extends "layout.html" %}
-
-{% block body %}
-<form method="POST" action="{{ url_for('shoppingBag_create') }}">
-  <input type="text" name="category"/>
-  <input type="submit" value="Add a new category"/>
-</form>
-{% endblock %}

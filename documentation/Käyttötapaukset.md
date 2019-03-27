@@ -4,7 +4,7 @@ _Tapahtuma:_ | Kategorian luominen
 _Käyttäjä:_ | Sovelluksen käyttäjä
 _Tavoite:_ | Kategorian luonti 
 _Laukaisija:_ | Kategorialista on tyhjä tai sieltä puuttuu haluttu kategoria.
-_Esiehto:_ | **Tulevaisuudessa** (Käyttäjä on kirjautunut) 
+_Esiehto:_ | Käyttäjä on kirjautunut 
 _Jälkiehto:_ | Uusi kategoria on luotu
 _Käyttötapauksen kulku:_ | 1. Käyttäjä antaa kategorialle sitä kuvaavan nimen. 2. Käyttäjä lisää kategorian.
 
@@ -13,20 +13,32 @@ _Tapahtuma:_ | Kategorioiden listaus ja katselu
 _Käyttäjä:_ | Sovelluksen käyttäjä
 _Tavoite:_ | Kategorialistan luonti 
 _Laukaisija:_ | Halutaan nähdä kaikki kategoriat
-_Esiehto:_ | **Tulevaisuudessa** (Käyttäjä on kirjautunut) 
+_Esiehto:_ |  Käyttäjä on kirjautunut 
 _Jälkiehto:_ | Kategoriat on listattu
 _Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa kategoriat nappia 2. Käyttäjä ohjautuu sivulle, jossa kategoriat ovat listattuna.
 
 
-_Tapahtuma:_ | Kategorioiden muokkaus
+_Tapahtuma:_ | Kategorioiden muokkaus ja poisto
 --- | ---
 _Käyttäjä:_ | Sovelluksen käyttäjä
 _Tavoite:_ | Kategorialistan muokkaus 
 _Laukaisija:_ | Halutaan muokata jotakin kategoriaa sopivammaksi
-_Esiehto:_ | **Tulevaisuudessa** (Käyttäjä on kirjautunut) 
+_Esiehto:_ | Käyttäjä on kirjautunut
 _Jälkiehto:_ | Kategorian nimi on muokattu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa kategoriat nappia 2. Käyttäjä ohjautuu sivulle,jossa kategoriat ovat listattuna. 3. Käyttäjä kirjoittaa kategorialle uuden nimen tekstikenttään. 4. Käyttäjä lisää uuden nimen kategorialle.
+_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa kategoriat nappia 2. Käyttäjä ohjautuu sivulle,jossa kategoriat ovat listattuna. 3. Käyttäjä kirjoittaa kategorialle uuden nimen tekstikenttään. 4. Käyttäjä lisää uuden nimen kategorialle. 5. Käyttäjä voi poistaa itselleen ylimääräisen kategorian.
  _Poikkeuksellinen toiminta:_ | 3a. Listalla ei ole yhtään kategoriaa.
+ 
+ _Tapahtuma:_ | Tilin luonti
+--- | ---
+_Käyttäjä:_ | Sovelluksen käyttäjä
+_Tavoite:_ | Uuden tilin luonti 
+_Laukaisija:_ | Halutaan luoda tili, jolla kirjautua sovellukseen
+_Esiehto:_ | Sovellus on auki 
+_Jälkiehto:_ | Uusi tili on luotu
+_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa login-nappia 2. Käyttäjä ohjautuu login-sivulle 3. Käyttäjä painaa create an account -nappia 4. Käyttäjä syöttää tunnuksen ja salasanan (molemmissa vähintään kolme merkkiä) 5. Käyttäjä kirjaantuu login napilla.
+ _Poikkeuksellinen toiminta:_ | 
+ 
+ Tilin luomisen jälkeen käyttäjä voi kirjautua tilille tunnuksillaan, kirjatua ulos ja poistaa tilin halutessaan ollessaan kirjautuneena.
  
 **Toiminnallisuutta ei olla vielä luotu seuraavissa käyttötapauksissa:**
 

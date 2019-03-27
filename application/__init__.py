@@ -18,6 +18,12 @@ from application import views
 from application.category import views
 from application.category import models
 
+from application.shoppinglist import models
+from application.shoppinglist import views
+
+from application.product import views
+from application.product import models
+
 from application.auth import models
 from application.auth import views
 

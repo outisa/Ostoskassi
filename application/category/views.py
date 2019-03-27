@@ -5,7 +5,9 @@ from application import app, db
 from application.category.models import Category
 from application.category.forms import CategoryForm
 
+
 @app.route("/category", methods=["GET"])
+@login_required
 def category_index():
     return render_template("category/listCategories.html", shoppingBag = Category.query.all())
 

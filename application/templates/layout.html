@@ -6,9 +6,19 @@
   </head>
 
   <body>
+    {% if current_user.is_authenticated %}
+    <p>
+       {{ current_user.username }} is logged in. <a href="{{ url_for('auth_logout') }}">Logout</a>
+       <a href="{{ url_for('auth_delete', user_id=current_user.id)  }}">Delete your account</a>
+    </P>
+    {% else %}
+    <a href="{{ url_for('auth_login') }}">Login</a>
+    {% endif %}
+
     <ul>
       <li><a href="{{ url_for('category_index') }}">List categories</a></li>
       <li><a href="{{ url_for('category_form') }}">Add a category</a></li>
+      <li><a href="{{ url_for('auth_create') }}">Create an account</a></li>
     <ul>
 
     {% block body %}

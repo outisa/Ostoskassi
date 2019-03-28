@@ -49,4 +49,4 @@ def auth_delete(user_id):
    db.session().commit()
 
 
-   return render_template("auth/index3.html")
+   return redirect(url_for("index"))

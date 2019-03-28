@@ -24,7 +24,7 @@ def auth_login():
 @app.route("/auth/logout")
 def auth_logout():
     logout_user()
-    return render_template("auth/index2.html")
+    return redirect(url_for("index2"))
 
 @app.route("/auth/newAccount", methods = ["GET", "POST"])
 def auth_create():
@@ -39,7 +39,7 @@ def auth_create():
     db.session().add(t)
     db.session().commit()
 
-    return render_template("auth/index2.html")
+    return redirect(url_for("index2"))
 
 @app.route("/auth/delete/<user_id>", methods = ["POST", "GET"])
 @login_required
@@ -49,4 +49,4 @@ def auth_delete(user_id):
    db.session().commit()
 
 
-   return redirect(url_for("index"))
+   return redirect(url_for("index3"))

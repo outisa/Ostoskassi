@@ -10,12 +10,11 @@ Käyttäjälle tarjotaan myös mahdollisuus kirjautua ulos sovelluksesta ja pois
 
 **Tämän hetkisessä sovelluksessa:**
 
-* **_delete account_ nappia pitää painaa kahdesti, jotta päästään tilaan, jossa voi kirjautua uudestaan (uusilla tunnuksilla) sisään.**
-* **Luotaessa uutta tiliä, ei käyttäjätunnuksen olemassaoloa tarkisteta.**
-* **Jokainen käyttäjä näkee kaikkien luomat kategoriat.**
+* **Luotaessa uutta tiliä, ei käyttäjätunnuksen olemassaoloa tarkisteta. Tämä pitää vielä korjata**
+* **Jokainen käyttäjä näkee kaikkien luomat kategoriat. Tämä pitää vielä korjata**
 * **Vain account ja category tietokantataulut ovat käytössä.**
 * **CRUD -ominaisuus on category -taululla.**
-* **Tunnukset on luotu valmiiksi yhdelle 'henkilölle', username: hello ja password: world**
+* **Tunnukset on luotu valmiiksi yhdelle 'henkilölle', username: hello ja password: world, mutta myös omien tunnusten luonti ja poisto onnistuu**
 
 [Tietokantakaavio](https://github.com/outisa/Ostoskassi/blob/master/documentation/Tietokantakaavio.md)
 

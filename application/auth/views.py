@@ -44,9 +44,11 @@ def auth_create():
 @app.route("/auth/delete/<user_id>", methods = ["POST", "GET"])
 @login_required
 def auth_delete(user_id):
-   user = User.query.get(user_id)
-   db.session().delete(user)
-   db.session().commit()
+    t =  User.query.get(user_id)
+    for c in db.session().query(Category).filter_by(account_id=user_id):
+        db.session().delete(c)
+    db.session().delete(t)
+    db.session().commit()
 
 
-   return redirect(url_for("index3"))
+    return redirect(url_for("index3"))

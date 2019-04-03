@@ -1,5 +1,7 @@
 from application import db
 
+from sqlalchemy.sql import text
+
 class Product(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
@@ -7,9 +9,8 @@ class Product(db.Model):
     name = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Numeric(10,2), nullable=False)
 
-    account_id = db.Column(db.Integer, db.ForeignKey('account.id', 
-                                    account_cascade='all, delete-orphan'),
-                                                                  nullable=False)
+    account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
+                                                               nullable=False)
 
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'),
                                                                nullable=False)
@@ -17,3 +18,17 @@ class Product(db.Model):
     def __init__(self, name, price):
         self.name = name
         self.price = price
+
+    @staticmethod
+    def list_products_user(account=0):
+        stmt = text("SELECT Product.id, Product.name, Product.price FROM Product"
+               " JOIN Account ON Product.account_id = Account.id"
+               " WHERE (Product.account_id = :account)"
+               " ORDER BY Product.name").params(account=account)
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"id":row[0], "name":row[1], "price":row[2]})
+
+        return response

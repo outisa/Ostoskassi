@@ -6,20 +6,22 @@
     <tr>
       <th>Category</>
     </tr>
-    {% for category in shoppingBag %}
+    {% for category in categories %}
     <tr>
       <td>{{ category.category }}</td>
       <td>
-        <form method="POST" action="{{ url_for('category_update', categoryId=category.id) }}">
+        <form method="POST" action="{{ url_for('category_update', category_id=category.id) }}">
+          <input type="text" name="category" placeholder="...">
           <input type="submit" value="Update category"/>
-          <input type="text" value="{{ category.category }}" name="newcategory"/>
         </form>
       </td>
       <td>
-        <form method="POST" action="{{ url_for('category_delete', categoryId=category.id) }}">
+        <form method="POST" action="{{ url_for('category_delete', category_id=category.id) }}">
           <input type="submit" value="Delete category"/>
         </form>
-    </tr>
+       </td>
+     </tr>
     {% endfor %}
   </table>
 {% endblock %}
+

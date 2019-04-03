@@ -6,30 +6,30 @@ from application.category.models import Category
 from application.category.forms import CategoryForm
 
 
-@app.route("/category", methods=["GET"])
+@app.route("/category/list", methods=["GET", "POST"])
 @login_required
 def category_index():
-    return render_template("category/listCategories.html", shoppingBag = Category.query.all())
+    return render_template("category/listCategories.html", categories=Category.list_categories_for_user(current_user.id))
 
 @app.route("/category/newCategory/")
 @login_required
 def category_form():
     return render_template("category/newCategory.html", form = CategoryForm())
 
-@app.route("/category/delete/<categoryId>", methods=["POST"])
+@app.route("/category/delete/<category_id>/", methods=["POST"])
 @login_required
-def category_delete(categoryId):
-    t = Category.query.get(categoryId)
+def category_delete(category_id):
+    t =  Category.query.get(category_id)
     db.session().delete(t)
     db.session().commit()
     return redirect(url_for("category_index"))
 
-@app.route("/category/<categoryId>/", methods=["POST", "GET"])
+@app.route("/category/update/<category_id>/", methods=["POST", "GET"])
 @login_required
-def category_update(categoryId):
-    uusi = request.form.get("newcategory")
-    t = Category.query.get(categoryId)
-    t.category = uusi
+def category_update(category_id):
+    newC =request.form.get("category")
+    t = Category.query.get(category_id)
+    t.category = newC
     db.session().commit()
 
     return redirect(url_for("category_index"))

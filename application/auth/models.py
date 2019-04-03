@@ -8,14 +8,14 @@ class User(db.Model):
     username = db.Column(db.String(150), nullable=False)
     password = db.Column(db.String(150), nullable=False)
 
-    categories = db.relationship("Category", 
-         backref='account', cascade='all, delete-orphan', lazy=True)
+    categories = db.relationship("Category",
+         backref=db.backref('account'), lazy=True)
 
-    shoppinglists = db.relationship("Shoppinglist", 
-         backref='account', cascade='all, delete-orphan', lazy=True)
+    shoppinglists = db.relationship("Shoppinglist",
+         backref=db.backref('account'), lazy=True)
 
-    products = db.relationship("Product", 
-         backref='account', cascade='all, delete-orphan', lazy=True)
+    products = db.relationship("Product",
+         backref=db.backref('account'), lazy=True)
 
     def __init__(self, username, password):
         self.username = username

@@ -29,7 +29,7 @@ def product_delete(product_id):
 def product_update(product_id):
     form = UpdateForm(request.form)
     if not form.validate():
-        return render_template("product/listProducts.html", form = form)
+        return render_template("product/listProducts.html", products=Product.list_products_user(current_user.id), form = form, product_id=product_id)
     t = Product.query.get(product_id)
     t.price = form.price.data
     db.session().commit()

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
+{{error}}
   <table>
     <tr>
       <th>Category</>
@@ -11,13 +11,29 @@
       <td>{{ category.category }}</td>
       <td>
         <form method="POST" action="{{ url_for('category_update', category_id=category.id) }}">
-          <input type="text" name="category" placeholder="...">
-          <input type="submit" value="Update category"/>
+          <tr>
+            <td>
+              <p>Update {{ category.category }}:</p>
+            </td>
+            <td>
+              {{ form.category }}
+            </td>
+            <td>
+              <ul>
+                {% for error in form.category.errors %}
+                <li>{{ error }}</li>
+                {% endfor%}
+              </ul>
+            </td>
+            <td>
+              <input type="submit" value="Update {{ category.category }}"/>
+            </td>
+          </tr>      
         </form>
       </td>
       <td>
         <form method="POST" action="{{ url_for('category_delete', category_id=category.id) }}">
-          <input type="submit" value="Delete category"/>
+          <input type="submit" value="Delete {{ category.category }}"/>
         </form>
        </td>
      </tr>

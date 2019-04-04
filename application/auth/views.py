@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user, login_required
 
 from application.category.models import Category
+from application.product.models import Product
 from application import app, db
 from application.auth.models import User
 from application.auth.forms import LoginForm
@@ -34,6 +35,11 @@ def auth_create():
     if not form.validate():
         return render_template("auth/newAccount.html", form = form)
 
+    u = form.username.data
+    user = User.query.filter_by(username=u).first()
+    if user:
+        return render_template("auth/newAccount.html", form = form, 
+                                                 error = "Username already exists, choose another one")
     t = User(form.username.data, form.password.data)
 
     db.session().add(t)
@@ -45,6 +51,8 @@ def auth_create():
 @login_required
 def auth_delete(user_id):
     t =  User.query.get(user_id)
+    for p in db.session().query(Product).filter_by(account_id=user_id):
+        db.session().delete(p)
     for c in db.session().query(Category).filter_by(account_id=user_id):
         db.session().delete(c)
     db.session().delete(t)

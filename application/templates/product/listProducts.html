@@ -5,11 +5,14 @@
   <table>
     <tr>
       <th>Product</>
+      <th>Price</>
+      <th>Category</>
     </tr>
     {% for product in products %}
     <tr>
       <td>{{ product.name }}</td>
-      <td> {{ product.price }}</td> 
+      <td>{{ product.price }}</td>
+      <td>{{ product.category}}</td> 
       <td>
         <form method="POST" action="{{ url_for('product_delete', product_id=product.id) }}">
           <input type="submit" value="Delete product"/>
@@ -33,7 +36,7 @@
             </ul>
           </td>
           <td>
-           <input type="submit" value="Update products"/>
+           <input type="submit" value="Update price"/>
           </td>
         </tr>
        </table>

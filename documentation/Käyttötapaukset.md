@@ -22,11 +22,11 @@ _Tapahtuma:_ | Kategorioiden muokkaus ja poisto
 --- | ---
 _Käyttäjä:_ | Sovelluksen käyttäjä
 _Tavoite:_ | Kategorialistan muokkaus 
-_Laukaisija:_ | Halutaan muokata jotakin kategoriaa sopivammaksi
+_Laukaisija:_ | Halutaan muokata jotakin kategoriaa sopivammaksi.
 _Esiehto:_ | Käyttäjä on kirjautunut
 _Jälkiehto:_ | Kategorian nimi on muokattu
 _Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa kategoriat nappia 2. Käyttäjä ohjautuu sivulle,jossa kategoriat ovat listattuna. 3. Käyttäjä kirjoittaa kategorialle uuden nimen tekstikenttään. 4. Käyttäjä lisää uuden nimen kategorialle. 5. Käyttäjä voi poistaa itselleen ylimääräisen kategorian.
- _Poikkeuksellinen toiminta:_ | 3a. Listalla ei ole yhtään kategoriaa.
+ _Poikkeuksellinen toiminta:_ | 3a. Listalla ei ole yhtään kategoriaa. 5a. Kategoria on jollakin tuotteella käytössä.
  
  _Tapahtuma:_ | Tilin luonti
 --- | ---
@@ -35,12 +35,12 @@ _Tavoite:_ | Uuden tilin luonti
 _Laukaisija:_ | Halutaan luoda tili, jolla kirjautua sovellukseen
 _Esiehto:_ | Sovellus on auki 
 _Jälkiehto:_ | Uusi tili on luotu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa login-nappia 2. Käyttäjä ohjautuu login-sivulle 3. Käyttäjä painaa create an account -nappia 4. Käyttäjä syöttää tunnuksen ja salasanan (molemmissa vähintään kolme merkkiä) 5. Käyttäjä kirjaantuu login napilla.
- _Poikkeuksellinen toiminta:_ | 
+_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa login-nappia 2. Käyttäjä ohjautuu login-sivulle 3. Käyttäjä painaa create an account -nappia 4. Käyttäjä syöttää tunnuksen ja salasanan (molemmissa vähintään kolme merkkiä) 5. Käyttäjä luo tunnuksen. 6. Käyttäjä kirjautuu sisään.
+ _Poikkeuksellinen toiminta:_ | 4a. Tunnus on jo käytössä 
  
- Tilin luomisen jälkeen käyttäjä voi kirjautua tilille tunnuksillaan, kirjatua ulos ja poistaa tilin halutessaan ollessaan kirjautuneena.
+Kirjautuneena ollessaan käyttäjä voi kirjatua ulos ja poistaa tilin halutessaan.
  
-**Toiminnallisuutta ei olla vielä luotu seuraavissa käyttötapauksissa:**
+**Toiminnallisuutta ei olla vielä luotu:**
 
 _Tapahtuma:_ | Ostoslistan luominen
 --- | ---
@@ -52,6 +52,7 @@ _Jälkiehto:_ | Ostoslistaan on lisätty käyttäjän haluamat tuotteet.
  _Käyttötapauksen kulku:_  |1. Käyttäjä luo uuden ostoslistan.  2. Käyttäjä lisää ostoslistaan tuotteita tuotelistalta 3.Käyttäjälle näytetään lista ostoslistan sisällöstä ja sen kokonaissumma.
  _Poikkeuksellinen toiminta:_ | 2a. Ostoslistaan ei voi valita tuotteita, jos tuotelista on tyhjä. 2b. Käyttäjä ei löydä haluamaansa tuotetta listalta, jolloin se pitää lisätä ensin tuotelistaan.
 
+**Toiminnallisuutta ei olla vielä luotu:**
 
 _Tapahtuma:_ | Ostoslistan muokkaus
 --- | ---
@@ -68,21 +69,38 @@ _Tapahtuma:_ | Tuotelistan luominen
 --- | ---
 _Käyttäjä:_ | sovelluksen käyttäjä
 _Tavoite:_ | Tuotteen luominen tuotelistalle
-_Laukaisija:_ | Tuotelista on tyhjä tai tarvittu tuote puuttuu listalta.
-_Esiehto:_  | Käyttäjä on kirjautuneena, lisättävää tuotetta ei ole listalla ja haluttu tuotekategoria on olemassa.
+_Laukaisija:_ | Tuotelista on tyhjä tai tarvittava tuote puuttuu listalta.
+_Esiehto:_  | Käyttäjä on kirjautuneena ja haluttu tuotekategoria on olemassa.
 _Jälkiehto:_ | Tuote lisätään tuotelistalle
 _Käyttötapauksen kulku:_ | 1. Käyttäjä lisää tuotteen nimen. 2. Käyttäjä antaa tuotteelle hinnan. 3. Käyttäjä määrittelee tuotteen kategorian kategorialistalta.
-_Pokkeuksellinen tilanne:_ | 1a. Tuotteen nimi löytyy jo listalta.
+_Pokkeuksellinen tilanne:_ | 3a Kategoriaa ei ole olemassa.
 
+_Tapahtuma:_ | Tuotteiden listaus ja katselu
+--- | ---
+_Käyttäjä:_ | Sovelluksen käyttäjä
+_Tavoite:_ | Tuotelistan luonti 
+_Laukaisija:_ | Halutaan nähdä kaikki tuotteet
+_Esiehto:_ |  Käyttäjä on kirjautunut 
+_Jälkiehto:_ | Tuotteet on listattu
+_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa tuotteet linnkiä 2. Käyttäjä ohjautuu sivulle, jossa tuotteet ovat listattuna.
 
 _Tapahtuma:_  | Tuotelistan päivitys
 --- | ---
 _Käyttäjä:_ |  Sovelluksen käyttäjä
 _Tavoite:_ | Tuotelistan päivitys
-_Laukaisija:_ | Tuotteella on väärä hinta tai kategoria
+_Laukaisija:_ | Tuotteella on väärä hinta
 _Esiehto:_ | Muokattava tuote löytyy tuotelistalta ja käyttäjä on kirjautuneena
 _Jälkiehto:_ | Tuoteen tiedot ovat päivitetty.
-_Käyttötapauksen kulku:_ | 1. Muokattava tuote valitaan päivitettäväksi. 2. Päivitettävältä tuotteelta muokataan hinta tai kategoria.
+_Käyttötapauksen kulku:_ | 1. Päivitettävältä tuotteelta muokataan hinta. 2. Tehdään päivitys.
+ 
+_Tapahtuma:_  | Tuoteen poisto
+--- | ---
+_Käyttäjä:_ |  Sovelluksen käyttäjä
+_Tavoite:_ | Tuotelistan päivitys
+_Laukaisija:_ | Tuotetta ei haluta pitää tuotelistalla
+_Esiehto:_ | Käyttäjä on kirjautuneena
+_Jälkiehto:_ | Tuote on poistettu.
+_Käyttötapauksen kulku:_ | 1. Painetaan delete product-nappia.
  
  **Tarkennetaan myöhemmin:**
  

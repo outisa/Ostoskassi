@@ -1,6 +1,4 @@
-
 {% extends "layout.html" %}
-
 {% block body %}
 <form method="POST" action="{{ url_for('product_create') }}">
   <table>
@@ -41,13 +39,20 @@
       <td>
         {{ form.category_id }}
       </td>
+      <td>
+        <ul>
+          {% for error in form.category_id.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
     </tr>
     <tr>
       <td colspan="6">
         <input type="submit" value="Add a new product"/>
       </td>
     </tr>
-  
-</form>
+  </form>
+</table>
 {% endblock %}
 

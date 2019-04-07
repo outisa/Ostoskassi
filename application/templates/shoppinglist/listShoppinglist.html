@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Shoppinglist</>
+    </tr>
+    {% for shoppinglist in lists %}
+    <tr>
+      <td>{{ shoppinglist.date}}</td>
+      <td>
+        <form method="POST" action="{{ url_for('shoppinglist_show', shoppinglist_id=shoppinglist.id) }}">
+          <input type="submit" value="Show list">
+        </form>
+      </td>
+      <td>
+        <form method="POST" action="{{ url_for('shoppinglist_delete', shoppinglist_id=shoppinglist.id) }}">
+          <input type="submit" value="Delete list">
+        </form>
+      </td>     
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

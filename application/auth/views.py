@@ -3,6 +3,8 @@ from flask_login import login_user, logout_user, login_required
 
 from application.category.models import Category
 from application.product.models import Product
+from application.shoppinglist.models import Shoppinglist
+from application.shoppinglistProduct.models import Shoppinglistproduct
 from application import app, db
 from application.auth.models import User
 from application.auth.forms import LoginForm
@@ -35,8 +37,8 @@ def auth_create():
     if not form.validate():
         return render_template("auth/newAccount.html", form = form)
 
-    u = form.username.data
-    user = User.query.filter_by(username=u).first()
+    name = form.username.data
+    user = User.query.filter_by(username=name).first()
     if user:
         return render_template("auth/newAccount.html", form = form, 
                                                  error = "Username already exists, choose another one")
@@ -52,9 +54,14 @@ def auth_create():
 def auth_delete(user_id):
     t =  User.query.get(user_id)
     for p in db.session().query(Product).filter_by(account_id=user_id):
+        onList =  db.session.query(Shoppinglistproduct).filter_by(product_id=p.id).first()
+        if onList:
+            db.session().delete(onList)
         db.session().delete(p)
     for c in db.session().query(Category).filter_by(account_id=user_id):
         db.session().delete(c)
+    for s in db.session().query(Shoppinglist).filter_by(account_id=user_id):
+        db.session().delete(s)
     db.session().delete(t)
     db.session().commit()
 

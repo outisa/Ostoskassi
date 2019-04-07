@@ -15,7 +15,6 @@ class Category(db.Model):
         self.category = category
 
     @staticmethod
-
     def list_categories_for_user(account=0):
         stmt = text("SELECT Category.id, category FROM Category"
                     " JOIN Account ON Category.account_id = Account.id "
@@ -30,5 +29,6 @@ class Category(db.Model):
 
         return response
 
-
+    def __str__(self):
+        return '<Category {}>'.format(self.category)
 

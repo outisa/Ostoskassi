@@ -2,9 +2,10 @@ from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 
 from application import app, db
+from application.category.models import Category
 from application.product.models import Product
 from application.product.forms import ProductForm, UpdateForm
-
+from application.shoppinglistProduct.models import Shoppinglistproduct
 
 @app.route("/product/newProduct/")
 @login_required
@@ -20,6 +21,9 @@ def product_index():
 @login_required
 def product_delete(product_id):
     t =  Product.query.get(product_id)
+    isOnList = db.session().query(Shoppinglistproduct).filter_by(product_id=t.id).first()
+    if isOnList:
+        db.session().delete(isOnList)
     db.session().delete(t)
     db.session().commit()
     return redirect(url_for("product_index"))
@@ -35,12 +39,12 @@ def product_update(product_id):
     db.session().commit()
     return redirect(url_for("product_index"))
 
-@app.route("/product/", methods=["POST"])
+@app.route("/product/", methods=["POST", "GET"])
 @login_required
 def product_create():
     form =ProductForm(request.form)
     if not form.validate():
-        return render_template("product/newProduct.html", form = form) 
+        return render_template("product/newProduct.html", form = form)
     t = Product(form.name.data, form.price.data)
     t.account_id = current_user.id
     t.category_id = form.category_id.data

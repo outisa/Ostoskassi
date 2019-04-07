@@ -14,8 +14,6 @@
           <tr>
             <td>
               <p>Update {{ category.category }}:</p>
-            </td>
-            <td>
               {{ form.category }}
             </td>
             <td>
@@ -25,15 +23,15 @@
                 {% endfor%}
               </ul>
             </td>
-            <td>
+            <td> 
               <input type="submit" value="Update {{ category.category }}"/>
             </td>
           </tr>      
         </form>
       </td>
-      <td>
+      <td> 
         <form method="POST" action="{{ url_for('category_delete', category_id=category.id) }}">
-          <input type="submit" value="Delete {{ category.category }}"/>
+          <input type="Submit" value="Delete {{ category.category }}"/>
         </form>
        </td>
      </tr>

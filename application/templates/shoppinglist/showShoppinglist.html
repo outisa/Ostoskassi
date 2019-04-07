@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{{ error }}
+{% block body %}
+  <table>
+    <tr>
+      <th>Product</th>
+      <th>Category</th>
+      <th>Amount</th>
+      <th>Price for one</th>
+    </tr>
+    {% for content in list %}
+    <tr>
+      <td>{{ content.name }}</td>
+      <td>{{ content.category }}</td>
+      <td>{{ content.product_total }}</td>
+      <td>{{ content.price }}</td>
+    </tr>
+    {% endfor %} 
+    <tr>
+      <th>Total price:</th>
+    </tr>
+    </table> 
+      <form method="POST", action="{{ url_for('shoppinglist_update', shoppinglist_id=slist_id)  }}">
+        <table>
+         <tr>
+           <td>
+             {{ form.product_id.label }}
+           </td> 
+           <td>
+             {{ form.product_id}}
+           </td>     
+           <td>         
+             <ul>
+               {% for error in form.product_id.errors %}
+               <li>{{ error }}</li>
+               {% endfor %}
+             </ul>
+           </td>
+         </tr>
+         <tr>
+           <td>
+             {{ form.amount.label }}
+           </td>
+          <td>
+             {{ form.amount }}
+          </td>
+          <td>
+            <ul>
+              {% for error in form.amount.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="6">
+            <input type="submit" value="Add a new product"/>
+          </td>
+        </tr>
+     </form>
+  </table>
+{% endblock %}

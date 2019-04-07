@@ -45,5 +45,7 @@ from application.auth.models import User
 def load_user(user_id):
     return User.query.get(user_id)
 
-db.create_all()
-
+try:
+    db.create_all()
+except:
+    pass

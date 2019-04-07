@@ -40,7 +40,7 @@ class Shoppinglist(db.Model):
                     " JOIN ShoppinglistProduct ON ShoppinglistProduct.shoppinglist_id = Shoppinglist.id"
                     " JOIN Product ON ShoppinglistProduct.product_id = Product.id"
                     " JOIN Category ON Product.category_id = Category.id"
-                    " WHERE (Shoppinglist.id = :list AND ShoppinglistProduct.shoppinglist_id NOT NULL)").params(list=list)
+                    " WHERE (Shoppinglist.id = :list)").params(list=list)
 
         res = db.engine.execute(stmt)
 

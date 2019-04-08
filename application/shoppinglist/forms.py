@@ -5,7 +5,7 @@ from application.product.models import Product
 
 class ListForm(FlaskForm):
     product_id = SelectField("Product", coerce=int)
-    amount = IntegerField("Amount of products", [validators.NumberRange(min=1, max=100, message="Please give number between %(min)s and %(max)s")])
+    amount = IntegerField("Amount of products", [validators.NumberRange(min=0, max=100, message="Please give number between %(min)s and %(max)s")])
 
     def __init__(self, *args, **kwargs):
         super(ListForm, self).__init__(*args, **kwargs)

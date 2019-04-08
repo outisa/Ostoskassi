@@ -17,7 +17,7 @@ class Shoppinglist(db.Model):
 
     def __init__(self):
         self.total_price = 0.0
-        self.date = db.func.current_timestamp()
+        self.date = datetime.now()
 
     @staticmethod
     def shoppinglists_for_current_user(account=0):
@@ -35,10 +35,10 @@ class Shoppinglist(db.Model):
 
     @staticmethod
     def shoppinglist_show_contents(list=0):
-        stmt = text("SELECT Shoppinglist.id, Product.id, Product.name, Category.category, Product.price, ShoppinglistProduct.product_total,"
-                    " Shoppinglist.total_price FROM Shoppinglist"
-                    " JOIN ShoppinglistProduct ON ShoppinglistProduct.shoppinglist_id = Shoppinglist.id"
-                    " JOIN Product ON ShoppinglistProduct.product_id = Product.id"
+        stmt = text("SELECT Shoppinglist.id, Product.id, Product.name, Category.category, Product.price, Shoppinglistproduct.product_total,"
+                    " (ShoppinglistProduct.product_total * Product.Price) FROM Shoppinglist"
+                    " JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id"
+                    " JOIN Product ON Shoppinglistproduct.product_id = Product.id"
                     " JOIN Category ON Product.category_id = Category.id"
                     " WHERE (Shoppinglist.id = :list)").params(list=list)
 
@@ -46,6 +46,21 @@ class Shoppinglist(db.Model):
 
         response = []
         for row in res:
-           response.append({"list.id":row[0], "product.id":row[1], "name":row[2], "category":row[3], "price":row[4], "product_total":row[5], "total_price":row[6]})
+           response.append({"list.id":row[0], "product.id":row[1], "name":row[2], "category":row[3], "price":row[4], "product_total":row[5], "in_total":row[6]})
+
+        return response
+
+    @staticmethod
+    def shoppinglist_total_price(list=0):
+        stmt = text("SELECT SUM(Shoppinglistproduct.product_total * Product.price) AS sum FROM Shoppinglistproduct"
+                    " JOIN Shoppinglist ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id"
+                    " JOIN Product ON Shoppinglistproduct.product_id = product.id"
+                    " WHERE (Shoppinglist.id = :list)").params(list=list)
+
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+           response.append({"total":row[0]}) 
 
         return response

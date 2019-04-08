@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
+<p>If there are no categories or the needed category is not yet created, please create some first.</p>
 <form method="POST" action="{{ url_for('product_create') }}">
   <table>
     <tr>

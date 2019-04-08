@@ -12,7 +12,7 @@ else:
     app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
-
+# login functionality part one
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
 
@@ -23,6 +23,7 @@ login_manager.init_app(app)
 login_manager.login_view = "auth_login"
 login_manager.login_message = "Please login to use this functionality."
 
+# load application content
 from application import views
 
 from application.category import models
@@ -39,12 +40,14 @@ from application.shoppinglistProduct import models
 from application.auth import models
 from application.auth import views
 
+# login functionality part two
 from application.auth.models import User
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
 
+# database creation
 try:
     db.create_all()
 except:

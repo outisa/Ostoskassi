@@ -42,12 +42,13 @@ def auth_create():
     if user:
         return render_template("auth/newAccount.html", form = form, 
                                                  error = "Username already exists, choose another one")
-    t = User(form.username.data, form.password.data)
+    new_user = User(form.username.data, form.password.data)
 
-    db.session().add(t)
+    db.session().add(new_user)
     db.session().commit()
 
-    return redirect(url_for("index2"))
+    login_user(new_user)
+    return redirect(url_for("index"))
 
 @app.route("/auth/delete/<user_id>", methods = ["POST", "GET"])
 @login_required

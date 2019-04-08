@@ -5,16 +5,16 @@ Luotaessa uutta tuotetta annetaan sille nimi, hinta ja sille merkitään kategor
 
 Käyttäjä voi poistaa ostoslistansa kokonaan, luoda uuden ostoslistan sekä tutkia ja poistaa tuotteita ostoslistalta. 
 
-Kategorioiden avulla voidaan tehdä hakuja, joiden perusteella käyttäjä näkee paljonko rahaa on käytetty ostoskasseissa esimerkiksi herkkuihin. 
+Käyttäjääle annetaan mahdollisuus tehdä haku, jonka perusteella käyttäjä näkee paljonko rahaa on käytetty ostoskasseissa kategorioittain. 
 
 Käyttäjälle tarjotaan myös mahdollisuus kirjautua ulos sovelluksesta ja poistaa luomansa käyttötili sovellukseen, jolloin poistetaan myös käyttäjän luoma data.
 
 **Tämän hetkisessä sovelluksessa:**
 
-* **Suurin osa sivuista tarvitsee selkeämmän ja paremman ulkoasun** 
-* **Jokainen käyttäjä näkee kaikkien luomat kategoriat valittaessa kategoriaa tuotteelle. Tarkoituksena myöhemmin on, että vain omia kategorioita voi valita ja nähdä**
-* **ShoppingList ja ShoppingListProduct ei vielä käytössä.
+* **Suurin osa sivuista tarvitsee selkeämmän ulkoasun. Esimerkiksi sanojen väliin tarvitaan enemmän tilaa, jotta lukeminen helpottuu** 
+* **Tilin poistaminen on liian sujuvaa, tarkoitus tehdä tähän "are you sure" -näkymä, jotta tiliä ei voida poistaa vahingossa**
 * **Tunnukset on luotu valmiiksi yhdelle 'henkilölle', username: hello ja password: world, mutta myös omien tunnusten luonti ja poisto onnistuu**
+* **haut kategorioittain ei vielä onnistu**
 
 [Tietokantakaavio](https://github.com/outisa/Ostoskassi/blob/master/documentation/Tietokantakaavio.md)
 

@@ -2,6 +2,8 @@
 
 {% block body %}
 {{error}}
+<p>To update, give a new name in the empty field.</p> 
+<p>In case typing error, you have to fill only the field you want to change</p>
   <table>
     <tr>
       <th>Category</>
@@ -10,31 +12,30 @@
     <tr>
       <td>{{ category.category }}</td>
       <td>
-        <form method="POST" action="{{ url_for('category_update', category_id=category.id) }}">
-          <tr>
-            <td>
-              <p>Update {{ category.category }}:</p>
-              {{ form.category }}
-            </td>
-            <td>
-              <ul>
-                {% for error in form.category.errors %}
-                <li>{{ error }}</li>
-                {% endfor%}
-              </ul>
-            </td>
-            <td> 
-              <input type="submit" value="Update {{ category.category }}"/>
-            </td>
-          </tr>      
-        </form>
-      </td>
-      <td> 
         <form method="POST" action="{{ url_for('category_delete', category_id=category.id) }}">
           <input type="Submit" value="Delete {{ category.category }}"/>
         </form>
-       </td>
-     </tr>
+      </td>
+      <td>
+        <form method="POST" action="{{ url_for('category_update', category_id=category.id) }}">
+          <table>
+            <tr>
+              <td>{{ form.category }} </td>
+              <td>
+                <ul>
+                  {% for error in form.category.errors %}
+                  <li>{{ error }}</li>
+                  {% endfor%}
+                </ul>
+              </td>
+              <td> 
+                <input type="submit" value="Update {{ category.category }}"/>
+              </td>
+            </tr> 
+          </table>     
+        </form>
+      </td>
+    </tr>
     {% endfor %}
   </table>
 {% endblock %}

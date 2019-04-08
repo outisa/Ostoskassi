@@ -1,9 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{{error}}
-<p>To update, give a new name in the empty field.</p> 
-<p>In case typing error, you have to fill only the field you want to change</p>
+{{error}} 
   <table>
     <tr>
       <th>Category</>
@@ -20,7 +18,7 @@
         <form method="POST" action="{{ url_for('category_update', category_id=category.id) }}">
           <table>
             <tr>
-              <td>{{ form.category }} </td>
+              <td>Category: {{ form.category }} </td>
               <td>
                 <ul>
                   {% for error in form.category.errors %}

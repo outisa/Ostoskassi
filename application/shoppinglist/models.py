@@ -23,7 +23,8 @@ class Shoppinglist(db.Model):
     def shoppinglists_for_current_user(account=0):
         stmt = text("SELECT Shoppinglist.id, Shoppinglist.date FROM Shoppinglist"
                     " JOIN Account ON Shoppinglist.account_id = Account.id"
-                    " WHERE (account_id = :account)").params(account=account)
+                    " WHERE (account_id = :account)"
+                    " ORDER BY Shoppinglist.date DESC").params(account=account)
 
         res = db.engine.execute(stmt)
 

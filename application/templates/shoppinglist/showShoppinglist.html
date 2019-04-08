@@ -7,7 +7,7 @@
       <th>Category:</th>
       <th>Amount:</th>
       <th>Price per kg/piece:</th>
-      <th>Price total:</th>
+      <th>Total per product:</th>
     </tr>
     {% for content in list %}
     <tr>
@@ -20,7 +20,7 @@
     {% endfor %}
     {% for price in total%} 
     <tr>     
-      <th>Total price for shoppinglist:</th>
+      <th>Total price:</th>
       <td>{{ price.total }}</td>
     </tr>
     {% endfor %}
@@ -62,9 +62,9 @@
             <input type="submit" value="Add a new product"/>
           </td>
         </tr>
-          <p>If there are no products to choose or they are not the needed ones, please create some products first.</p>
-          <p>By incorrect amount of a product, just add the product again with corrected amount.</p>
-          <p>If you want to delete product from list, choose it for adding and set amount to 0 and then add it.</p>
+          <p>No product to choose? Please create some products first.</p>
+          <p>To change amount, add product again with correct amount.</p>
+          <p>To delete product from the list, add product again with amount 0.</p>
      </form>
   </table>
 {% endblock %}

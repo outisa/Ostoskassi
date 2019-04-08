@@ -36,6 +36,8 @@ def shoppinglist_update(shoppinglist_id):
             else:
                 Shoppinglistproduct.update_product_total(form.amount.data, shoppinglist_id, product.id)
             return redirect(url_for("shoppinglist_show", shoppinglist_id=shoppinglist_id))
+    if form.amount.data == 0:
+        return redirect(url_for("shoppinglist_show", shoppinglist_id=shoppinglist_id))
 
     a = Shoppinglistproduct(form.amount.data)
     a.product_id = product.id

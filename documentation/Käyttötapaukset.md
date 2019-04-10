@@ -1,3 +1,4 @@
+## Kategoria
 
 _Tapahtuma:_ | Kategorian luominen
 --- | ---
@@ -57,6 +58,8 @@ Poisto:
 
 Parametrit: poistettavan kategorian id
 
+## Käyttäjätili
+
  _Tapahtuma:_ | Tilin luonti
 --- | ---
 _Käyttäjä:_ | Sovelluksen käyttäjä
@@ -80,6 +83,8 @@ Tilin poistamiseen liittyvät SQL-kyselyt:
 DELETE FROM Account WHERE account.id = ?;
 
 Parametrit: Käyttäjän id
+
+## Ostoslista
 
 _Tapahtuma:_ | Ostoslistan luominen
 --- | ---
@@ -163,6 +168,8 @@ Käyttötapaukseen liittyvät SQL-kyselyt:
 DELETE FROM Shoppinglist WHERE Shoppinglist.id = ?;
 
 Parametrit: Ostoslistan id
+
+## Tuote
 
 _Tapahtuma:_ | Tuotelistan luominen
 --- | ---

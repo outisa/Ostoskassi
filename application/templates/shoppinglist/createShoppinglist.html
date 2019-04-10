@@ -2,28 +2,29 @@
 
 {% block body %}
 <p>Use characters A-Z, a-z</p>
-<form method="POST" action="{{ url_for('category_create') }}">
-  <table>
+<form method="POST" action="{{ url_for('shoppinglist_create') }}">
+  <table sryle"width:100%">
     <tr>
-      <td>
-        {{ form.category.label }}
-      </td>
-      <td style="padding:20">
-        {{ form.category }}
+      <td colspan="3">
+        {{ form.name.label }}
       </td>
       <td>
+        {{ form.name }}
+      </td>
+      <td colspan="3">
         <ul>
-          {% for error in form.category.errors %}
+          {% for error in form.name.errors %}
           <li>{{ error }}</li>
           {% endfor %}
         </ul>
       </td>
     </tr>
     <tr>
-      <td>
+      <td colspan="3">
         <input type="submit" value="Create"/>
       </td>
     </tr>
   </table>
 </form>
 {% endblock %}
+

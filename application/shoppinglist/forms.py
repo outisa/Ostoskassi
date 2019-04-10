@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_login import current_user
-from wtforms import IntegerField, validators, SelectField
+from wtforms import IntegerField, validators, SelectField, StringField
 from application.product.models import Product
 
 class ListForm(FlaskForm):
@@ -14,3 +14,8 @@ class ListForm(FlaskForm):
     class Meta:
         csrf = False
 
+class NameForm(FlaskForm):
+    name = StringField("Shoppinglist", [validators.Length(min=3, max=150), validators.Regexp(r'^[(\w+\s)*\w]+$')])
+
+    class Meta:
+        csrf = False

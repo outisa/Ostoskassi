@@ -4,14 +4,15 @@
 {{error}} 
   <table>
     <tr>
-      <th>Category</>
+      <p>Use characters: A-Z, a-z, 0-9</p>
+      <th style="padding:10px">Category</>
     </tr>
     {% for category in categories %}
     <tr>
       <td>{{ category.category }}</td>
-      <td>
+      <td style="padding:10px">
         <form method="POST" action="{{ url_for('category_delete', category_id=category.id) }}">
-          <input type="Submit" value="Delete {{ category.category }}"/>
+          <input type="Submit" value="Delete"/>
         </form>
       </td>
       <td>
@@ -19,15 +20,8 @@
           <table>
             <tr>
               <td>Category: {{ form.category }} </td>
-              <td>
-                <ul>
-                  {% for error in form.category.errors %}
-                  <li>{{ error }}</li>
-                  {% endfor%}
-                </ul>
-              </td>
-              <td> 
-                <input type="submit" value="Update {{ category.category }}"/>
+              <td style="Padding:10px"> 
+                <input type="submit" value="Update"/>
               </td>
             </tr> 
           </table>     
@@ -35,6 +29,13 @@
       </td>
     </tr>
     {% endfor %}
+    <td>
+      <ul>
+        {% for error in form.category.errors %}
+        <li>{{ error }}</li>
+        {% endfor%}
+      </ul>
+    </td>
   </table>
 {% endblock %}
 

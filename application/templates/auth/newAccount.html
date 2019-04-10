@@ -2,7 +2,8 @@
 
 {% block body%}
 {{ error }}
-<p>Allowed characters are: a-ö, 0-9, ! and ?</p>
+<p>Both username and password must be atleast 3 chracters long!</p>
+<p>Use chracters A-Z, a-z, 0-9, !?</p>
 <form method="POST" action="{{ url_for('auth_create') }}">
   <table>
     <tr>

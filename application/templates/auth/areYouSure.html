@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<p>Are you sure you want delete your account?</p>
+<form method="POST" action="{{ url_for('auth_delete', user_id=current_user.id) }}">
+  <table>
+    <td style="padding:20px">
+      <input type="submit" value="delete">
+    </td> 
+  </form>
+  <form method="POST" action="{{ url_for('auth_logout') }}">
+    <td style="padding:20px">
+      <input type="submit" value="logout">    
+    </td>
+  </form>
+</table>
+{% endblock %}
+

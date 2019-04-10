@@ -24,7 +24,7 @@ def auth_login():
     login_user(user)
     return redirect(url_for("index"))
 
-@app.route("/auth/logout")
+@app.route("/auth/logout", methods = ["POST", "GET"])
 def auth_logout():
     logout_user()
     return redirect(url_for("index2"))
@@ -49,6 +49,11 @@ def auth_create():
 
     login_user(new_user)
     return redirect(url_for("index"))
+
+@app.route("/auth/areYouSure/<user_id>", methods = ["GET","POST"])
+@login_required
+def auth_are_you_sure(user_id):
+    return render_template("auth/areYouSure.html", user_id=user_id )
 
 @app.route("/auth/delete/<user_id>", methods = ["POST", "GET"])
 @login_required

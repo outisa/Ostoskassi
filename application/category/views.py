@@ -50,7 +50,7 @@ def category_create():
 
     t = Category(form.category.data)
     t.account_id = current_user.id
-
+ 
     db.session().add(t)
     db.session().commit()
 

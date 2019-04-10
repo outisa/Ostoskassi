@@ -8,20 +8,20 @@ class Shoppinglist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
 
-    total_price =  db.Column(db.Numeric(10,2), nullable=True)
+    name = db.Column(db.String(150), nullable=False)
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                                                     nullable=False)
 
     products  = db.relationship("Shoppinglistproduct", backref = db.backref("shoppinglist"))
 
-    def __init__(self):
-        self.total_price = 0.0
+    def __init__(self, name):
+        self.name = name
         self.date = datetime.now()
 
     @staticmethod
     def shoppinglists_for_current_user(account=0):
-        stmt = text("SELECT Shoppinglist.id, Shoppinglist.date FROM Shoppinglist"
+        stmt = text("SELECT Shoppinglist.id, Shoppinglist.name FROM Shoppinglist"
                     " JOIN Account ON Shoppinglist.account_id = Account.id"
                     " WHERE (account_id = :account)"
                     " ORDER BY Shoppinglist.date DESC").params(account=account)
@@ -30,7 +30,7 @@ class Shoppinglist(db.Model):
 
         response = []
         for row in res:
-            response.append({"id":row[0], "date":row[1]})
+            response.append({"id":row[0], "name":row[1]})
 
         return response
 
@@ -41,7 +41,8 @@ class Shoppinglist(db.Model):
                     " JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id"
                     " JOIN Product ON Shoppinglistproduct.product_id = Product.id"
                     " JOIN Category ON Product.category_id = Category.id"
-                    " WHERE (Shoppinglist.id = :list)").params(list=list)
+                    " WHERE (Shoppinglist.id = :list)"
+                    " ORDER BY Category.category").params(list=list)
 
         res = db.engine.execute(stmt)
 

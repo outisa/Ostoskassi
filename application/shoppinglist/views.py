@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.shoppinglist.models import Shoppinglist
-from application.shoppinglist.forms import ListForm
+from application.shoppinglist.forms import ListForm, NameForm
 from application.product.models import Product
 from application.shoppinglistProduct.models import Shoppinglistproduct
 
@@ -17,6 +17,11 @@ def shoppinglist_index():
 def shoppinglist_show(shoppinglist_id):
     return render_template("shoppinglist/showShoppinglist.html", list=Shoppinglist.shoppinglist_show_contents(shoppinglist_id),
                                                                         slist_id=shoppinglist_id, form=ListForm(), total=Shoppinglist.shoppinglist_total_price(shoppinglist_id))
+
+@app.route("/shoppinglist/createShoppinlist/")
+@login_required
+def shoppinglist_form():
+    return render_template("shoppinglist/createShoppinglist.html", form = NameForm())
 
 @app.route("/shoppinglist/update/<shoppinglist_id>", methods=["POST", "GET"])
 @login_required
@@ -63,7 +68,11 @@ def shoppinglist_delete(shoppinglist_id):
 @app.route("/shoppinglist/create", methods=["POST","GET"])
 @login_required
 def shoppinglist_create():
-    t = Shoppinglist()
+    form = NameForm(request.form)
+    if not form.validate():
+        return render_template("shoppinglist/createShoppinglist.html", form = form)
+
+    t = Shoppinglist(form.name.data)
     t.account_id = current_user.id
     db.session().add(t)
     db.session().commit()

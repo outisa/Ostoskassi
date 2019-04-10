@@ -3,19 +3,19 @@
 {% block body %}
   <table>
     <tr>
-      <th>Shoppinglist</>
+      <th style="padding:10px">Shoppinglist</>
     </tr>
     {% for shoppinglist in lists %}
     <tr>
-      <td>{{ shoppinglist.date}}</td>
-      <td>
+      <td>{{ shoppinglist.name }}</td>
+      <td style="padding:20">
         <form method="POST" action="{{ url_for('shoppinglist_show', shoppinglist_id=shoppinglist.id) }}">
-          <input type="submit" value="Show list">
+          <input type="submit" value="Show">
         </form>
       </td>
-      <td>
+      <td style="padding:20px">
         <form method="POST" action="{{ url_for('shoppinglist_delete', shoppinglist_id=shoppinglist.id) }}">
-          <input type="submit" value="Delete list">
+          <input type="submit" value="Delete">
         </form>
       </td>     
     </tr>

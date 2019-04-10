@@ -21,9 +21,9 @@ def product_index():
 @login_required
 def product_delete(product_id):
     t =  Product.query.get(product_id)
-    isOnList = db.session.query(Shoppinglistproduct).filter_by(product_id=t.id).first()
-    if isOnList:
-        db.session().delete(isOnList)
+    isOnList = db.session.query(Shoppinglistproduct).filter_by(product_id=t.id).all()
+    for isOn in isOnList:
+        db.session().delete(isOn)
     db.session().delete(t)
     db.session().commit()
     return redirect(url_for("product_index"))

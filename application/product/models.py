@@ -23,7 +23,7 @@ class Product(db.Model):
     @staticmethod
     def list_products_user(account=0):
         stmt = text("SELECT Product.id, Product.name, Product.price, Category.category FROM Product"
-               " JOIN Account ON Product.account_id = Account.id"
+               " JOIN Account ON Product.account_id = account.id"
                " JOIN Category ON Product.category_id = Category.id"
                " WHERE (Product.account_id = :account)"
                " ORDER BY Product.name").params(account=account)

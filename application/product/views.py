@@ -21,7 +21,7 @@ def product_index():
 @login_required
 def product_delete(product_id):
     t =  Product.query.get(product_id)
-    isOnList = db.session().query(Shoppinglistproduct).filter_by(product_id=t.id).first()
+    isOnList = db.session.query(Shoppinglistproduct).filter_by(product_id=t.id).first()
     if isOnList:
         db.session().delete(isOnList)
     db.session().delete(t)

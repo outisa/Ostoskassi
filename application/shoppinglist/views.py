@@ -57,7 +57,7 @@ def shoppinglist_update(shoppinglist_id):
 @login_required
 def shoppinglist_delete(shoppinglist_id):
     t = Shoppinglist.query.get(shoppinglist_id)
-    isOnList = db.session().query(Shoppinglistproduct).filter_by(shoppinglist_id=t.id).first()
+    isOnList = db.session.query(Shoppinglistproduct).filter_by(shoppinglist_id=t.id).first()
     if isOnList:
         db.session().delete(isOnList)
     db.session().delete(t)

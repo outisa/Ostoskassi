@@ -9,12 +9,8 @@ Käyttäjälle annetaan mahdollisuus tehdä haku, jonka perusteella käyttäjä 
 
 Käyttäjälle tarjotaan myös mahdollisuus kirjautua ulos sovelluksesta ja poistaa luomansa käyttötili sovellukseen, jolloin poistetaan myös käyttäjän luoma data.
 
-**Tämän hetkisessä sovelluksessa:**
 
-* **Suurin osa sivuista tarvitsee selkeämmän ulkoasun. Esimerkiksi sanojen väliin tarvitaan enemmän tilaa, jotta lukeminen helpottuu.** 
-* **Tilin poistaminen on liian sujuvaa, tarkoitus tehdä tähän "are you sure" -näkymä, jotta tiliä ei voida poistaa vahingossa**
-* **Tunnukset on luotu valmiiksi yhdelle 'henkilölle', username: hello ja password: world, mutta myös omien tunnusten luonti ja poisto onnistuu**
-* **haut kategorioittain ei vielä onnistu**
+* **Tunnukset on luotu valmiiksi yhdelle 'henkilölle', username: hello ja password: world, mutta myös omien tunnusten luonti ja poisto onnistuu** 
 
 [Asennusohje](https://github.com/outisa/Ostoskassi/blob/master/documentation/Asennusohje.md)
 

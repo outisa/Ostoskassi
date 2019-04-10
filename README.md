@@ -16,9 +16,14 @@ Käyttäjälle tarjotaan myös mahdollisuus kirjautua ulos sovelluksesta ja pois
 * **Tunnukset on luotu valmiiksi yhdelle 'henkilölle', username: hello ja password: world, mutta myös omien tunnusten luonti ja poisto onnistuu**
 * **haut kategorioittain ei vielä onnistu**
 
+[Asennusohje](https://github.com/outisa/Ostoskassi/blob/master/documentation/Asennusohje.md)
+
+[Käyttöohje](https://github.com/outisa/Ostoskassi/blob/master/documentation/k%C3%A4ytt%C3%B6ohje.md)
+
 [Tietokantakaavio](https://github.com/outisa/Ostoskassi/blob/master/documentation/Tietokantakaavio.md)
 
 [Käyttötapaukset](https://github.com/outisa/Ostoskassi/blob/master/documentation/K%C3%A4ytt%C3%B6tapaukset.md)
+
 
 Alla linkki sovellukseen.
 

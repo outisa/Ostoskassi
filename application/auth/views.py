@@ -60,9 +60,9 @@ def auth_are_you_sure(user_id):
 def auth_delete(user_id):
     t =  User.query.get(user_id)
     for p in db.session().query(Product).filter_by(account_id=user_id):
-        onList =  db.session.query(Shoppinglistproduct).filter_by(product_id=p.id).first()
-        if onList:
-            db.session().delete(onList)
+        onList =  db.session.query(Shoppinglistproduct).filter_by(product_id=p.id).all()
+        for listed in onList:
+            db.session().delete(listed)
         db.session().delete(p)
     for c in db.session().query(Category).filter_by(account_id=user_id):
         db.session().delete(c)

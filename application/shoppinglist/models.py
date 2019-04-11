@@ -22,7 +22,7 @@ class Shoppinglist(db.Model):
     @staticmethod
     def shoppinglists_for_current_user(account=0):
         stmt = text("SELECT Shoppinglist.id, Shoppinglist.name FROM Shoppinglist"
-                    " JOIN Account ON Shoppinglist.account_id = Account.id"
+                    " JOIN Account ON Shoppinglist.account_id = account.id"
                     " WHERE (account_id = :account)"
                     " ORDER BY Shoppinglist.date DESC").params(account=account)
 

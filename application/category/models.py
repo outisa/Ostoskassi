@@ -17,7 +17,7 @@ class Category(db.Model):
     @staticmethod
     def list_categories_for_user(account=0):
         stmt = text("SELECT Category.id, category FROM Category"
-                    " JOIN Account ON Category.account_id = Account.id "
+                    " JOIN account ON Category.account_id = account.id "
                     " WHERE (Category.account_id = :account)"
                     " ORDER BY Category.category").params(account=account)
         res = db.engine.execute(stmt)

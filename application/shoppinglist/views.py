@@ -58,7 +58,7 @@ def shoppinglist_update(shoppinglist_id):
 def shoppinglist_delete(shoppinglist_id):
     t = Shoppinglist.query.get(shoppinglist_id)
     isOnList = db.session.query(Shoppinglistproduct).filter_by(shoppinglist_id=t.id).all()
-    for isOn in isOnlist:
+    for isOn in isOnList:
         db.session().delete(isOn)
     db.session().delete(t)
     db.session().commit()

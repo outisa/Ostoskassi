@@ -1,11 +1,11 @@
-### Sovelluksen asennus ja käyttöönotto paikallisesti
+### Sovelluksen asennus ja käyttöönotto paikallisesti linux käyttöjärjestelmässä
 
 Valitse Ostoskassi repositiosta **_Clone or download_** -valikosta **_Download ZIP_**.
-Pura lataamasi ZIP-tiedosto koneellasi. Siirry terminaalin kautta kautta kansioon Ostoskassi ja suorita komento
+Pura lataamasi ZIP-tiedosto koneellasi. Siirry terminaalissa kansioon Ostoskassi ja suorita komento
 
 `python run.py`
 
-ja siirry osoitteeseen [http://localhost:5000](http://localhost:5000), jossa avautuu sovelluksen tervetuloa näkymä.
+Siirry sen jälkeen osoitteeseen [http://localhost:5000](http://localhost:5000), jossa avautuu sovelluksen tervetuloa näkymä.
 
 ### Sovelluksen käyttöönotto selaimessa
 

@@ -1,13 +1,7 @@
 {% extends "layout.html" %}
+{% extends "layout.html" %}
 {% block body %}
-<style>
-td {
-  padding: 10px;
-  text-align: right;
-}
-</style>
-<p style="color:red">{{ error }}</p>
-<p style="color:green">If categories list is empty, create first categories.</p>
+<p>If there are no categories or the needed category is not yet created, please create some first.</p>
 <form method="POST" action="{{ url_for('product_create') }}">
   <table>
     <tr>
@@ -27,8 +21,7 @@ td {
     </tr>
     <tr>
       <td>
-        {{ form.price.label }}
-      </td>
+       
       <td>
         {{ form.price }}
       </td>
@@ -41,26 +34,13 @@ td {
       </td>
     </tr>
     <tr>
-      <td>
-        {{ form.category_id.label }}
-      </td>      
-      <td>
-        {{ form.category_id }}
-      </td>
-      <td>
-        <ul>
-          {% for error in form.category_id.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-    </tr>
-    <tr>
       <td colspan="6">
-        <input type="submit" value="Add a new product"/>
+        <input type="submit" value="Update"/>
       </td>
     </tr>
   </form>
 </table>
 {% endblock %}
+
+
 

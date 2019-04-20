@@ -1,11 +1,18 @@
 {% extends "layout.html" %}
-{{ error }}
+
 {% block body %}
+{{ error }}
 <style>
 th, td {
   padding: 10px;
+  text-align: right;
 }
-</style> 
+h6 {
+  font-size: 25px;
+  color: blue;
+}
+</style>
+<h6>Add products on the list</h6> 
   <form method="POST", action="{{ url_for('shoppinglist_update', shoppinglist_id=slist_id)  }}">
     <table>
       <tr>
@@ -39,15 +46,17 @@ th, td {
         </td>
       </tr>
     <tr>
-      <td colspan="6">
+      <td colspan="2">
         <input type="submit" value="Add"/>
       </td>
     </tr>
-      <li>No product to choose? Please create some products first.
-         To change amount, add product again with correct amount.
-         To delete product from the list, add product again with amount 0.</li>
-    </form>
-  </table>
+  </form>
+<li style="color:green">No product to choose? Please create some products first.
+      To change amount, add product again with correct amount.
+      To delete product from the list, add product again with amount 0.
+</li>
+</table>
+<h6>Shoppinglist:</h6>
   <table style="width:100%">
     <tr>
       <th>Product:</th>
@@ -67,8 +76,11 @@ th, td {
     {% endfor %}
     {% for price in total%}
     <tr>
+      <td></td>
+      <td></td>
+      <td></td>
       <th>Total price:</th>
-      <td>{{ price.total }}</td>
+      <th>{{ price.total }}</th>
     </tr>
     {% endfor %}
   </table>

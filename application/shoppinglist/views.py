@@ -78,3 +78,8 @@ def shoppinglist_create():
     db.session().commit()
 
     return redirect(url_for("shoppinglist_index"))
+
+@app.route("/shoppinglist/", methods=["POST","GET"])
+@login_required
+def shoppinglist_costs_per_category():
+    return render_template("shoppinglist/costsPerCategory.html", costs = Shoppinglistproduct.show_total_costs_per_category(current_user.id))

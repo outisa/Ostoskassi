@@ -1,31 +1,27 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{{error}} 
-  <table>
+<style>
+th, td {
+  padding: 10px;
+}  
+</style>
+<p style="color:red">{{ error }}</p> 
+  <table style="width:70%">
     <tr>
-      <p>Use characters: A-Z, a-z, 0-9</p>
-      <th style="padding:10px">Category</>
+      <p style="color:green">Use characters: A-Z, a-z, 0-9</p>
+      <th style="font-size:25px">Category:</>
     </tr>
     {% for category in categories %}
     <tr>
       <td>{{ category.category }}</td>
-      <td style="padding:10px">
+      <td>
         <form method="POST" action="{{ url_for('category_delete', category_id=category.id) }}">
           <input type="Submit" value="Delete"/>
         </form>
       </td>
       <td>
-        <form method="POST" action="{{ url_for('category_update', category_id=category.id) }}">
-          <table>
-            <tr>
-              <td>Category: {{ form.category }} </td>
-              <td style="Padding:10px"> 
-                <input type="submit" value="Update"/>
-              </td>
-            </tr> 
-          </table>     
-        </form>
+        <a href="{{ url_for('category_update_form', category_id=category.id) }}">Edit</a>
       </td>
     </tr>
     {% endfor %}

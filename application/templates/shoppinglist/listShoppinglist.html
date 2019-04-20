@@ -1,19 +1,27 @@
 {% extends "layout.html" %}
-
 {% block body %}
+<style>
+td {
+  padding: 10px;
+}
+</style>
+  <form method="POST" action="{{ url_for('shoppinglist_costs_per_category') }}">
+    <p> Show costs per category in all lists. (Maximum 15 categories will be shown.)</p>
+    <input type="submit" value="Show">
+  </form>
   <table>
     <tr>
-      <th style="padding:10px">Shoppinglist</>
-    </tr>
+      <th style="font-size:30px">Shoppinglists:</>
+    </tr> 
     {% for shoppinglist in lists %}
     <tr>
       <td>{{ shoppinglist.name }}</td>
-      <td style="padding:20">
+      <td>
         <form method="POST" action="{{ url_for('shoppinglist_show', shoppinglist_id=shoppinglist.id) }}">
-          <input type="submit" value="Show">
+          <input type="submit" value="Show content">
         </form>
       </td>
-      <td style="padding:20px">
+      <td>
         <form method="POST" action="{{ url_for('shoppinglist_delete', shoppinglist_id=shoppinglist.id) }}">
           <input type="submit" value="Delete">
         </form>

@@ -1,9 +1,16 @@
 {% extends "layout.html" %}
 
 {% block body%}
-{{ error }}
-<p>Both username and password must be atleast 3 chracters long!</p>
-<p>Use chracters A-Z, a-z, 0-9, !?</p>
+<style>
+td, tr {
+  padding: 10px;
+  text-align: right;
+}
+</style>
+
+<p style="color:red">{{ error }}</p>
+<p style="color:green">Both username and password must be at least 3 chracters long!</p>
+<p style="color:green">Use chracters A-Z, a-z, 0-9, !?</p>
 <form method="POST" action="{{ url_for('auth_create') }}">
   <table>
     <tr>
@@ -20,6 +27,8 @@
           {% endfor %} 
         </ul>
       </td>
+    </tr>
+    <tr>
       <td>
         {{ form.password.label }}
       </td>
@@ -33,6 +42,14 @@
           {% endfor %} 
         </ul>
       </td>  
+    </tr>
+    <tr>
+      <td>
+        {{ form.confirm.label }}
+      </td>
+      <td>
+        {{ form.confirm }}
+      </td>
     </tr>
     <tr>
       <td>

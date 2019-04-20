@@ -2,14 +2,15 @@
 
 {% block body %}
 <p style="color:red">{{ error }}</p>
+<p style="color:green">Update category</p>
 <p style="color:green">Use characters A-Z, a-z</p>
-<form method="POST" action="{{ url_for('category_create') }}">
+<form method="POST" action="{{ url_for('category_update', category_id=category_id) }}">
   <table>
     <tr>
       <td>
         {{ form.category.label }}
       </td>
-      <td style="padding:20">
+      <td style="padding:15">
         {{ form.category }}
       </td>
       <td>
@@ -22,9 +23,10 @@
     </tr>
     <tr>
       <td>
-        <input type="submit" value="Create"/>
+        <input type="submit" value="update"/>
       </td>
     </tr>
   </table>
 </form>
 {% endblock %}
+

@@ -1,21 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
-<style>
-td {
-  padding: 10px;
-  text-align: right;
-}
-</style>
 <p style="color:red">{{ error }}</p>
-<p style="color:green">If categories list is empty, create first categories.</p>
-<form method="POST" action="{{ url_for('product_create') }}">
+<p style="color:green">Change name and price here.</p>
+<form method="POST" action="{{ url_for('product_update', product_id=product_id) }}">
   <table>
     <tr>
       <td>
         {{ form.name.label }}
       </td>
       <td>
-        {{ form.name }}
+        {{ form.name(placeholder="Give new name here") }}
       </td>
       <td>
         <ul>
@@ -41,26 +35,13 @@ td {
       </td>
     </tr>
     <tr>
-      <td>
-        {{ form.category_id.label }}
-      </td>      
-      <td>
-        {{ form.category_id }}
-      </td>
-      <td>
-        <ul>
-          {% for error in form.category_id.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="6">
-        <input type="submit" value="Add a new product"/>
+      <td colspan="3">
+        <input type="submit" value="Update"/>
       </td>
     </tr>
   </form>
 </table>
 {% endblock %}
+
+
 

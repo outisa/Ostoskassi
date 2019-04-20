@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user, login_required
+from passlib.hash import pbkdf2_sha256
 
 from application.category.models import Category
 from application.product.models import Product
@@ -7,7 +8,7 @@ from application.shoppinglist.models import Shoppinglist
 from application.shoppinglistProduct.models import Shoppinglistproduct
 from application import app, db
 from application.auth.models import User
-from application.auth.forms import LoginForm
+from application.auth.forms import LoginForm, CreateForm
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
@@ -16,8 +17,10 @@ def auth_login():
 
     form = LoginForm(request.form)
 
-    user = User.query.filter_by(username=form.username.data, password=form.password.data).first() 
-    if not user:
+    user = User.query.filter_by(username=form.username.data).first()
+    hash = user.password
+    check_password = pbkdf2_sha256.verify(form.password.data, hash)
+    if not user or not check_password:
         return render_template("auth/loginform.html", form = form,
                                             error = "No such username or password")
 
@@ -32,8 +35,8 @@ def auth_logout():
 @app.route("/auth/newAccount", methods = ["GET", "POST"])
 def auth_create():
     if request.method == "GET":
-        return render_template("auth/newAccount.html",  form = LoginForm())
-    form = LoginForm(request.form)
+        return render_template("auth/newAccount.html",  form = CreateForm())
+    form = CreateForm(request.form)
     if not form.validate():
         return render_template("auth/newAccount.html", form = form)
 
@@ -42,13 +45,14 @@ def auth_create():
     if user:
         return render_template("auth/newAccount.html", form = form, 
                                                  error = "Username already exists, choose another one")
-    new_user = User(form.username.data, form.password.data)
+    hash = pbkdf2_sha256.hash(form.password.data)
+    new_user = User(form.username.data, hash)
 
     db.session().add(new_user)
     db.session().commit()
 
     login_user(new_user)
-    return redirect(url_for("index"))
+    return redirect(url_for("index", message = "hello"))
 
 @app.route("/auth/areYouSure/<user_id>", methods = ["GET","POST"])
 @login_required

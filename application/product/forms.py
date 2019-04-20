@@ -16,9 +16,9 @@ class ProductForm(FlaskForm):
     class Meta:
         csrf = False
 
-
 class UpdateForm(FlaskForm):
-    price = DecimalField("Price")
+    name = StringField("Product name", [validators.Length(min=2, max=150), validators.Regexp(r'^[(\w+\s)*\w]+$')])
+    price = DecimalField("Price", [validators.NumberRange(min=0.01, max=10000.00, message="Please give a number between %(min)s and %(max)s!")])
 
     class Meta:
         csrf = False

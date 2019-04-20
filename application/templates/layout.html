@@ -8,17 +8,16 @@
 
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Shopping bag</a>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #00FFFF">
+      <a class="navbar-brand" href="{{ url_for('index') }}">Shopping bag</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ url_for('category_index') }} "<span class="sr-only">List categories</span></a>
-     	  </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('category_index') }} ">List categories</a>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('product_index') }}">List Products</a>
           </li>
@@ -26,21 +25,29 @@
             <a class="nav-link" href="{{ url_for('shoppinglist_index') }}">List Shoppinglists</a>
           </li> 
      	  <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('category_form') }}">Add category</a>
+            <a class="nav-link" href="{{ url_for('category_form') }}">Create category</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('product_form') }}">Add product</a>
+            <a class="nav-link" href="{{ url_for('product_form') }}">Create product</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('shoppinglist_form') }}">Create shoppinglist</a>
           </li>
         <div class="form-inline mt-2 mt-md-0" style="width: 200px;">
           {% if current_user.is_authenticated %}
-            <a href="{{ url_for('auth_logout') }}">{{ current_user.username }} Logout</a>
-            <a href="{{ url_for('auth_are_you_sure', user_id=current_user.id) }}">Delete account</a>         
+            <li>
+              <a href="{{ url_for('auth_logout') }}">{{ current_user.username }} Logout</a>
+            </li>
+            <li>
+              <a href="{{ url_for('auth_are_you_sure', user_id=current_user.id) }}">Delete account</a>         
+            </li>         
           {% else %}
-            <a href="{{ url_for('auth_login') }}">Login</a>
-            <a href="{{ url_for('auth_create') }}">Create account</a>
+            <li>
+              <a href="{{ url_for('auth_login') }}">Login</a>
+            </li>
+            <li> 
+              <a href="{{ url_for('auth_create') }}">Create account</a>
+            </li>
           {% endif %}
         </div>
       </div>

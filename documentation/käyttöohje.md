@@ -80,5 +80,5 @@ Käytä merkkejä a-z, A-Z, 0-9. Herokussa hyväksytään myös merkit ä, Ä, �
 ## Rahankäyttö kategorioittain
 
 1. Siirry **_List shoppinglist_** linkin kautta ostoslitojen listaukseen.
-2. Paina sivun alussa olevaa **_Show**_ nappia.
+2. Paina sivun alussa olevaa **_Show_** nappia.
 3. Sivulla näet kategoriat, joihin on käytetty rahaa. Lisäksi näet jokaisen kategorian kohdalla niihin käytetyn rahamäärän ja prosenttiosuuden kokonaissummasta.

@@ -19,11 +19,16 @@ class Shoppinglistproduct(db.Model):
 
     @staticmethod
     def show_total_costs_per_category(account=0):
-        stmt = text("SELECT DISTINCT Category.category, SUM(shoppinglistproduct.product_total * product.price) AS sum"
+        stmt = text("SELECT DISTINCT Category.category, SUM(shoppinglistproduct.product_total * product.price) AS sum,"
+                    " SUM(shoppinglistproduct.product_total * product.price) * 100 / (SELECT SUM(shoppinglistproduct.product_total * product.price) FROM Shoppinglist" 
+                          " JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id"
+                          " JOIN Product ON Shoppinglistproduct.product_id = product.id"
+                          " JOIN account ON account.id = Shoppinglist.account_id"
+                          " WHERE (Product.account_id = :account)) AS percent"
                     " FROM Shoppinglistproduct"
                     " JOIN Product ON Shoppinglistproduct.product_id = product.id"
                     " JOIN Shoppinglist ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id"
-                    " JOIN Account ON Account.id = Product.account_id"
+                    " JOIN account ON account.id = Product.account_id"
                     " JOIN Category ON Category.id = Product.category_id"
                     " WHERE (Product.account_id = :account) GROUP BY Category.category"
                     " ORDER BY sum DESC LIMIT 15").params(account=account)
@@ -33,6 +38,7 @@ class Shoppinglistproduct(db.Model):
         response = []
 
         for row in res:
-            response.append({"category":row[0], "sum":row[1]})
+            percentage = round(row[2], 2)
+            response.append({"category":row[0], "sum":row[1], "percent":percentage})
 
         return response

@@ -1,16 +1,27 @@
 {% extends "layout.html" %}
 {% block body %}
-<h6>Costs per category<h6>
-  <table>
+<style>
+table {
+  border-collapse: collapse;
+}
+table, th, td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: right;
+}
+</style>
+<h5 style="padding:10px">Costs per category</h5>
+  <table style="width:80%">
     <tr>
-      <th style="padding:10px">Category</>
-      <th style="padding:10px">Costs in euro</>
+      <th>Category</th>
+      <th>Costs in euro</th>
+      <th>% from total</th>
     </tr>
     {% for item in costs %}
     <tr>
-      <td style="padding:10px">{{ item.category }}</td>
-      <td style="padding:10px" align="right">{{ item.sum }}</td>
-      </td>
+      <td>{{ item.category }}</td>
+      <td>{{ item.sum }}</td>
+      <td>{{ item.percent }} </td>
     </tr>
     {% endfor %}
 

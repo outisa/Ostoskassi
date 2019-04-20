@@ -37,7 +37,7 @@ _Tavoite:_ | Kategorialistan muokkaus
 _Laukaisija:_ | Halutaan muokata jotakin kategoriaa sopivammaksi.
 _Esiehto:_ | Käyttäjä on kirjautunut
 _Jälkiehto:_ | Kategorian nimi on muokattu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa kategoriat nappia 2. Käyttäjä ohjautuu sivulle,jossa kategoriat ovat listattuna. 3. Käyttäjä kirjoittaa kategorialle uuden nimen tekstikenttään. 4. Käyttäjä lisää uuden nimen kategorialle. 5. Käyttäjä voi poistaa itselleen ylimääräisen kategorian.
+_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa kategoriat nappia 2. Käyttäjä ohjautuu sivulle,jossa kategoriat ovat listattuna. 3. Käyttäjä painaa edit linkkiä, jolla päästään päivittämään uusi kategoria. 4. Käyttäjä lisää uuden nimen kategorialle. 5. Käyttäjä voi poistaa itselleen ylimääräisen kategorian.
  _Poikkeuksellinen toiminta:_ | 3a. Listalla ei ole yhtään kategoriaa. 5a. Kategoria on jollakin tuotteella käytössä.
  
 Käyttötapaukseen liittyvät SQL-kyselyt:
@@ -53,6 +53,12 @@ Päivitys:
 Parametrit: päivitettävän kategorian id
 
 Poisto:
+
+Tarkistetaan ensin onko kategoria käytössä
+
+SELECT * FROM Product JOIN Category ON Category.id = Product.category_id WHERE category_id= ?;
+
+Jos yhtään tuotetta ei löytynyt, poistetaan kategoria. (Jos kategoria on käytössä, kerrotaan käyttäjälle poiston olevan mahdotonta.)
 
 5. DELETE FROM Category WHERE Category.id = ?;
 
@@ -79,6 +85,11 @@ Parametrit: käyttäjän antama tunnus, käyttäjän antama salasana
 Kirjautuneena ollessaan käyttäjä voi kirjatua ulos ja poistaa tilin halutessaan.
 
 Tilin poistamiseen liittyvät SQL-kyselyt:
+
+Haetaan kaikki käyttäjän hakemat tuotteet, yhteydet tuotteen ja ostoslistan välillä, ostoslistat ja kategoriat, sekä poistetaan ne järjestyksessä: yhteydet tuotteen ja ostoslistan välillä, tuotteet, kategoriat ja ostoslistat. Haut ovat normaaleja SELECT * FROM _taulunnimi_ -kyselyjä, joissa yhdistetään kyseessä oleva taulu account-tauluun ja haetaan rivejä käyttäjän id:n perusteella. Poikkeuksena on liitostaulu shoppinglistproduct, johon liitetään product taulu ja haetaann rivejä tuotteen id:n perusteella.
+Poistot ovat normaaleja DELETE FROM _taulunnimi_ -kyselyjä.
+
+Lopuksi poistetaan itse käyttäjä.
 
 DELETE FROM Account WHERE account.id = ?;
 
@@ -165,13 +176,15 @@ _Poikkeuksellinen toiminta:_ |
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
+Ennen ostoslistan poistoa haetaan kaikki rivit Shoppiglistproduct liitostaulusta ja poistetaan ne. Varsinaninen ostoslistan poisto tapahtuu suorittamalla kysely 
+
 DELETE FROM Shoppinglist WHERE Shoppinglist.id = ?;
 
 Parametrit: Ostoslistan id
 
 ## Tuote
 
-_Tapahtuma:_ | Tuotelistan luominen
+_Tapahtuma:_ | Tuotteen luominen
 --- | ---
 _Käyttäjä:_ | sovelluksen käyttäjä
 _Tavoite:_ | Tuotteen luominen tuotelistalle
@@ -210,18 +223,18 @@ _Tapahtuma:_  | Tuotelistan päivitys
 --- | ---
 _Käyttäjä:_ |  Sovelluksen käyttäjä
 _Tavoite:_ | Tuotelistan päivitys
-_Laukaisija:_ | Tuotteella on väärä hinta
+_Laukaisija:_ | Tuotteella on väärä hinta ja/tai nimi on väärin
 _Esiehto:_ | Muokattava tuote löytyy tuotelistalta ja käyttäjä on kirjautuneena
 _Jälkiehto:_ | Tuoteen tiedot ovat päivitetty.
-_Käyttötapauksen kulku:_ | 1. Käyttäjä avaa tuotelistan 2. Päivitettävältä tuotteelta muokataan hinta. 3. Tehdään päivitys.
+_Käyttötapauksen kulku:_ | 1. Käyttäjä avaa tuotelistan ja painaa tuotteen kohdalta edit linkkiä. 2. Päivitettävältä tuotteelle annetaan uusi nimi ja hinta. 3. Tehdään päivitys.
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
 Ensin tehdään Tuotelistan listauksessa oleva listauskysely, jossa listataan tuotteet.
 
-UPDATE Product SET price = ? WHERE Product.id = ?;
+UPDATE Product SET name = ?, price = ? WHERE Product.id = ?;
 
-Parametrit: uusi hinta, tuotteen id.
+Parametrit: uusi nimi, uusi hinta, tuotteen id.
  
 _Tapahtuma:_  | Tuoteen poisto
 --- | ---
@@ -234,20 +247,31 @@ _Käyttötapauksen kulku:_ | 1. Käyttäjä avaa tuotelistan 2. Painetaan delete
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
-Ensin tehdään Tuotelistan listauksessa oleva listauskysely, jossa listataan tuotteet.
+Ensin tehdään Tuotelistan listauksessa oleva listauskysely, jossa listataan tuotteet. 
+
+Haetaan kaikki Shoppinglistproduct rivit, joilla tuote on:
+
+SELECT * FROM Shoppinglistproduct JOIN Product ON Shoppinglist.product_id = Product.id WHERE Product.id = ?;
+
+Poistetaan ensin liitostaulun rivit, jotka saatiin edellisellä kyselyllä ja sitten poistetaan itse tuote.
 
 DELETE FROM Product WHERE Product.id = ?;
 
 Parametrit: Tuotteen id.
 
  
- **Tarkennetaan myöhemmin:**
- 
- _Tapahtuma:_ | Haut
+ _Tapahtuma:_ | Haku kategorioittain
  --- | ---
  _Käyttäjä:_ | Sovelluksen käyttäjä
- _Tavoite:_ | Haut kategorian tai tuotteen perusteella.
- _Laukaisija:_ | Halutaan tietää tuote tai kategoriakohtaiset menot
+ _Tavoite:_ | Käytetyn rahan listaus kategorioittain.
+ _Laukaisija:_ | Halutaan tietää kategoriakohtaiset menot
  _Esiehto:_ | Ainakin yksi ostoslista on luotu
  _Jälkiehto:_ | Käyttäjällä saa haluamansa haun tulokset
- _Käyttötapauksen kulku:_ | 1. Valitaan haun tyyppi.
+ _Käyttötapauksen kulku:_ | 1. Siirrytään ostoslistojen listaus näkymään. 2. Painetaan Show nappia, jolloin päästään näkymään, jossa on maksimissaan 15 kategoriaa listattuna. Jokaiselle kategorialle listauksessa näytetään käytetty rahasumma ja sen prosenttiosuus kokonaishinnasta. Kategorioista näytetään vain ne, joille on kertynyt ostoksia.
+
+Käyttötapaukseen liittyvät SQL-kyselyt:
+
+SELECT DISTINCT Category.category, SUM(shoppinglistproduct.product_total * product.price) AS sum,
+SUM(shoppinglistproduct.product_total * product.price) * 100 / (SELECT SUM(shoppinglistproduct.product_total * product.price) FROM Shoppinglist JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id JOIN Product ON Shoppinglistproduct.product_id = product.id JOIN account ON account.id = Shoppinglist.account_id WHERE Product.account_id = ?) AS percent FROM Shoppinglistproduct JOIN Product ON Shoppinglistproduct.product_id = product.id JOIN Shoppinglist ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id JOIN account ON account.id = Product.account_id JOIN Category ON Category.id = Product.category_id WHERE Product.account_id = ? GROUP BY Category.category ORDER BY sum DESC LIMIT 15
+
+Parametrit: Käyttäjän id

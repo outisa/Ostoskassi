@@ -1,7 +1,11 @@
 ### Sovelluksen asennus ja käyttöönotto paikallisesti linux käyttöjärjestelmässä
 
 Valitse Ostoskassi repositiosta **_Clone or download_** -valikosta **_Download ZIP_**.
-Pura lataamasi ZIP-tiedosto koneellasi. Siirry terminaalissa kansioon Ostoskassi ja suorita komento
+Pura lataamasi ZIP-tiedosto koneellasi. Siirry terminaalissa lataamasi projektin kansioon Ostoskassi ja siirry virtuaaliympäristöön suorittamalla komento
+
+`source venv/bin/activate`
+
+tämän jälkeen aja ohjelma komennolla
 
 `python run.py`
 

@@ -3,10 +3,11 @@
 1. Paina **_Create account_** nappia
 2. Syötä **_Username_** kenttään haluamasi vähintään kolme ja maksimissaan 150 merkkiä pitkä käyttäjätunnus. 
 Käytä merkkejä a-z, A-Z, 0-9, ! tai ?. Herokussa hyväksytään myös merkit ä, Ä, ö ja Ö  
-3. Syötä **_Password_** kenttään haluamasi vähintään kolme ja maksimissaan 150 merkkiä pitkä salasana. 
+3. Syötä **_Password_** kenttään haluamasi vähintään kolme ja maksimissaan 20 merkkiä pitkä salasana. 
 Käytä merkkejä a-z, 0-9, ! tai ?, Herokussa hyväksytään myös merkit ä, Ä, ö ja Ö  
-4. Jos saat virheilmoituksen jo olemassa käyttäjätunnuksesta, toista kohdat 2 ja 3 sekä anna käyttäjätunnukseksi jokin toinen merkkirivi.
-5. Paina **_create_** nappia ja kirjaudut automaattisesti sisään
+4. Syötä **_Repeat Password_** kenttään antamasi salasana uudestaan.
+5. Jos saat virheilmoituksen jo olemassa käyttäjätunnuksesta, toista kohdat 2, 3 ja 4, sekä anna käyttäjätunnukseksi jokin toinen merkkirivi. Huomaa myös, että salasana täytyy olla sama molemmissa salasanakentissä.
+6. Paina **_create_** nappia ja kirjaudut automaattisesti sisään
 
 ## Kirjautuminen
 
@@ -23,7 +24,7 @@ Käytä merkkejä a-z, 0-9, ! tai ?, Herokussa hyväksytään myös merkit ä, �
 ## Käyttäjätilin poisto
 
 1. Paina **_Delete account_** linkkiä
-2. (tulossa) Varmista, että haluat poistaa tilin ja siihen liittyvät luomasi tiedot.
+2. Varmista, että haluat poistaa tilin ja siihen liittyvät luomasi tiedot painamalla **_delete_** nappia.
 3. Tilisi ja siihen littyvät tiedot poistetaan.
 
 ## Kategorian luonti
@@ -36,9 +37,9 @@ Käytä merkkejä a-z, A-Z, 0-9. Herokussa hyväksytään myös merkit ä, Ä, �
 ## Kategorian listaus, päivitys ja poisto
 
 1. Siirry **_List Categories_** linkistä kategorialistaan.
-2. Voit muokata kategorian nimeä syöttämällä nimen kategorian vieressä olevaan kenttään ja paina sen jälkeen **_update_** nappia.
-3. Voit poistaa kategorian painamalla **_delete_** nappia, jos kategoria ei ole jollakin tuotteella käytössä, 
-jolloin saat tästä virheviestin painettuasi **_delete_** nappia. 
+2. Voit muokata kategorian nimeä painamalla kategorian vieressä olevaa **_Edit_** linkkiä. Sen jälkeen kirjoita uusi kategorian nimi kenttään. Paina sitten **_update_** nappia, jonka jälkeen uusi kategoria päivittyy. **Huomaa**, että voit päivittää kategorian nimen vain sellaiseksi, jota ei vielä ole käytössä.
+3. Voit poistaa kategorian painamalla **_Delete_** nappia, jos kategoria ei ole jollakin tuotteella käytössä. 
+Jos kategoria on jollakin tuotteella käytössä, saat tästä virheviestin painettuasi **_Delete_** nappia. 
 
 ## Tuotteen luonti
 
@@ -53,25 +54,31 @@ Käytä merkkejä a-z, A-Z, 0-9. Herokussa hyväksytään myös merkit ä, Ä, �
 ## Tuotteiden listaus, päivitys ja poisto
 
 1. Siirry **_List products_** linkin kautta tuotteiden listaukseen.
-2. Hinnan päivitykseen anna uusi hinta väliltä 0.01-10000 ja paina **_update_** nappia.
-3. Tuotteen poistamiseksi paina **_delete_** nappia
+2. Siirry muokkaamaan tuotetta **_Edit_** linkin kautta. Anna tuotteelle sitten (uusi) nimi ja hinta. Päivitä muutokset **_Update_** nappia painamalla. **Huomaa**, että voit päivittää nimen vain sellaiseen tuotteen nimen, joka ei vielä ole käytössä (tämänhetkinen nimi sallitaan). Jos haluat päivittää vain hinnan, onnistuu se antamalla tuotteen nimeksi sen tämänhetkinen nimi ja uusi hinta.
+3. Tuotteen poistamiseksi paina **_Delete_** nappia
 
 ## Ostoslistan luonti
 
-1. Paina **_create shoppinglist_** linkkiä
+1. Paina **_Create shoppinglist_** linkkiä
 
 ## Ostoslistojen listaus ja poistaminen
 
-1. Siirry **_list shoppinglists_** linkin kautta ostoslistojen listaukseen. 
-2. Poistaaksesi ostoslistan paina **_delete_** nappia.
+1. Siirry **_List shoppinglists_** linkin kautta ostoslistojen listaukseen. 
+2. Poistaaksesi ostoslistan paina **_Delete_** nappia.
 
 ## Ostoslistan sisällön muokkaus
 
 **Huom! Jos valikossa ei ole mieluisia tuotteita tai valikko on tyhjä, luo ensin tuotteita.**
 
-1. Siirry **_list shoppinglists_** linkin kautta ostoslistojen listaukseen. 
-2. Paina **_show_** nappia.
+1. Siirry **_List shoppinglists_** linkin kautta ostoslistojen listaukseen. 
+2. Paina **_Show content_** nappia.
 3. Lisää tuotteita tuotevalikosta.
 4. Anna tuotteelle määrä väliltä 1 - 100
 5. Määrä 0 poistaa tuotteen listalta.
 6. Paina lopuksi **_Add_** nappia.
+
+## Rahankäyttö kategorioittain
+
+1. Siirry **_List shoppinglist_** linkin kautta ostoslitojen listaukseen.
+2. Paina sivun alussa olevaa **_Show**_ nappia.
+3. Sivulla näet kategoriat, joihin on käytetty rahaa. Lisäksi näet jokaisen kategorian kohdalla niihin käytetyn rahamäärän ja prosenttiosuuden kokonaissummasta.

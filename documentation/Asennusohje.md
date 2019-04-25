@@ -1,7 +1,11 @@
 ### Sovelluksen asennus ja käyttöönotto paikallisesti linux käyttöjärjestelmässä
 
 Valitse Ostoskassi repositiosta **_Clone or download_** -valikosta **_Download ZIP_**.
-Pura lataamasi ZIP-tiedosto koneellasi. Siirry terminaalissa lataamasi projektin kansioon Ostoskassi ja siirry virtuaaliympäristöön suorittamalla komento
+Pura lataamasi ZIP-tiedosto koneellasi. Siirry ensin kansioon, johon latasit projektin ja siirry sen jälkeen kansioon Ostoskassi komennolla
+
+`cd Ostoskassi`
+ 
+Siirry virtuaaliympäristöön suorittamalla komento
 
 `source venv/bin/activate`
 

@@ -4,7 +4,7 @@ from wtforms import StringField, IntegerField,  DecimalField, validators, Select
 from application.category.models import Category
 
 class ProductForm(FlaskForm):
-    name = StringField("Product name", [validators.Length(min=2, max=150), validators.Regexp(r'^[(\w+\s)*\w]+$')])
+    name = StringField("Product name", [validators.Length(min=2, max=100), validators.Regexp(r'^[(\w+\s)*\w]+$')])
     price = DecimalField("Price", [validators.NumberRange(min=0.01, max=10000.00, message="Please give a number between %(min)s and %(max)s!")])
 
     category_id = SelectField("Category", coerce=int)

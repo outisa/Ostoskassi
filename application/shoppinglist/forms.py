@@ -15,7 +15,7 @@ class ListForm(FlaskForm):
         csrf = False
 
 class NameForm(FlaskForm):
-    name = StringField("Shoppinglist", [validators.Length(min=3, max=150), validators.Regexp(r'^[(\w+\s)*\w]+$')])
+    name = StringField("Shoppinglist", [validators.Length(min=3, max=50), validators.Regexp(r'^[(\w+\s)*\w]+$')])
 
     class Meta:
         csrf = False

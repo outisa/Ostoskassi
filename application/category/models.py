@@ -5,7 +5,7 @@ from sqlalchemy.sql import text
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
-    category = db.Column(db.String(150), nullable=True)
+    category = db.Column(db.String(100), nullable=True)
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                                                          nullable=False)

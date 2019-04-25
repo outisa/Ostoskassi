@@ -9,8 +9,9 @@ td, tr {
 </style>
 
 <p style="color:red">{{ error }}</p>
-<p style="color:green">Both username and password must be at least 3 chracters long!</p>
-<p style="color:green">Use chracters A-Z, a-z, 0-9, !?</p>
+<p style="color:green">Username must be between 5 and 50 chracters.</p>
+<p style="color:green">Password must be between 6 and 30 characters</p>
+<p style="color:green">Allowed chracters A-Z, a-z, 0-9, !?</p>
 <form method="POST" action="{{ url_for('auth_create') }}">
   <table>
     <tr>

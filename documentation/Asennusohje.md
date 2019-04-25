@@ -1,15 +1,29 @@
 ### Sovelluksen asennus ja käyttöönotto paikallisesti linux käyttöjärjestelmässä
 
 Valitse Ostoskassi repositiosta **_Clone or download_** -valikosta **_Download ZIP_**.
-Pura lataamasi ZIP-tiedosto koneellasi. Siirry ensin kansioon, johon latasit projektin ja siirry sen jälkeen kansioon Ostoskassi komennolla
+Pura lataamasi ZIP-tiedosto koneellasi. Siirry ensin kansioon, johon latasit projektin ja siirry sen jälkeen kansioon Ostoskassi komennolla:
+
+`cd Ostoskassi-master`
+
+tai kloonaa repositio SSH avainta käyttäen komennolla:
+
+`git clone git@github.com:outisa/Ostoskassi.git`
+
+jonka jälkeen siirry kansioon Ostoskassi
 
 `cd Ostoskassi`
  
-Siirry virtuaaliympäristöön suorittamalla komento
+Luo ensin Python3 virtuaaliympäristö ja siirry virtuaaliympäristöön suorittamalla komennot:
+
+`python3 -m venv venv`
 
 `source venv/bin/activate`
 
-tämän jälkeen aja ohjelma komennolla
+Lataa sovelluksen vaatimat riippuvuudet käyttäen komentoa:
+
+`pip install -r requirements.txt`
+
+Tämän jälkeen käynnistä ohjelma komennolla
 
 `python run.py`
 

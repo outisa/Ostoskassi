@@ -2,6 +2,8 @@ from flask import Flask
 app = Flask(__name__)
 
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.event import listen
+from sqlalchemy import event, DDL
 
 import os
 
@@ -28,6 +30,17 @@ from application import views
 
 from application.category import models
 from application.category import views
+from category.models import Category
+
+#@event.listens_for(Category.__table__, 'after_create')
+#def insert_initial_values(*args, **kwargs):
+#    db.session().add(Category(category='Candys', account_id=0))
+#    db.session().add(Category(category='Fruits', account_id=0))
+#    db.session().add(Priority(category='Vegetables', account_id=0))
+#    db.session().commit()
+event.listen(Category.__table__, 'after_create',
+            DDL(""" INSERT INTO category (category, account_id) VALUES ('Clothes', 0), ('Shoes', 0), ('Vegetables', 0), ('Prepared food', 0),
+            ('Bread', 0), ('Fruits', 0), ('Other', 0), ('Toiletries', 0), ('Cleaning', 0), ('Soft Drinks', 0), ('Snacks', 0) """))
 
 from application.shoppinglist import models
 from application.shoppinglist import views

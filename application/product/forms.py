@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_login import current_user
+from sqlalchemy import or_
 from wtforms import StringField, IntegerField,  DecimalField, validators, SelectField
 from application.category.models import Category
 
@@ -11,7 +12,8 @@ class ProductForm(FlaskForm):
 
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
-        self.category_id.choices = [(a.id, a.category) for a in Category.query.filter_by(account_id=current_user.id)]
+        self.category_id.choices = [(a.id, a.category) for a in Category.query.filter(or_(Category.account_id==current_user.id, Category.account_id==0))]
+
 
     class Meta:
         csrf = False

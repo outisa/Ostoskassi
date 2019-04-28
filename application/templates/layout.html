@@ -35,19 +35,23 @@
           </li>
         <div class="form-inline mt-2 mt-md-0" style="width: 200px;">
           {% if current_user.is_authenticated %}
+          <ul> 
             <li>
               <a href="{{ url_for('auth_logout') }}">{{ current_user.username }} Logout</a>
             </li>
             <li>
               <a href="{{ url_for('auth_are_you_sure', user_id=current_user.id) }}">Delete account</a>         
-            </li>         
+            </li>
+          </ul>         
           {% else %}
+          <ul>
             <li>
               <a href="{{ url_for('auth_login') }}">Login</a>
             </li>
             <li> 
               <a href="{{ url_for('auth_create') }}">Create account</a>
             </li>
+          </ul>
           {% endif %}
         </div>
       </div>

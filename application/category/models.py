@@ -8,7 +8,7 @@ class Category(db.Model):
     category = db.Column(db.String(100), nullable=False)
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
-                                                         nullable=True)
+                                                         nullable=False)
 
     products = db.relationship("Product", backref=db.backref('category.id'), lazy=True)
     def __init__(self, category):

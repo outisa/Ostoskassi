@@ -29,6 +29,3 @@ class Category(db.Model):
 
         return response
 
-   ## def __str__(self):
-     ##   return '<Category {}>'.format(self.category)
-

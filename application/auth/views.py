@@ -16,13 +16,16 @@ def auth_login():
         return render_template("auth/loginform.html", form = LoginForm())
 
     form = LoginForm(request.form)
-
     user = User.query.filter_by(username=form.username.data).first()
-    hash = user.password
-    check_password = pbkdf2_sha256.verify(form.password.data, hash)
-    if not user or not check_password:
+    if not user:
         return render_template("auth/loginform.html", form = form,
                                             error = "No such username or password")
+    hash = user.password
+    check_password = pbkdf2_sha256.verify(form.password.data, hash)
+    if not check_password:
+        return render_template("auth/loginform.html", form = form,
+                                            error = "No such username or password")
+
 
     login_user(user)
     return redirect(url_for("index"))

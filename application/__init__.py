@@ -42,22 +42,20 @@ from application.shoppinglistProduct import models
 from application.auth import models
 from application.auth import views
 
-from application.category.models import Category
-event.listen(Category.__table__, 'after_create',
-            DDL(""" INSERT INTO category (category, account_id) VALUES ('Clothes', 0), ('Shoes', 0), ('Vegetables', 0), ('Prepared food', 0),
-            ('Bread', 0), ('Fruits', 0), ('Other', 0), ('Toiletries', 0), ('Cleaning', 0), ('Soft Drinks', 0), ('Snacks, 0') """))
-
 # login functionality part two
 from application.auth.models import User
+
+from application.category.models import Category
 event.listen(User.__table__, 'after_create', DDL(""" INSERT INTO account (id) VALUES (0) """))
+event.listen(Category.__table__, 'after_create',
+            DDL(""" INSERT INTO category (category, account_id) VALUES ('Clothes', 0), ('Shoes', 0), ('Vegetables', 0),
+                  ('Prepared food', 0), ('Bread', 0), ('Fruits', 0), ('Other', 0), ('Toiletries', 0), ('Cleaning', 0), ('Soft Drinks', 0), ('Snacks', 0) """))
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
 
-from application.category.models import Category
-event.listen(Category.__table__, 'after_create',
-            DDL(""" INSERT INTO category (category, account_id) VALUES ('Clothes', 0), ('Shoes', 0), ('Vegetables', 0), ('Prepared food', 0),
-            ('Bread', 0), ('Fruits', 0), ('Other', 0), ('Toiletries', 0), ('Cleaning', 0), ('Soft Drinks', 0), ('Snacks, 0') """))
+
 
 # database creation
 try:

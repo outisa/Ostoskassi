@@ -42,10 +42,12 @@ from application.shoppinglistProduct import models
 from application.auth import models
 from application.auth import views
 
-# login functionality part two
+# login functionality part two and adding default data in the category
 from application.auth.models import User
 
 from application.category.models import Category
+# User '0' must be added, so that postreSQL can add default data to the category,
+# because otherwise adding categories with account_id 0 would violate foreign key rules ('0 does not exists in table account').
 event.listen(User.__table__, 'after_create', DDL(""" INSERT INTO account (id) VALUES (0) """))
 event.listen(Category.__table__, 'after_create',
             DDL(""" INSERT INTO category (category, account_id) VALUES ('Clothes', 0), ('Shoes', 0), ('Vegetables', 0),

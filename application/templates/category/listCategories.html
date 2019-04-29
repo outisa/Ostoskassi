@@ -6,14 +6,26 @@ th, td {
   padding: 10px;
 }  
 </style>
+<table style="width:70%">
+  <tr>
+    <th style="font-size:25px">Default categories:</>
+  </tr>
+  {% for category in categories %} 
+  <tr>
+    {% if category.account_id == 0 %}
+    <td>{{ category.category }}</td>
+    {% endif %}
+  </tr>  
+  {% endfor %} 
+</table>
 <p style="color:red">{{ error }}</p> 
   <table style="width:70%">
     <tr>
-      <p style="color:green">Use characters: A-Z, a-z, 0-9</p>
-      <th style="font-size:25px">Category:</>
+      <th style="font-size:25px">Self-created categories:</>
     </tr>
     {% for category in categories %}
     <tr>
+      {% if category.account_id != 0 %}
       <td>{{ category.category }}</td>
       <td>
         <form method="POST" action="{{ url_for('category_delete', category_id=category.id) }}">
@@ -23,6 +35,7 @@ th, td {
       <td>
         <a href="{{ url_for('category_update_form', category_id=category.id) }}">Edit</a>
       </td>
+      {% endif %}
     </tr>
     {% endfor %}
     <td>

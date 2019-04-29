@@ -16,16 +16,16 @@ class Category(db.Model):
 
     @staticmethod
     def list_categories_for_user(account=0):
-        stmt = text("SELECT Category.id, category FROM Category"
+        stmt = text("SELECT Category.id, category, Category.account_id FROM Category"
                     " JOIN account ON Category.account_id = account.id "
-                    " WHERE (Category.account_id = :account)"
+                    " WHERE (Category.account_id = :account OR Category.account_id=0)"
                     " ORDER BY Category.category").params(account=account)
         res = db.engine.execute(stmt)
 
 
         response = []
         for row in res:
-            response.append({"id":row[0], "category":row[1]})
+            response.append({"id":row[0], "category":row[1], "account_id":row[2]})
 
         return response
 

@@ -5,10 +5,10 @@ from sqlalchemy.sql import text
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
-    category = db.Column(db.String(100), nullable=True)
+    category = db.Column(db.String(100), nullable=False)
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
-                                                         nullable=False)
+                                                         nullable=True)
 
     products = db.relationship("Product", backref=db.backref('category.id'), lazy=True)
     def __init__(self, category):

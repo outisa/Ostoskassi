@@ -25,7 +25,7 @@ Lataa sovelluksen vaatimat riippuvuudet käyttäen komentoa:
 
 Tämän jälkeen käynnistä ohjelma komennolla
 
-`python run.py`
+`python3 run.py`
 
 Siirry sen jälkeen osoitteeseen [http://localhost:5000](http://localhost:5000), jossa avautuu sovelluksen tervetuloa näkymä.
 

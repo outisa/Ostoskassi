@@ -32,12 +32,12 @@ Käytä merkkejä a-z, 0-9, Herokussa hyväksytään myös merkit ä, Ä, ö ja 
 1. Siirry sivun ylälaidassa olevan **_Manage Categories_** linkin kautta luomaan kategoria
 2. Anna kategorialle haluamasi nimi, jossa on merkkejä 3-100. Välilyönnit sallitaan sanojen välillä.
 Käytä merkkejä a-z, A-Z, 0-9. Herokussa hyväksytään myös merkit ä, Ä, ö ja Ö.  
-3. Paina **_Create_** nappia, jolloin lisäämäsi kategoria ilmestyy kategorialistaan. Jos kategoria oli jo olemassa, saat virheilmoituksen, eikä duplikaattia lisätä listaan.
+3. Paina **_Create_** nappia, jolloin lisäämäsi kategoria ilmestyy kategorialistaan. Jos kategoria on jo listallasi, saat virheilmoituksen, eikä duplikaattia lisätä listaan.
 
 ## Kategorian listaus, päivitys ja poisto
 
 1. Siirry sivun ylälaidassa olevasta **_Manage Categories_** linkistä kategorioiden hallintaan.
-2. Voit muokata kategorian nimeä painamalla itse luomasi kategorian nimeä. Luomasi kategoriat on kirjoitettu sinisellä, sekä niiden vieressä on **_Delete_** nappi. Sen jälkeen kirjoita uusi kategorian nimi sille varattuun kenttään editointi näkymässä. Paina sitten **_update_** nappia, jonka jälkeen uusi kategoria päivittyy. **Huomaa**, että voit päivittää kategorian nimen vain sellaiseksi, jota ei vielä ole käytössä.
+2. Voit muokata kategorian nimeä painamalla itse luomasi kategorian nimeä. Luomasi kategoriat on kirjoitettu sinisellä, sekä niiden vieressä on **_Delete_** nappi. Sen jälkeen kirjoita uusi kategorian nimi sille varattuun kenttään editointi näkymässä. Paina sitten **_update_** nappia, jonka jälkeen uusi kategoria päivittyy. **Huomaa**, että voit päivittää kategorian nimen vain sellaiseksi, joka ei ole vielä käytössä kategorialistallasi.
 3. Voit poistaa kategorian painamalla **_Delete_** nappia, jos kategoria ei ole jo jollakin tuotteella käytössä. 
 Jos kategoria on käytössä, saat tästä virheviestin painettuasi **_Delete_** nappia, eikä kategoriaa poisteta. 
 

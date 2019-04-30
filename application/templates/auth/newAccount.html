@@ -7,20 +7,13 @@ td, tr {
   text-align: right;
 }
 </style>
-
-<p style="color:red">{{ error }}</p>
 <p style="color:green">Username must be between 5 and 50 chracters.</p>
 <p style="color:green">Password must be between 6 and 30 characters</p>
-<p style="color:green">Allowed chracters A-Z, a-z, 0-9, !?</p>
 <form method="POST" action="{{ url_for('auth_create') }}">
   <table>
     <tr>
-      <td>
-        {{ form.username.label }}
-      </td>
-      <td>
-        {{ form.username }}
-      </td>
+      <td>{{ form.username.label }}</td>
+      <td>{{ form.username }}</td>
       <td>
         <ul>
           {% for error in form.username.errors %}
@@ -30,12 +23,8 @@ td, tr {
       </td>
     </tr>
     <tr>
-      <td>
-        {{ form.password.label }}
-      </td>
-      <td>
-        {{ form.password }}
-      </td>  
+      <td>{{ form.password.label }}</td>
+      <td>{{ form.password }}</td>  
       <td>
         <ul>
           {% for error in form.password.errors %}
@@ -45,12 +34,8 @@ td, tr {
       </td>  
     </tr>
     <tr>
-      <td>
-        {{ form.confirm.label }}
-      </td>
-      <td>
-        {{ form.confirm }}
-      </td>
+      <td>{{ form.confirm.label }}</td>
+      <td>{{ form.confirm }}</td>
     </tr>
     <tr>
       <td>

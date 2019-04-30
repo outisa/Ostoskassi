@@ -2,86 +2,101 @@
 
 {% block body %}
 {{ error }}
-<style>
-th, td {
-  padding: 10px;
-  text-align: right;
-}
-h6 {
-  font-size: 25px;
-  color: blue;
-}
-</style>
-<h6>Add products on the list</h6> 
-  <form method="POST", action="{{ url_for('shoppinglist_update', shoppinglist_id=slist_id)  }}">
-    <table>
-      <tr>
-        <td>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="contaner">
+      <table>
+        <tr>
+          <th>Add products on the list</th>
+        </tr> 
+        <form method="POST", action="{{ url_for('shoppinglist_update', shoppinglist_id=slist_id)  }}">
+        <tr>
+          <td>
           {{ form.product_id.label }}
-        </td> 
-        <td>
+          </td> 
+          <td>
           {{ form.product_id}}
-        </td>     
-        <td>         
-          <ul>
+          </td>     
+          <td>         
+            <ul>
             {% for error in form.product_id.errors %}
-            <li>{{ error }}</li>
+              <li>{{ error }}</li>
             {% endfor %}
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
           {{ form.amount.label }}
-        </td>
-        <td>
+          </td>
+          <td>
           {{ form.amount }}
-        </td>
-        <td>
-          <ul>
-            {% for error in form.amount.errors %}
-            <li>{{ error }}</li>
+          </td>
+          <td>
+            <ul>
+              {% for error in form.amount.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" value="Add"/>
+          </td>
+        </tr>
+      </form>
+      <li style="color:green">No product to choose? Please create some products first.
+        To change amount, add product again with correct amount.
+      </li>
+    </div>
+    <div class="container">
+      {{ pagination.links }}
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th>Category:</th>
+              <th>Amount:</th>
+              <th>Price per kg/piece:</th>
+              <th>Total per product:</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for content in contents %}
+            <tr>
+              <td>{{ loop.index + (page - 1) * per_page }}</td>
+              <td>{{ content.name }}</td>
+              <td>{{ content.category }}</td>
+              <td>{{ content.product_total }}</td>
+              <td>{{ content.price }}</td>
+              <td>{{ content.in_total }}</td>
+              <td>
+                <form method="POST" action="{{ url_for('shoppinglist_remove', product_id=content.product_id, shoppinglist_id=content.list_id) }}">
+                  <input type="Submit" value="Delete"/>
+                </form>
+              </td>
+            </tr>
             {% endfor %}
-          </ul>
-        </td>
-      </tr>
-    <tr>
-      <td colspan="2">
-        <input type="submit" value="Add"/>
-      </td>
-    </tr>
-  </form>
-<li style="color:green">No product to choose? Please create some products first.
-      To change amount, add product again with correct amount.
-      To delete product from the list, add product again with amount 0.
-</li>
-</table>
-<h6>Shoppinglist:</h6>
-  <table style="width:100%">
-    <tr>
-      <th>Product:</th>
-      <th>Category:</th>
-      <th>Amount:</th>
-      <th>Price per kg/piece:</th>
-      <th>Total per product:</th>
-    </tr>
-    {% for content in list %}
-    <tr>
-      <td>{{ content.name }}</td>
-      <td>{{ content.category }}</td>
-      <td>{{ content.product_total }}</td>
-      <td>{{ content.price }}</td>
-      <td>{{ content.in_total }}</td>
-    </tr>
-    {% endfor %}
-    {% for price in total%}
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <th>Total price:</th>
-      <th>{{ price.total }}</th>
-    </tr>
-    {% endfor %}
+          </tbody>
+        </table>
+        {% for price in total %}
+        <tr>
+          <th>Total price:</th>
+          <th>{{ price.total }}</th>
+        </tr>
+        {% endfor %}
+      </div>
+      {{ pagination.links }}
+    </div>
   </table>
+</body>
 {% endblock %}

@@ -1,50 +1,64 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<style>
-th, td {
-  padding: 10px;
-}  
-</style>
-<table style="width:70%">
-  <tr>
-    <th style="font-size:25px">Default categories:</>
-  </tr>
-  {% for category in categories %} 
-  <tr>
-    {% if category.account_id == 0 %}
-    <td>{{ category.category }}</td>
-    {% endif %}
-  </tr>  
-  {% endfor %} 
-</table>
-<p style="color:red">{{ error }}</p> 
-  <table style="width:70%">
-    <tr>
-      <th style="font-size:25px">Self-created categories:</>
-    </tr>
-    {% for category in categories %}
-    <tr>
-      {% if category.account_id != 0 %}
-      <td>{{ category.category }}</td>
-      <td>
-        <form method="POST" action="{{ url_for('category_delete', category_id=category.id) }}">
-          <input type="Submit" value="Delete"/>
-        </form>
-      </td>
-      <td>
-        <a href="{{ url_for('category_update_form', category_id=category.id) }}">Edit</a>
-      </td>
-      {% endif %}
-    </tr>
-    {% endfor %}
-    <td>
-      <ul>
-        {% for error in form.category.errors %}
-        <li>{{ error }}</li>
-        {% endfor%}
-      </ul>
-    </td>
-  </table>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+  </head>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <p>Create new categories:</p>
+      <form method="POST" action="{{ url_for('category_create') }}">
+        <tr>
+          <td>{{ form.category.label }}</td>
+          <td>{{ form.category }}</td>
+        </tr>
+        <tr>
+          <td>
+            <input type="submit" value="Create"/>
+          </td>
+        </tr>
+      </form>
+    </table>
+  </div>
+  <body>
+    <div class="container">
+      {{ pagination.links }}
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for category in categories_list %}
+            <tr>
+              <td>{{ loop.index + (page - 1) * per_page }}</td>
+              {% if category.account_id == 0 %}
+              <td>{{ category.category }}</td>
+            </tr>
+            <tr>
+            {% elif category.account_id != 0 %}
+              <td>
+                <a href="{{ url_for('category_update_form', category_id=category.id) }}">{{ category.category }}</a>
+              </td>
+              <td>
+                <form method="POST" action="{{ url_for('category_delete', category_id=category.id) }}">
+                  <input type="Submit" value="Delete"/>
+                </form>
+              </td>
+              {% endif %}
+   	    </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {{ pagination.links }}
+    </div>
+  </body>
 {% endblock %}
-

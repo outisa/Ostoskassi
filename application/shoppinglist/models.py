@@ -13,7 +13,8 @@ class Shoppinglist(db.Model):
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                                                     nullable=False)
 
-    products  = db.relationship("Shoppinglistproduct", backref = db.backref("shoppinglist"))
+    products  = db.relationship("Shoppinglistproduct",
+                     backref = db.backref('shoppinglist'), lazy=True)
 
     def __init__(self, name):
         self.name = name
@@ -48,7 +49,7 @@ class Shoppinglist(db.Model):
 
         response = []
         for row in res:
-           response.append({"list.id":row[0], "product.id":row[1], "name":row[2], "category":row[3], "price":row[4], "product_total":row[5], "in_total":row[6]})
+           response.append({"list_id":row[0], "product_id":row[1], "name":row[2], "category":row[3], "price":row[4], "product_total":row[5], "in_total":row[6]})
 
         return response
 

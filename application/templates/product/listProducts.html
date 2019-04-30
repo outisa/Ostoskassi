@@ -1,37 +1,72 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<style>
-table {
-  width: 80%;
-}
-table, td, th {
-  padding: 10px;
-  text-align: right;
-}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+</head>
 
-</style>
-<h5 style="padding:10px">Products</h5>
-  <table>
-    <tr>
-      <th>Product</>
-      <th>Price</>
-      <th>Category</>
-    </tr>
-    {% for product in products %}
-    <tr>
-      <td>{{ product.name }}</td>
-      <td>{{ product.price }}</td>
-      <td>{{ product.category}}</td> 
-      <td>
-        <form method="POST" action="{{ url_for('product_delete', product_id=product.id) }}">
-          <input type="submit" value="Delete"/> 
-        </form>
-      </td>
-      <td>
-        <a href="{{ url_for('update_product_form', product_id=product.id) }}">Edit</a>
-      </td>
-    {% endfor %}
+<div class="table-responsive">
+  <p style="color:green">Add new product, if not exists:</p>
+  <form method="POST" action="{{ url_for('product_create') }}">
+    <table class="table table-hover" >
+      <tr>
+        <td>{{ form.name.label }}</td>
+        <td>{{ form.name }}</td>
+      </tr>
+      <tr>
+        <td>{{ form.price.label }}</td>
+        <td>{{ form.price }}</td>
+      </tr>
+      <tr>
+        <td>{{ form.category_id.label }}</td>
+        <td>{{ form.category_id }}</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="submit" value="Add a new product"/>
+        </td>
+      </tr>
+    </form>
   </table>
+</div>
+<body>
+  <div class="container">
+    {{ pagination.links }}
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <p>Your products:</p>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product</>
+            <th>Price</>
+            <th>Category</>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+          <tr>
+            <td> {{ loop.index + (page - 1) * per_page }}</td>
+            <td>
+              <a href="{{ url_for('update_product_form', product_id=product.id) }}">{{ product.name }}</a>
+            </td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.category}}</td> 
+            <td>
+              <form method="POST" action="{{ url_for('product_delete', product_id=product.id) }}">
+                <input type="submit" value="Delete"/> 
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody> 
+      </table>
+    </div>
+    {{ pagination.links }} 
+  </div>
+</body>
 {% endblock %}
 

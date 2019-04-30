@@ -10,7 +10,8 @@ class Category(db.Model):
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                                                          nullable=False)
 
-    products = db.relationship("Product", backref=db.backref('category.id'), lazy=True)
+    products = db.relationship("Product", backref=db.backref('category'), lazy=True)
+
     def __init__(self, category):
         self.category = category
 

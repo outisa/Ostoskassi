@@ -15,7 +15,9 @@ class Product(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'),
                                                                nullable=False)
 
-    products  = db.relationship("Shoppinglistproduct", backref = db.backref("product"))
+    products  = db.relationship("Shoppinglistproduct",
+          backref=db.backref('product'), lazy=True)
+
     def __init__(self, name, price):
         self.name = name
         self.price = price

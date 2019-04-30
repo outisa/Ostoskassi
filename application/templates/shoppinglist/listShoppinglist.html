@@ -1,32 +1,74 @@
 {% extends "layout.html" %}
+
 {% block body %}
-<style>
-td {
-  padding: 10px;
-}
-</style>
-  <form method="POST" action="{{ url_for('shoppinglist_costs_per_category') }}">
-    <p> Show costs per category in all lists. (Maximum 15 categories will be shown.)</p>
-    <input type="submit" value="Show">
-  </form>
-  <table>
-    <tr>
-      <th style="font-size:30px">Shoppinglists:</>
-    </tr> 
-    {% for shoppinglist in lists %}
-    <tr>
-      <td>{{ shoppinglist.name }}</td>
-      <td>
-        <form method="POST" action="{{ url_for('shoppinglist_show', shoppinglist_id=shoppinglist.id) }}">
-          <input type="submit" value="Show content">
-        </form>
-      </td>
-      <td>
-        <form method="POST" action="{{ url_for('shoppinglist_delete', shoppinglist_id=shoppinglist.id) }}">
-          <input type="submit" value="Delete">
-        </form>
-      </td>     
-    </tr>
-    {% endfor %}
-  </table>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width= device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- BootStrap -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="table-responsive">
+    <table class="table table-hover">
+    <p>Create new shoppinglist:</p>
+    <form method="POST" action="{{ url_for('shoppinglist_create') }}">
+        <tr>
+          <td>{{ form.name.label }}</td>
+          <td>{{ form.name }}</td>
+          <td>
+            <ul>
+            {% for error in form.name.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="submit" value="Create"/>
+          </td>
+        </tr>
+      </form>
+    </table>
+  </div> 
+  <div class="container">
+    <form method="POST" action="{{ url_for('shoppinglist_costs_per_category') }}">
+      <p> Show costs per category in all lists. (Maximum 15 categories will be shown.)</p>
+      <input type="submit" value="Show">
+    </form>
+  </div>
+  <div class="container"> 
+    {{ pagination.links }}
+    <div class="table-responsive"> 
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Shoppinglists:</>
+          </tr>
+         </thead>
+         <tbody> 
+           {% for shoppinglist in lists %}
+           <tr>
+             <td>{{ loop.index + (page - 1) * per_page }}</td>
+             <td>{{ shoppinglist.name }}</td>
+             <td>
+               <form method="POST" action="{{ url_for('shoppinglist_show', shoppinglist_id=shoppinglist.id) }}">
+                <input type="submit" value="Show content">
+               </form>
+             </td>
+             <td>
+               <form method="POST" action="{{ url_for('shoppinglist_delete', shoppinglist_id=shoppinglist.id) }}">
+                 <input type="submit" value="Delete">
+               </form>
+             </td>     
+            </tr>
+            {% endfor %}
+          </tbody> 
+        </table>
+      </div>
+      {{ pagination.links }}
+    </div>
+  </body>
 {% endblock %}

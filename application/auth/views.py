@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required
 from passlib.hash import pbkdf2_sha256
 
@@ -18,14 +18,14 @@ def auth_login():
     form = LoginForm(request.form)
     user = User.query.filter_by(username=form.username.data).first()
     if not user:
-        return render_template("auth/loginform.html", form = form,
-                                            error = "No such username or password")
+        flash('No such username or password!')
+        return render_template("auth/loginform.html", form = form)
+
     hash = user.password
     check_password = pbkdf2_sha256.verify(form.password.data, hash)
     if not check_password:
-        return render_template("auth/loginform.html", form = form,
-                                            error = "No such username or password")
-
+        flash('No such username or password!')
+        return render_template("auth/loginform.html", form = form)
 
     login_user(user)
     return redirect(url_for("index"))
@@ -33,7 +33,8 @@ def auth_login():
 @app.route("/auth/logout", methods = ["POST", "GET"])
 def auth_logout():
     logout_user()
-    return redirect(url_for("index2"))
+    flash('You are successfully logged out!')
+    return redirect(url_for("index"))
 
 @app.route("/auth/newAccount", methods = ["GET", "POST"])
 def auth_create():
@@ -46,8 +47,9 @@ def auth_create():
     name = form.username.data
     user = User.query.filter_by(username=name).first()
     if user:
-        return render_template("auth/newAccount.html", form = form, 
-                                                 error = "Username already exists, choose another one")
+        flash('Username exists already, try with another one')
+        return render_template("auth/newAccount.html", form = form)
+
     hash = pbkdf2_sha256.hash(form.password.data)
     new_user = User(form.username.data, hash)
 
@@ -55,7 +57,7 @@ def auth_create():
     db.session().commit()
 
     login_user(new_user)
-    return redirect(url_for("index", message = "hello"))
+    return redirect(url_for("index"))
 
 @app.route("/auth/areYouSure/<user_id>", methods = ["GET","POST"])
 @login_required
@@ -78,5 +80,5 @@ def auth_delete(user_id):
     db.session().delete(t)
     db.session().commit()
 
-
-    return redirect(url_for("index3"))
+    flash('Your account and all your data has been deleted!')
+    return redirect(url_for("index"))

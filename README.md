@@ -17,6 +17,7 @@ Käyttäjälle tarjotaan myös mahdollisuus kirjautua ulos sovelluksesta. Lisäk
 
 [Käyttötapaukset](https://github.com/outisa/Ostoskassi/blob/master/documentation/K%C3%A4ytt%C3%B6tapaukset.md)
 
+[Rajoitteita](https://github.com/outisa/Ostoskassi/blob/master/documentation/tyon_rajoitteet.md)
 
 Alla linkki sovellukseen.
 

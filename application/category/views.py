@@ -1,7 +1,7 @@
 from flask import redirect, render_template, request, url_for, flash
 from flask_login import login_required, current_user
 from flask_paginate import Pagination, get_page_args
-from sqlalchemy import and_
+from sqlalchemy import and_, or_
 
 from application import app, db
 from application.category.models import Category
@@ -45,10 +45,10 @@ def category_delete(category_id):
 def category_update(category_id):
     form = CategoryForm(request.form)
     if not form.validate():
-        return render_template("category/updateCategory.html", form = form, category_id = category_id,
-                                            error = "Category exists already")
+        return render_template("category/updateCategory.html", form = form, category_id = category_id)
+
     category = form.category.data
-    check = Category.query.filter(and_(Category.category==category, Category.account_id==current_user.id)).first()
+    check = Category.query.filter(and_(Category.category==category, or_(Category.account_id==current_user.id, Category.account_id==0))).first()
     if check:
         return render_template("category/updateCategory.html", form = form, category_id = category_id,
                                                     error = "Category exists already.")
@@ -68,7 +68,7 @@ def category_create():
             return redirect(url_for("category_index"))
 
     category = form.category.data
-    check = Category.query.filter(and_(Category.category==category, Category.account_id==current_user.id)).first()
+    check = Category.query.filter(and_(Category.category==category, or_(Category.account_id==current_user.id, Category.account_id==0))).first()
     if check:
         flash('Category exists already.')
         return redirect(url_for("category_index"))

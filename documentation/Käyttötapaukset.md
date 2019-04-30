@@ -4,12 +4,13 @@ _Tapahtuma:_ | Kategorian luominen
 --- | ---
 _Käyttäjä:_ | Sovelluksen käyttäjä
 _Tavoite:_ | Kategorian luonti 
-_Laukaisija:_ | Kategorialista on tyhjä tai sieltä puuttuu haluttu kategoria.
+_Laukaisija:_ | Kategorialistalta puuttuu haluttu kategoria.
 _Esiehto:_ | Käyttäjä on kirjautunut 
-_Jälkiehto:_ | Uusi kategoria on luotu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä antaa kategorialle sitä kuvaavan nimen. 2. Käyttäjä lisää kategorian.
+_Jälkiehto:_ | Uusi kategoria on luotua
+_Käyttötapauksen kulku:_ | 1. Käyttäjä siirtyy _Manage Categories_ linkin kautta näkymään, jossa voi lisätä kategorian. 2. Käyttäjä antaa kategorialle sitä kuvaavan nimen. 3. Käyttäjä lisää kategorian.
+_Pokkeuksellinen toiminta:_ | 3a. Kategoria löytyy jo käyttäjän listalta. 3b. Syötteen pituus on liian lyhyt tai pitkä 3c. Syötteessä on käytetty ei-sallittuja merkkejä. 
 
-Käyttötapaukseen liittyvät SQL-kyselyt:
+Käyttötapaukseen liittyvä kysely, jos kategoriaa ei löydy listalta:
 
 INSERT INTO Category (category, account_id) VALUES (?,?);
 
@@ -22,11 +23,11 @@ _Tavoite:_ | Kategorialistan luonti
 _Laukaisija:_ | Halutaan nähdä kaikki kategoriat
 _Esiehto:_ |  Käyttäjä on kirjautunut 
 _Jälkiehto:_ | Kategoriat on listattu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa kategoriat nappia 2. Käyttäjä ohjautuu sivulle, jossa kategoriat ovat listattuna.
+_Käyttötapauksen kulku:_ | 1. Käyttäjä klikkaa _Manage Categories_ linkkiä.  2. Käyttäjä ohjautuu sivulle, jossa kategoriat ovat listattuna.
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
-SELECT category FROM Category WHERE account_id = ?;
+SELECT category FROM Category WHERE account_id = ? OR account.id = 0;
 
 Parametrit: käyttäjän id
 
@@ -35,16 +36,10 @@ _Tapahtuma:_ | Kategorioiden muokkaus ja poisto
 _Käyttäjä:_ | Sovelluksen käyttäjä
 _Tavoite:_ | Kategorialistan muokkaus 
 _Laukaisija:_ | Halutaan muokata jotakin kategoriaa sopivammaksi.
-_Esiehto:_ | Käyttäjä on kirjautunut
+_Esiehto:_ | Käyttäjä on kirjautunut ja kategorioiden listauksessa
 _Jälkiehto:_ | Kategorian nimi on muokattu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa kategoriat nappia 2. Käyttäjä ohjautuu sivulle,jossa kategoriat ovat listattuna. 3. Käyttäjä painaa edit linkkiä, jolla päästään päivittämään uusi kategoria. 4. Käyttäjä lisää uuden nimen kategorialle. 5. Käyttäjä voi poistaa itselleen ylimääräisen kategorian.
- _Poikkeuksellinen toiminta:_ | 3a. Listalla ei ole yhtään kategoriaa. 5a. Kategoria on jollakin tuotteella käytössä.
- 
-Käyttötapaukseen liittyvät SQL-kyselyt:
-
-1.SELECT category FROM Category WHERE account_id = ?;
-
-Parametrit: käyttäjän id
+_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa kategoriaa, jolla päästään päivittämään kategoria. 2. Käyttäjä muokkaa kategoriaa. 3. Käyttäjä voi poistaa itselleen ylimääräisen kategorian.
+ _Poikkeuksellinen toiminta:_ | 1a. Kategoria ei ole oma (ei tapahdu mitään). 3a. Kategoria on jollakin tuotteella käytössä. 3b. Syöte ei ole validi.
 
 Päivitys:
 
@@ -73,8 +68,8 @@ _Tavoite:_ | Uuden tilin luonti
 _Laukaisija:_ | Halutaan luoda tili, jolla kirjautua sovellukseen
 _Esiehto:_ | Sovellus on auki 
 _Jälkiehto:_ | Uusi tili on luotu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa create account-nappia 2. Käyttäjä ohjautuu tilinluomissivulle 3. Käyttäjä syöttää tunnuksen ja salasanan (molemmissa vähintään kolme merkkiä 5. Käyttäjä luo tunnuksen. 6. Käyttäjä kirjautuu automaattisesti sisään.
- _Poikkeuksellinen toiminta:_ | 4a. Tunnus on jo käytössä 
+_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa create account-nappia 2. Käyttäjä ohjautuu tilinluomissivulle 3. Käyttäjä syöttää haluamansa tunnuksen ja salasanan. 4. Käyttäjä luo tunnuksen. 5. Käyttäjä kirjautuu automaattisesti sisään.
+ _Poikkeuksellinen toiminta:_ | 4a. Syöte ei ole validi. 4b. Tunnus on jo käytössä. 
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
@@ -102,10 +97,10 @@ _Tapahtuma:_ | Ostoslistan luominen
  _Käyttäjä:_ | Sovelluksen käyttäjä 
  _Tavoite:_ | Ostoslistan luominen
 _Laukaisija:_ | Käyttäjän halu luoda ostoslista. 
-_Esiehto:_ | Käyttäjä on kirjautunut sovellukseen.
+_Esiehto:_ | Käyttäjä on kirjautunut sovellukseen ja ostoslistojen listauksessa.
 _Jälkiehto:_ | Ostoslista on luotu.
- _Käyttötapauksen kulku:_  |1. Käyttäjä luo uuden ostoslistan ja antaa sille nimen.
- _Poikkeuksellinen toiminta:_ | 
+ _Käyttötapauksen kulku:_  |1. Käyttäjä antaa uudelle ostoslistalle nimen. 2. Käyttäjä luo kategorian. 
+ _Poikkeuksellinen toiminta:_ | 1a. Syöte ei ole validi.
  
  Käyttötapaukseen liittyvät SQL-kyselyt:
  
@@ -120,7 +115,7 @@ _Tavoite:_ | Ostoslistan luonti
 _Laukaisija:_ | Halutaan nähdä kaikki ostoslistat
 _Esiehto:_ |  Käyttäjä on kirjautunut 
 _Jälkiehto:_ | Ostoslistat on listattu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa ostoslistat linkkiä 2. Käyttäjä ohjautuu sivulle, jossa ostoslistat ovat listattuna luontijärjestyksessä uusin ensin.
+_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa _Manage Shoppinglists_ linkkiä 2. Käyttäjä ohjautuu sivulle, jossa ostoslistat ovat listattuna luontijärjestyksessä uusin ensin.
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
@@ -134,18 +129,18 @@ _Tapahtuma:_ | Ostoslistan muokkaus ja sisällön katselu
 _Käyttäjä:_ | Sovelluksen käyttäjä
 _Tavoite:_ | Ostoslistan muokkaus
 _Laukaisija:_ | Ostoslistan sisältö ei vastaa käyttäjän toiveita
-_Esiehto:_ | Ostoslista on luotu ja käyttäjä on kirjautuneena
+_Esiehto:_ | Ostoslista on luotu, käyttäjä on kirjautuneena ja ostoslistojen listauksessa
 _Jälkiehto:_ | Ostoslistan sisältö on muokattu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä avaa listan ostoslistoista 2. Käyttäjä avaa sen ostoslistan, jota hän haluaa muokata. 3. Käyttäjä voi lisätä listaan uuden tuotteen. 4. Käyttäjä voi muokata tuotteen määrää listalla antamalla uuden halutun tuotemäärän väliltä 1-100. 5. Käyttäjä voi poistaa listalta tuotteen antamalla tuotteen määräksi 0. 
-_Poikkeuksellinen toiminta:_ | 1a. Käyttäjän haluama tuote puuttuu listalta.
+_Käyttötapauksen kulku:_ | 1. Käyttäjä avaa sen ostoslistan, jota hän haluaa muokata. 2. Käyttäjä voi lisätä listaan uuden tuotteen. 3. Käyttäjä voi muokata tuotteen määrää listalla antamalla uuden halutun tuotemäärän väliltä 1-100. 4. Käyttäjä voi poistaa tuotteen listalta. 
+_Poikkeuksellinen toiminta:_ | 1a. Käyttäjän haluama tuote puuttuu tuotelistalta. 3a Syöte ei ole validi.
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
-2. SELECT Shoppinglist.id, Product.id, Product.name, Category.category, Product.price, Shoppinglistproduct.product_total
-   (ShoppinglistProduct.product_total * Product.Price) FROM Shoppinglist
-   JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id
-   JOIN Product ON Shoppinglistproduct.product_id = Product.id
-   JOIN Category ON Product.category_id = Category.id
+2. SELECT Shoppinglist.id, Product.id, Product.name, Category.category, Product.price, Shoppinglistproduct.product_total  
+   (ShoppinglistProduct.product_total * Product.Price) FROM Shoppinglist  
+   JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id  
+   JOIN Product ON Shoppinglistproduct.product_id = Product.id  
+   JOIN Category ON Product.category_id = Category.id  
    WHERE Shoppinglist.id = ? ORDER BY Category.category;
 
 Parametrit: ostoslistan id
@@ -169,14 +164,26 @@ _Tapahtuma:_ | Ostoslistan poisto
 _Käyttäjä:_ | Sovelluksen käyttäjä
 _Tavoite:_ | Ostoslistan poisto
 _Laukaisija:_ | Ostoslista halutaan poistaa
-_Esiehto:_ | Ostoslista on luotu ja käyttäjä on kirjautuneena
+_Esiehto:_ | Ostoslista on luotu, käyttäjä on kirjautuneena ja ostoslistojen listauksessa
 _Jälkiehto:_ | Ostoslista on poistettu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä avaa listan ostoslistoista. 2. Käyttäjä poistaa listan.
+_Käyttötapauksen kulku:_ | 1. Käyttäjä poistaa haluamansa listan.
 _Poikkeuksellinen toiminta:_ | 
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
-Ennen ostoslistan poistoa haetaan kaikki rivit Shoppiglistproduct liitostaulusta ja poistetaan ne. Varsinaninen ostoslistan poisto tapahtuu suorittamalla kysely 
+Ennen ostoslistan poistoa haetaan kaikki ostoslistaan liittyvät rivit Shoppiglistproduct liitostaulusta ja poistetaan ne.
+
+SELECT * FROM Shoppinglistproduct WHERE shoppinglist_id = ?;
+
+parametrit: ostoslistan id
+
+Poisto jokaiselle haetulle liitostaulun riville tapahtuu kyselyllä:
+
+DELETE FROM Shoppinglistproduct WHERE shoppinglist_id = ?, product_id = ?, total_product = ?;
+
+parametrit: ostoslistan id, tuotteen id, tuotteen määrä
+
+Varsinaninen ostoslistan poisto tapahtuu suorittamalla kysely 
 
 DELETE FROM Shoppinglist WHERE Shoppinglist.id = ?;
 
@@ -189,16 +196,16 @@ _Tapahtuma:_ | Tuotteen luominen
 _Käyttäjä:_ | sovelluksen käyttäjä
 _Tavoite:_ | Tuotteen luominen tuotelistalle
 _Laukaisija:_ | Tuotelista on tyhjä tai tarvittava tuote puuttuu listalta.
-_Esiehto:_  | Käyttäjä on kirjautuneena ja haluttu tuotekategoria on olemassa.
+_Esiehto:_  | Käyttäjä on kirjautuneena, haluttu tuotekategoria on olemassa ja käyttäjä on tuotteiden listaussivulla.
 _Jälkiehto:_ | Tuote lisätään tuotelistalle
-_Käyttötapauksen kulku:_ | 1. Käyttäjä lisää tuotteen nimen. 2. Käyttäjä antaa tuotteelle hinnan. 3. Käyttäjä määrittelee tuotteen kategorian kategorialistalta.
-_Pokkeuksellinen tilanne:_ | 3a Kategoriaa ei ole olemassa.
+_Käyttötapauksen kulku:_ | 1. Käyttäjä lisää tuotteen nimen. 2. Käyttäjä antaa tuotteelle hinnan. 3. Käyttäjä määrittelee tuotteen kategorian kategorialistalta. 4. Käyttäjä lisää tuotteen.
+_Pokkeuksellinen tilanne:_ | 1a. Syöte ei ole validi 2a Syöte ei ole validi. 3a. Haluttua kategoriaa ei ole olemassa. 4a. Samanniminen tuote on jo olemassa.
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
 INSERT INTO Product (name, price, category_id) VALUES (?, ?, ?);
 
-Parametrit: Käyttäjän antamat nimi, hinta sekä käyttäjän valiteman kategorian id.
+Parametrit: Käyttäjän antamat nimi, hinta sekä käyttäjän valitseman kategorian id.
 
 _Tapahtuma:_ | Tuotteiden listaus ja katselu
 --- | ---
@@ -207,14 +214,14 @@ _Tavoite:_ | Tuotelistan luonti
 _Laukaisija:_ | Halutaan nähdä kaikki tuotteet
 _Esiehto:_ |  Käyttäjä on kirjautunut 
 _Jälkiehto:_ | Tuotteet on listattu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa listaa tuotteet linkkiä 2. Käyttäjä ohjautuu sivulle, jossa tuotteet ovat listattuna.
+_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa _Manage Products_ linkkiä 2. Käyttäjä ohjautuu sivulle, jossa tuotteet ovat listattuna.
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
-SELECT Product.id, Product.name, Product.price, Category.category FROM Product
-JOIN Category ON Category.id = Product.category_id
-JOIN Account ON Account.id = Product.account_id
-WHERE Product.account_id = ?
+SELECT Product.id, Product.name, Product.price, Category.category FROM Product  
+JOIN Category ON Category.id = Product.category_id   
+JOIN Account ON Account.id = Product.account_id  
+WHERE Product.account_id = ?  
 ORDER BY Product.name;
 
 Parametrit: Käyttäjän id
@@ -226,11 +233,9 @@ _Tavoite:_ | Tuotelistan päivitys
 _Laukaisija:_ | Tuotteella on väärä hinta ja/tai nimi on väärin
 _Esiehto:_ | Muokattava tuote löytyy tuotelistalta ja käyttäjä on kirjautuneena
 _Jälkiehto:_ | Tuoteen tiedot ovat päivitetty.
-_Käyttötapauksen kulku:_ | 1. Käyttäjä avaa tuotelistan ja painaa tuotteen kohdalta edit linkkiä. 2. Päivitettävältä tuotteelle annetaan uusi nimi ja hinta. 3. Tehdään päivitys.
-
+_Käyttötapauksen kulku:_ | 1. Käyttäjä avaa tuotelistan ja klikkaa tuotteen nimeä. 2. Päivitettävältä tuotteelle annetaan uusi nimi ja hinta. 3. Tehdään päivitys.
+_Poikkeuksellinen toiminta:_ | 3a. Syöte ei ole validi. 3b. Tuotteen uusi nimi on käytössä jollakin muulla käyttäjän tuotteella.
 Käyttötapaukseen liittyvät SQL-kyselyt:
-
-Ensin tehdään Tuotelistan listauksessa oleva listauskysely, jossa listataan tuotteet.
 
 UPDATE Product SET name = ?, price = ? WHERE Product.id = ?;
 
@@ -241,24 +246,23 @@ _Tapahtuma:_  | Tuoteen poisto
 _Käyttäjä:_ |  Sovelluksen käyttäjä
 _Tavoite:_ | Tuotteen poisto tuotelistalta
 _Laukaisija:_ | Tuotetta ei haluta pitää tuotelistalla
-_Esiehto:_ | Käyttäjä on kirjautuneena ja tuote on olemassa
+_Esiehto:_ | Käyttäjä on kirjautuneena, tuote on olemassa ja käyttäjä on tuotelistauksessa
 _Jälkiehto:_ | Tuote on poistettu.
-_Käyttötapauksen kulku:_ | 1. Käyttäjä avaa tuotelistan 2. Painetaan delete product-nappia.
+_Käyttötapauksen kulku:_ | 1. Painetaan delete nappia.
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
-
-Ensin tehdään Tuotelistan listauksessa oleva listauskysely, jossa listataan tuotteet. 
 
 Haetaan kaikki Shoppinglistproduct rivit, joilla tuote on:
 
 SELECT * FROM Shoppinglistproduct JOIN Product ON Shoppinglist.product_id = Product.id WHERE Product.id = ?;
 
-Poistetaan ensin liitostaulun rivit, jotka saatiin edellisellä kyselyllä ja sitten poistetaan itse tuote.
+parametrit: tuotteen id
+
+Poistetaan ensin liitostaulun rivit, jotka saatiin edellisellä kyselyllä samallalailla kuin ostoslistan poistossa on tehty. Lopuksi poistetaan itse tuote.
 
 DELETE FROM Product WHERE Product.id = ?;
 
 Parametrit: Tuotteen id.
-
  
  _Tapahtuma:_ | Haku kategorioittain
  --- | ---
@@ -271,7 +275,7 @@ Parametrit: Tuotteen id.
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
-SELECT DISTINCT Category.category, SUM(shoppinglistproduct.product_total * product.price) AS sum,
-SUM(shoppinglistproduct.product_total * product.price) * 100 / (SELECT SUM(shoppinglistproduct.product_total * product.price) FROM Shoppinglist JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id JOIN Product ON Shoppinglistproduct.product_id = product.id JOIN account ON account.id = Shoppinglist.account_id WHERE Product.account_id = ?) AS percent FROM Shoppinglistproduct JOIN Product ON Shoppinglistproduct.product_id = product.id JOIN Shoppinglist ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id JOIN account ON account.id = Product.account_id JOIN Category ON Category.id = Product.category_id WHERE Product.account_id = ? GROUP BY Category.category ORDER BY sum DESC LIMIT 15
+SELECT DISTINCT Category.category, SUM(shoppinglistproduct.product_total * product.price) AS sum,  
+SUM(shoppinglistproduct.product_total * product.price) * 100 / (SELECT SUM(shoppinglistproduct.product_total * product.price)   FROM Shoppinglist JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id JOIN Product ON   Shoppinglistproduct.product_id = product.id JOIN account ON account.id = Shoppinglist.account_id WHERE Product.account_id = ?) AS   percent FROM Shoppinglistproduct JOIN Product ON Shoppinglistproduct.product_id = product.id JOIN Shoppinglist ON   Shoppinglistproduct.shoppinglist_id = Shoppinglist.id JOIN account ON account.id = Product.account_id JOIN Category ON     Category.id = Product.category_id WHERE Product.account_id = ? GROUP BY Category.category ORDER BY sum DESC LIMIT 15  
 
 Parametrit: Käyttäjän id

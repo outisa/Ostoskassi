@@ -1,16 +1,13 @@
-## Ostoskassi 
-Harjoitustyön aiheena on ostoskassisovellus. Sovelluksen käyttäjä voi kirjautua ostoskassi -sovellukseen ja lisätä luomalleen ostoslistalle haluamiaan tuotteita. Alussa tuotteita ei ole olemassa ja kategorialista saattaa olla tyhjä, joten käyttäjän tulee lisätä haluamansa tuotteet ennen ostoslistan tekoa. Kategorialle annetaan vain kategorian nimi sitä lisättäessä. Käyttäjä voi myös päivittää kategorian keksiessään sille vaikkapa kuvaavamman nimen. Käyttäjä näkee myös kategoriat listana sekä voi poistaa luomansa kategorian, jos sitä ei ole liitettynä mihinkään tuotteeseen.
+## Ostoskassi (Shopping Bag) 
+Harjoitustyön aiheena on ostoskassisovellus. Käyttäjä voi luoda käyttötilin ja kirjautua sisään Ostoskassi-sovellukseen. Aluksi tuotteita ei ole olemassa, joten käyttäjän tulee lisätä haluamansa tuotteet ennen ostoslistan tekoa. Tämän jälkeen käyttäjä voi luoda ostoslistan ja lisätä sinne haluamiaan tuotteita. Kategorialistalla on jo valmiina kategorioita. Käyttäjä pystyy lisäämään kategorioita, jos listalta puuttuu itselle tarpeellinen kategoria. Käyttäjä voi myös päivittää luomansa kategorian keksiessään sille vaikkapa kuvaavamman nimen. Käyttäjä näkee kategoriat listana, sekä voi poistaa sieltä luomansa kategorian, jos sitä ei ole liitettynä mihinkään tuotteeseen.
 
-Luotaessa uutta tuotetta annetaan sille nimi, hinta ja sille merkitään kategoria kategorialistasta. Kätyttäjä pystyy myös poistamaan tuotteen ja hän voi päivittää tuotteen hinnan sekä hän pystyy selailemaan jo olemassa olevia tuotteita. 
+Luotaessa uutta tuotetta annetaan sille nimi, hinta sekä merkitään kategoria kategorialistasta. Kätyttäjä pystyy myös poistamaan tuotteen ja hän voi päivittää tuotteen nimen ja hinnan. Olemassa olevia tuotteita voi myös selata. 
 
-Käyttäjä voi poistaa ostoslistansa kokonaan, luoda uuden ostoslistan sekä tutkia ja poistaa tuotteita ostoslistalta. 
+Käyttäjä voi poistaa ostoslistansa, luoda uuden ostoslistan sekä tutkia ja poistaa tuotteita ostoslistalta. 
 
-Käyttäjälle annetaan mahdollisuus tehdä haku, jonka perusteella käyttäjä näkee paljonko rahaa on käytetty ostoskasseissa kategorioittain. 
+Käyttäjälle annetaan mahdollisuus tehdä haku, jonka perusteella käyttäjä näkee paljonko rahaa on käytetty omissa ostoskasseissa kategorioittain. 
 
-Käyttäjälle tarjotaan myös mahdollisuus kirjautua ulos sovelluksesta ja poistaa luomansa käyttötili sovellukseen, jolloin poistetaan myös käyttäjän luoma data.
-
-
-* **Tunnukset on luotu valmiiksi yhdelle 'henkilölle', username: hello ja password: world1, mutta myös omien tunnusten luonti ja poisto onnistuu** 
+Käyttäjälle tarjotaan myös mahdollisuus kirjautua ulos sovelluksesta. Lisäksi käyttötilin poisto onnistuu, jolloin poistetaan myös käyttäjän luoma data.
 
 [Asennusohje](https://github.com/outisa/Ostoskassi/blob/master/documentation/Asennusohje.md)
 

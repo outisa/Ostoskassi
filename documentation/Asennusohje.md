@@ -1,11 +1,11 @@
-### Sovelluksen asennus ja käyttöönotto paikallisesti linux käyttöjärjestelmässä
+### Sovelluksen asennus ja käyttöönotto paikallisesti
 
 Valitse Ostoskassi repositiosta **_Clone or download_** -valikosta **_Download ZIP_**.
-Pura lataamasi ZIP-tiedosto koneellasi. Siirry ensin kansioon, johon latasit projektin ja siirry sen jälkeen kansioon Ostoskassi komennolla:
+Pura lataamasi ZIP-tiedosto koneellasi, jonka jälkeen siirry kansioon, johon latasit projektin ja siellä kansioon Ostoskassi komennolla:
 
 `cd Ostoskassi-master`
 
-tai kloonaa repositio SSH avainta käyttäen komennolla:
+tai kloonaa repositio (vaatii SSH avaimen) komennolla:
 
 `git clone git@github.com:outisa/Ostoskassi.git`
 

@@ -13,7 +13,7 @@ Käyttäjälle tarjotaan myös mahdollisuus kirjautua ulos sovelluksesta. Lisäk
 
 [Käyttöohje](https://github.com/outisa/Ostoskassi/blob/master/documentation/k%C3%A4ytt%C3%B6ohje.md)
 
-[Tietokantakannanrakenne](https://github.com/outisa/Ostoskassi/blob/master/documentation/Tietokannanrakenne.md)
+[Tietokannan rakenne](https://github.com/outisa/Ostoskassi/blob/master/documentation/Tietokannanrakenne.md)
 
 [Käyttötapaukset](https://github.com/outisa/Ostoskassi/blob/master/documentation/K%C3%A4ytt%C3%B6tapaukset.md)
 

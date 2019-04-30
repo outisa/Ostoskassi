@@ -2,26 +2,29 @@
 
 {% block body %}
 <p style="color:red"> {{ error }} </p>
-<form method="POST" action"{{ url_for('auth_login') }}">
+<div class="container">
   <table>
-    <tr>
-      <td>{{ form.username.label }}</td>
-      <td>{{ form.username }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.password.label }}</td>
-      <td>{{ form.password }}</td>
-    </tr>
-    <tr>
-      <td colspan="3">
-        <input type="submit" value="login">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <p> Login or create an account first. </p>
-        <a href="{{ url_for('auth_create') }}">Create account</a>
-      </td>
-    </tr>
-</form>
+    <form method="POST" action"{{ url_for('auth_login') }}">
+      <tr>
+        <td>{{ form.username.label }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
+      <tr>
+        <td>{{ form.password.label }}</td>
+        <td>{{ form.password }}</td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <input type="submit" value="login">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p> Login or create an account first. </p>
+          <a href="{{ url_for('auth_create') }}">Create account</a>
+        </td>
+      </tr>
+    </form>
+  </table>
+</div>
 {% endblock %}

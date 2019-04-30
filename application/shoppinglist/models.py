@@ -38,11 +38,11 @@ class Shoppinglist(db.Model):
     @staticmethod
     def shoppinglist_show_contents(list=0):
         stmt = text("SELECT Shoppinglist.id, Product.id, Product.name, Category.category, Product.price, Shoppinglistproduct.product_total,"
-                    " (ShoppinglistProduct.product_total * Product.Price) FROM Shoppinglist"
+                    " (Shoppinglistproduct.product_total * Product.Price) FROM Shoppinglist"
                     " JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id"
                     " JOIN Product ON Shoppinglistproduct.product_id = Product.id"
                     " JOIN Category ON Product.category_id = Category.id"
-                    " WHERE (Shoppinglist.id = :list)"
+                    " WHERE (Shoppinglist.id = :list) GROUP BY Product.id"
                     " ORDER BY Category.category").params(list=list)
 
         res = db.engine.execute(stmt)

@@ -1,16 +1,11 @@
 {% extends "layout.html" %}
 
 {% block body%}
-<style>
-td, tr {
-  padding: 10px;
-  text-align: right;
-}
-</style>
-<p style="color:green">Username must be between 5 and 50 chracters.</p>
-<p style="color:green">Password must be between 6 and 30 characters</p>
-<form method="POST" action="{{ url_for('auth_create') }}">
-  <table>
+<div class="container">
+  <p style="color:green">Username must be between 5 and 50 chracters.</p>
+  <p style="color:green">Password must be between 6 and 30 characters</p>
+  <table> 
+    <form method="POST" action="{{ url_for('auth_create') }}">
     <tr>
       <td>{{ form.username.label }}</td>
       <td>{{ form.username }}</td>
@@ -39,9 +34,10 @@ td, tr {
     </tr>
     <tr>
       <td>
-        <input type="submit" value="Create a new Account"/>
+        <input type="submit" value="Create"/>
       </td>
     </tr>
-  </table> 
-</form>
+    </form> 
+  </table>
+</div>
 {% endblock %}

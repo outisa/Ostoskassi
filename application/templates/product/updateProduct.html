@@ -3,43 +3,37 @@
 {% block body %}
 <p style="color:red">{{ error }}</p>
 <p style="color:green">Change name and price here.</p>
-<form method="POST" action="{{ url_for('product_update', product_id=product_id) }}">
-  <table>
-    <tr>
-      <td>
-        {{ form.name.label }}
-      </td>
-      <td>
-        {{ form.name(placeholder="Give new name here") }}
-      </td>
-      <td>
-        <ul>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <form method="POST" action="{{ url_for('product_update', product_id=product_id) }}">
+      <tr>
+        <td>{{ form.name.label }}</td>
+        <td>{{ form.name(placeholder="Give new name here") }}</td>
+        <td>
+          <ul>
           {% for error in form.name.errors %}
-          <li>{{ error }}</li>
+            <li>{{ error }}</li>
           {% endfor %}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        {{ form.price.label }}
-      </td>
-      <td>
-        {{ form.price }}
-      </td>
-      <td>
-        <ul>
+         </ul>
+       </td>
+      </tr>
+      <tr>
+        <td>{{ form.price.label }}</td>
+        <td>{{ form.price }}</td>
+        <td>
+          <ul>
           {% for error in form.price.errors %}
-          <li>{{ error }}</li>
+            <li>{{ error }}</li>
           {% endfor %}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="3">
-        <input type="submit" value="Update"/>
-      </td>
-    </tr>
-  </form>
-</table>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="submit" value="Update"/>
+        </td>
+      </tr>
+    </form>
+  </table>
+</div>
 {% endblock %}

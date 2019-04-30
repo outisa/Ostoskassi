@@ -42,8 +42,9 @@ def shoppinglist_show(shoppinglist_id):
 def shoppinglist_update(shoppinglist_id):
     form = ListForm(request.form)
     if not form.validate():
-        return render_template("shoppinglist/showShoppinglist.html", lists=Shoppinglist.shoppinglists_for_current_user(current_user.id),
-                                             slist_id=shoppinglist_id, form = form, total=Shoppinglist.shoppinglist_total_price(shoppinglist_id))
+        for error in form.amount.errors:
+            flash(error)
+            return redirect(url_for("shoppinglist_show", shoppinglist_id=shoppinglist_id))
     shoppinglist = Shoppinglist.query.get(shoppinglist_id)
     product = Product.query.get(form.product_id.data)
     on_list = db.session.query(Shoppinglistproduct).filter(and_(Shoppinglistproduct.shoppinglist_id==shoppinglist.id, Shoppinglistproduct.product_id==product.id)).first()

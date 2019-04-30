@@ -131,25 +131,25 @@ _Tavoite:_ | Ostoslistan muokkaus
 _Laukaisija:_ | Ostoslistan sisältö ei vastaa käyttäjän toiveita
 _Esiehto:_ | Ostoslista on luotu, käyttäjä on kirjautuneena ja ostoslistojen listauksessa
 _Jälkiehto:_ | Ostoslistan sisältö on muokattu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä avaa sen ostoslistan, jota hän haluaa muokata. 2. Käyttäjä voi lisätä listaan uuden tuotteen. 3. Käyttäjä voi muokata tuotteen määrää listalla antamalla uuden halutun tuotemäärän väliltä 1-100. 4. Käyttäjä voi poistaa tuotteen listalta. 
+_Käyttötapauksen kulku:_ | 1. Käyttäjä avaa sen ostoslistan listauksen, jota hän haluaa muokata. 2. Käyttäjä voi lisätä listaan uuden tuotteen. 3. Käyttäjä voi muokata tuotteen määrää listalla antamalla uuden halutun tuotemäärän väliltä 1-100. 4. Käyttäjä voi poistaa tuotteen listalta. 
 _Poikkeuksellinen toiminta:_ | 1a. Käyttäjän haluama tuote puuttuu tuotelistalta. 3a Syöte ei ole validi.
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
-2. SELECT Shoppinglist.id, Product.id, Product.name, Category.category, Product.price, Shoppinglistproduct.product_total  
-   (ShoppinglistProduct.product_total * Product.Price) FROM Shoppinglist  
+1. SELECT Shoppinglist.id, Product.id, Product.name, Category.category, Product.price, Shoppinglistproduct.product_total  
+   (Shoppinglistproduct.product_total * Product.Price) FROM Shoppinglist  
    JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id  
    JOIN Product ON Shoppinglistproduct.product_id = Product.id  
    JOIN Category ON Product.category_id = Category.id  
-   WHERE Shoppinglist.id = ? ORDER BY Category.category;
-
+   WHERE Shoppinglist.id = ? GROUP BY Product.id ORDER BY Category.category;
+ 
 Parametrit: ostoslistan id
-
-3. INSERT INTO Shoppinglistproduct (shoppinglist_id, product_id, product_total) VALUES (?, ?, ?);
+   
+2. INSERT INTO Shoppinglistproduct (shoppinglist_id, product_id, product_total) VALUES (?, ?, ?);
 
 Parametrit: ostoslistan id, tuotteen id, ja tuotteiden määrä
 
-4. UPDATE Shoppinglistproduct SET product_total = ?
+3. UPDATE Shoppinglistproduct SET product_total = ?
 WHERE shoppinglist_id = ? AND product_id = ?;
 
 Parametrit: Tuotteen määrä, ostoslistan id, tuotteen id
@@ -269,9 +269,9 @@ Parametrit: Tuotteen id.
  _Käyttäjä:_ | Sovelluksen käyttäjä
  _Tavoite:_ | Käytetyn rahan listaus kategorioittain.
  _Laukaisija:_ | Halutaan tietää kategoriakohtaiset menot
- _Esiehto:_ | Ainakin yksi ostoslista on luotu
- _Jälkiehto:_ | Käyttäjällä saa haluamansa haun tulokset
- _Käyttötapauksen kulku:_ | 1. Siirrytään ostoslistojen listaus näkymään. 2. Painetaan Show nappia, jolloin päästään näkymään, jossa on maksimissaan 15 kategoriaa listattuna. Jokaiselle kategorialle listauksessa näytetään käytetty rahasumma ja sen prosenttiosuus kokonaishinnasta. Kategorioista näytetään vain ne, joille on kertynyt ostoksia.
+ _Esiehto:_ | Ainakin yksi ostoslista on luotu ja käyttäjä on ostoslistojen listaussivulla.
+ _Jälkiehto:_ | Käyttäjä saa haluamansa haun tulokset
+ _Käyttötapauksen kulku:_ | 1. Painetaan Show nappia, jolloin päästään näkymään, jossa on maksimissaan 15 kategoriaa listattuna. Jokaiselle kategorialle listauksessa näytetään käytetty rahasumma ja sen prosenttiosuus kokonaishinnasta. Kategorioista näytetään vain ne, joille on kertynyt ostoksia.
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 

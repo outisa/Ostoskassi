@@ -30,6 +30,7 @@ def category_update_form(category_id):
 @login_required
 def category_delete(category_id):
     category =  Category.query.filter(Category.id==category_id).first()
+    # Checking first, if some products need category
     products = Product.list_category_ids_in_use(category_id)
     if not products:
         db.session().delete(category)

@@ -29,10 +29,12 @@ def product_index():
     return render_template('product/listProducts.html', products=pagination_products,
                            page=page, per_page=per_page, pagination=pagination, form = ProductForm())
 
+
 @app.route("/product/delete/<product_id>/", methods=["POST"])
 @login_required
 def product_delete(product_id):
     product =  Product.query.get(product_id)
+    # Checks, if product is on shoppinglist table. If so, first deletes this row from shoppinglist table.
     product_on_list = db.session.query(Shoppinglistproduct).filter_by(product_id=product.id).all()
     for on_list in product_on_list:
         db.session().delete(on_list)

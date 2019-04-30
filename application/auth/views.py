@@ -59,6 +59,7 @@ def auth_create():
     login_user(new_user)
     return redirect(url_for("index"))
 
+# Checks, if user wants to delete his/her account
 @app.route("/auth/areYouSure/<user_id>", methods = ["GET","POST"])
 @login_required
 def auth_are_you_sure(user_id):
@@ -68,15 +69,18 @@ def auth_are_you_sure(user_id):
 @login_required
 def auth_delete(user_id):
     t =  User.query.get(user_id)
+    # Following loop deletes user related data from product and shoppinglist tables.
     for p in db.session().query(Product).filter_by(account_id=user_id):
         onList =  db.session.query(Shoppinglistproduct).filter_by(product_id=p.id).all()
         for listed in onList:
             db.session().delete(listed)
         db.session().delete(p)
+    # Following first loop deletes user related data from category table and second one from shoppinglist table.
     for c in db.session().query(Category).filter_by(account_id=user_id):
         db.session().delete(c)
     for s in db.session().query(Shoppinglist).filter_by(account_id=user_id):
         db.session().delete(s)
+    # And finally user will be deleted.
     db.session().delete(t)
     db.session().commit()
 

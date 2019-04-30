@@ -59,6 +59,7 @@ def shoppinglist_update(shoppinglist_id):
     db.session.commit()
     return redirect(url_for("shoppinglist_show", shoppinglist_id=shoppinglist_id))
 
+# Removes chosen product from the shoppinglist. (Deletes a row with this product_id and shoppinglist_id combination from shoppinglistproduct)
 @app.route("/shoppinglist/remove/<product_id>/<shoppinglist_id>", methods=["POST"])
 @login_required
 def shoppinglist_remove(product_id, shoppinglist_id):

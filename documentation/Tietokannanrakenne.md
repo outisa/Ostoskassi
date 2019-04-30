@@ -9,15 +9,15 @@ account (käyttäjätili)
 attribuutti | kuvaus | pakollisuus | esimerkki
 --- | --- | --- | ---
 id | Käyttäjäkohtainen kokonaisluku, joka muodostuu automaattisesti käyttäjän luodessa uuden tilin. Id on myös taulun pääavain | kyllä| 1
-username | Minimissään 5 merkkiä ja maksimissaan 50 merkkiä pitkä käyttäjätunnus. Sallitut merkit ovat a-z, A-Z, 0-9, ! ja ?. | kyllä | HelloWorld85
-password | Minimissään 6 ja maksimissaan 30 merkkiä pitkä merkkijono. Sallitut merkit ovat a-z, A-Z, 0-9, ! ja ?. Salasana tallenetaan salatussa muodossa. | kyllä | g00dPaSSw0rd?
-
+username | Minimissään 5 merkkiä ja maksimissaan 50 merkkiä pitkä käyttäjätunnus. Sallitut merkit ovat a-z, A-Z, 0-9. | ei, käytännösä validoinnin takia ei jää tyhjäksi. | HelloWorld85
+password | Minimissään 6 ja maksimissaan 30 merkkiä pitkä merkkijono. Sallitut merkit ovat a-z, A-Z, 0-9. Salasana tallenetaan salatussa muodossa. | Ei, käytännössä ei jää tyhjäksi validoinnin takia. | g00dPaSSw0rd
+ 
 category (kategoria)  
 
 attribuutti | kuvaus | pakollisuus | esimerkki
 --- | --- | --- | ---
 id | Kategoriakohtainen kokonaisluku, joka muodostuu automaattisesti luotaessa uusi kategoria. Id on samalla taulun pääavain| kyllä | 4
-category | Kategorian nimi, joka on minimissään 3 ja maksimissaan 100 merkkiä pitkä. Sallitut merkit ovat a-z, A-Z, 0-9 sekä välilyönnit sanojen välillä | ei ole määritelty pakolliseksi tietokantataulussa, mutta käytännössä kategorian syötekenttä ei hyväksy tyhjää kategoriaa. | Marjat, Vaatteet
+category | Kategorian nimi, joka on minimissään 3 ja maksimissaan 100 merkkiä pitkä. Sallitut merkit ovat a-z, A-Z, 0-9 sekä välilyönnit sanojen välillä | kyllä | Marjat, Vaatteet
 account_id | Kategorian lisänneen käyttäjän id, joka on myös viiteavain account tauluun. | kyllä | 1
  
 shoppinglist (ostoslista)
@@ -52,14 +52,14 @@ product_total | Käyttäjän antama kokonaisluku, joka ilmentää lisättävän 
 
 CREATE TABLE account (  
 id INTEGER NOT NULL,  
-  username VARCHAR(50) NOT NULL,  
-  password(150) NOT NULL,  
+  username VARCHAR(50),  
+  password(150),  
   PRIMARY KEY (id)  
 );   
 
 CREATE TABLE category (  
   id INTEGER NOT NULL,  
-  category VARCHAR(100),  
+  category VARCHAR(100) NOT NULL,  
   account_id  INTEGER NOT NULL,  
   PRIMARY KEY (id),  
   FOREIGN KEY(account_id) REFERENCES account (id)  

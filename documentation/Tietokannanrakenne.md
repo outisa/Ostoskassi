@@ -17,7 +17,7 @@ category (kategoria)
 attribuutti | kuvaus | pakollisuus | esimerkki
 --- | --- | --- | ---
 id | Kategoriakohtainen kokonaisluku, joka muodostuu automaattisesti luotaessa uusi kategoria. Id on samalla taulun pääavain| kyllä | 4
-category | Kategorian nimi, joka on minimissään 3 ja maksimissaan 100 merkkiä pitkä. Sallitut merkit ovat a-z, A-Z, 0-9 sekä välilyönnit sanojen välillä | kyllä | Marjat, Vaatteet
+category | Kategorian nimi, joka on minimissään 3 ja maksimissaan 100 merkkiä pitkä. Sallitut merkit ovat a-z, A-Z, 0-9 sekä välilyönnit sanojen välillä | kyllä | Marjat, Other, Fruits
 account_id | Kategorian lisänneen käyttäjän id, joka on myös viiteavain account tauluun. | kyllä | 1
  
 shoppinglist (ostoslista)

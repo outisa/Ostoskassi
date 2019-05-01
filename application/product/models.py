@@ -36,15 +36,3 @@ class Product(db.Model):
             response.append({"id":row[0], "name":row[1], "price":row[2], "category":row[3]})
 
         return response
-
-    @staticmethod
-    def list_category_ids_in_use(category=0):
-        stmt = text("SELECT Product.name FROM Product"
-                    " JOIN Category ON Category.id = Product.category_id"
-                    " WHERE (category_id =:category)").params(category=category)
-        res = db.engine.execute(stmt)
-
-        response = []
-        for row in res:
-            response.append({"name":row[0]})
-        return response

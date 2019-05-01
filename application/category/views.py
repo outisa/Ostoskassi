@@ -31,7 +31,7 @@ def category_update_form(category_id):
 def category_delete(category_id):
     category =  Category.query.filter(Category.id==category_id).first()
     # Checking first, if some products need category
-    products = Product.list_category_ids_in_use(category_id)
+    products = Product.query.filter(Product.category_id==category_id).first()
     if not products:
         db.session().delete(category)
         db.session().commit()
@@ -49,7 +49,7 @@ def category_update(category_id):
         return render_template("category/updateCategory.html", form = form, category_id = category_id)
 
     category = form.category.data
-    check = Category.query.filter(and_(Category.category==category, or_(Category.account_id==current_user.id, Category.account_id==0))).first()
+    check = Category.query.filter(and_(Category.category==category, or_(Category.id!=category_id, Category.account_id==0))).first()
     if check:
         return render_template("category/updateCategory.html", form = form, category_id = category_id,
                                                     error = "Category exists already.")

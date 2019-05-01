@@ -49,8 +49,8 @@ def product_update(product_id):
     if not form.validate():
         return render_template("product/updateProduct.html", form = form, product_id=product_id)
     name = form.name.data
-    product = Product.query.filter(and_(Product.name==name, Product.account_id==current_user.id)).first()
-    if product and product.id != product_id:
+    product = Product.query.filter(and_(Product.name==name, Product.account_id==current_user.id, Product.id!=product_id)).first()
+    if product:
         return render_template("product/updateProduct.html", form=form, product_id=product_id,
                              error = "Product exists already")
     update_product = Product.query.get(product_id)

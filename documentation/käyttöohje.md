@@ -2,9 +2,9 @@
 
 1. Paina **_Create account_** linkkiä oikealta sivun ylälaidasta
 2. Syötä **_Username_** kenttään haluamasi vähintään 5 ja maksimissaan 50 merkkiä pitkä käyttäjätunnus. 
-Käytä merkkejä a-z, A-Z, 0-9. Herokussa hyväksytään myös merkit ä, Ä, ö ja Ö  
+Käytä merkkejä a-z, A-Z, 0-9 tai _. Herokussa hyväksytään myös merkit ä, Ä, ö ja Ö  
 3. Syötä **_Password_** kenttään haluamasi vähintään 6 ja maksimissaan 30 merkkiä pitkä salasana. 
-Käytä merkkejä a-z, 0-9, Herokussa hyväksytään myös merkit ä, Ä, ö ja Ö  
+Käytä merkkejä a-z, A-Z, 0-9 tai _, Herokussa hyväksytään myös merkit ä, Ä, ö ja Ö  
 4. Syötä **_Repeat Password_** kenttään antamasi salasana uudestaan.
 5. Jos saat virheilmoituksen jo olemassa käyttäjätunnuksesta, toista kohdat 2, 3 ja 4, sekä anna käyttäjätunnukseksi jokin toinen merkkirivi. Huomaa myös, että salasana täytyy olla sama molemmissa salasanakentissä.
 6. Paina **_Create_** nappia, jolloin tilisi tiedot tallenetaan ja kirjaudut samalla automaattisesti sisään
@@ -31,13 +31,13 @@ Käytä merkkejä a-z, 0-9, Herokussa hyväksytään myös merkit ä, Ä, ö ja 
 
 1. Siirry sivun ylälaidassa olevan **_Manage Categories_** linkin kautta luomaan kategoria
 2. Anna kategorialle haluamasi nimi, jossa on merkkejä 3-100. Välilyönnit sallitaan sanojen välillä.
-Käytä merkkejä a-z, A-Z, 0-9. Herokussa hyväksytään myös merkit ä, Ä, ö ja Ö.  
+Käytä merkkejä a-z, A-Z, 0-9 tai _. Herokussa hyväksytään myös merkit ä, Ä, ö ja Ö.  
 3. Paina **_Create_** nappia, jolloin lisäämäsi kategoria ilmestyy kategorialistaan. Jos kategoria on jo listallasi, saat virheilmoituksen, eikä duplikaattia lisätä listaan.
 
 ## Kategorian listaus, päivitys ja poisto
 
 1. Siirry sivun ylälaidassa olevasta **_Manage Categories_** linkistä kategorioiden hallintaan.
-2. Voit muokata kategorian nimeä painamalla itse luomasi kategorian nimeä. Luomasi kategoriat on kirjoitettu sinisellä, sekä niiden vieressä on **_Delete_** nappi. Sen jälkeen kirjoita uusi kategorian nimi sille varattuun kenttään editointi näkymässä. Paina sitten **_update_** nappia, jonka jälkeen uusi kategoria päivittyy. **Huomaa**, että voit päivittää kategorian nimen vain sellaiseksi, joka ei ole vielä käytössä kategorialistallasi.
+2. Voit muokata kategorian nimeä painamalla itse luomasi kategorian nimeä. Luomasi kategoriat on kirjoitettu sinisellä ja ovat linkkejä editoimissivulle. Sen jälkeen kirjoita uusi kategorian nimi sille varattuun kenttään editointi näkymässä. Kategorian uutta nimeä koskevat samat säännöt kuin sen luomisessa [kohta 2](). Paina sitten **_update_** nappia, jonka jälkeen uusi kategoria päivittyy. **Huomaa**, että voit päivittää kategorian nimen vain sellaiseksi, joka ei ole vielä käytössä kategorialistallasi. Voit kuitenkin toistaa kategorian saman nimen, jolloin kategoria pysyy samana.
 3. Voit poistaa kategorian painamalla **_Delete_** nappia, jos kategoria ei ole jo jollakin tuotteella käytössä. 
 Jos kategoria on käytössä, saat tästä virheviestin painettuasi **_Delete_** nappia, eikä kategoriaa poisteta. 
 
@@ -45,7 +45,7 @@ Jos kategoria on käytössä, saat tästä virheviestin painettuasi **_Delete_**
 
 1. Siirry **_Manage Products_** linkin kautta tuotteiden hallinta sivulle.
 2. Anna tuotteelle haluamasi nimi, jossa on merkkejä 2-100. Välilyönnit sallitaan sanojen välillä.
-Käytä merkkejä a-z, A-Z, 0-9. Herokussa hyväksytään myös merkit ä, Ä, ö ja Ö 
+Käytä merkkejä a-z, A-Z, 0-9 ja _. Herokussa hyväksytään myös merkit ä, Ä, ö ja Ö 
 3. Anna tuotteelle hinta väliltä 0.01 - 10000.00
 4. Valitse mieleisesi kategoria valikosta. 
 5. Klikkaa **_Add_** nappia, jolloin tuote lisätään listaan, jos sen nimistä tuotetta ei ole olemassa omalla tuotelistallasi.
@@ -53,13 +53,14 @@ Käytä merkkejä a-z, A-Z, 0-9. Herokussa hyväksytään myös merkit ä, Ä, �
 ## Tuotteiden listaus, päivitys ja poisto
 
 1. Siirry **_Manage Products_** linkin kautta tuotteiden hallinnointiin.
-2. Siirry muokkaamaan tuotetta klikkaamalla tuotteen nimeä. Anna tuotteelle sitten (uusi) nimi ja hinta. Päivitä muutokset **_Update_** nappia painamalla. **Huomaa**, että voit päivittää nimen vain sellaiseen tuotteen nimen, joka ei vielä ole käytössä (tämänhetkinen nimi sallitaan). Jos haluat päivittää vain hinnan, onnistuu se antamalla tuotteen nimeksi sen tämänhetkinen nimi ja uusi hinta.
+2. Siirry muokkaamaan tuotetta klikkaamalla tuotteen nimeä. Anna tuotteelle sitten (uusi) nimi ja hinta. Tuotteeb nimeämistä koskevat samat säännöt kuin sen luomisessa[kohta 2](). Päivitä muutokset **_Update_** nappia painamalla. **Huomaa**, että voit päivittää nimen vain sellaiseen tuotteen nimen, joka ei vielä ole käytössä (tämänhetkinen nimi sallitaan). Jos haluat päivittää vain hinnan, onnistuu se antamalla tuotteen nimeksi sen tämänhetkinen nimi ja uusi hinta.
 3. Tuotteen poistamiseksi paina **_Delete_** nappia.
 
 ## Ostoslistan luonti
 
 1. Paina **_Manage Shoppinglists_** linkkiä.
-2. Anna ostoslistalle haluamasi nimi, sivun alussa olevaan **_Shoppinglist_** syötekenttään.
+2. Anna ostoslistalle haluamasi nimi, sivun alussa olevaan **_Shoppinglist_** syötekenttään. Käytä merkkejä A-Z, a-z, 0-9, _.
+Välilyönnit sallitaan sanojen keskellä.
 3. Klikkaa sen jälkeen **_Create_** nappia tallentaaksesi ostoslistan.
 
 ## Ostoslistojen listaus ja poistaminen

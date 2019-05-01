@@ -141,7 +141,7 @@ Käyttötapaukseen liittyvät SQL-kyselyt:
    JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id  
    JOIN Product ON Shoppinglistproduct.product_id = Product.id  
    JOIN Category ON Product.category_id = Category.id  
-   WHERE Shoppinglist.id = ? GROUP BY Product.id ORDER BY Category.category;
+   WHERE Shoppinglist.id = ? ORDER BY Category.category;
  
 Parametrit: ostoslistan id
    

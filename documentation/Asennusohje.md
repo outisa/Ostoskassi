@@ -16,6 +16,7 @@ jonka jälkeen siirry kansioon Ostoskassi
 2. Luo ensin Python3 virtuaaliympäristö ja siirry virtuaaliympäristöön suorittamalla komennot
 
 `~/Ostoskassi$ python3 -m venv venv`
+
 `~/Ostoskassi$ source venv/bin/activate`
 
 Huomaa! Kun käytät tai muokkaat sovellusta paikallisesti siirry aina ensin virtuaaliympäristöön.
@@ -46,9 +47,9 @@ Sovellus sammuu painamalla näppäimistöltä `Ctrl` ja `c`
 
 4. Lähetetään projekti Herokuun komennoilla
 
-`(venv) ~/Ostoskassi$ git add .`
-`(venv) ~/Ostoskassi$ git commit -m "Initial commit"`
-`(venv) ~/Ostoskassi$ git push heroku master`
+`(venv) ~/Ostoskassi$ git add .`  
+`(venv) ~/Ostoskassi$ git commit -m "Initial commit"`  
+`(venv) ~/Ostoskassi$ git push heroku master`  
 
 5. Lisätään sovellukselle tieto, että se on herokussa komentorivillä komennolla
 

@@ -45,6 +45,7 @@ def auth_create():
         return render_template("auth/newAccount.html",  form = CreateForm())
     form = CreateForm(request.form)
     if not form.validate():
+        flash('Use charackters A-Z, a-z and 0-9. For example "new_User09".')
         return render_template("auth/newAccount.html", form = form)
 
     name = form.username.data

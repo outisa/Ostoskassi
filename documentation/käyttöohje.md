@@ -37,7 +37,7 @@ Käytä merkkejä a-z, A-Z, 0-9 tai _. Herokussa hyväksytään myös merkit ä,
 ## Kategorian listaus, päivitys ja poisto
 
 1. Siirry sivun ylälaidassa olevasta **_Manage Categories_** linkistä kategorioiden hallintaan.
-2. Voit muokata kategorian nimeä painamalla itse luomasi kategorian nimeä. Luomasi kategoriat on kirjoitettu sinisellä ja ovat linkkejä editoimissivulle. Sen jälkeen kirjoita uusi kategorian nimi sille varattuun kenttään editointi näkymässä. Kategorian uutta nimeä koskevat samat säännöt kuin sen luomisessa [kohta 2](). Paina sitten **_update_** nappia, jonka jälkeen uusi kategoria päivittyy. **Huomaa**, että voit päivittää kategorian nimen vain sellaiseksi, joka ei ole vielä käytössä kategorialistallasi. Voit kuitenkin toistaa kategorian saman nimen, jolloin kategoria pysyy samana.
+2. Voit muokata kategorian nimeä painamalla itse luomasi kategorian nimeä. Luomasi kategoriat on kirjoitettu sinisellä ja ovat linkkejä editoimissivulle. Sen jälkeen kirjoita uusi kategorian nimi sille varattuun kenttään editointi näkymässä. Kategorian uutta nimeä koskevat samat säännöt kuin sen luomisessa (kohta 2). Paina sitten **_update_** nappia, jonka jälkeen uusi kategoria päivittyy. **Huomaa**, että voit päivittää kategorian nimen vain sellaiseksi, joka ei ole vielä käytössä kategorialistallasi. Voit kuitenkin toistaa kategorian saman nimen, jolloin kategoria pysyy samana.
 3. Voit poistaa kategorian painamalla **_Delete_** nappia, jos kategoria ei ole jo jollakin tuotteella käytössä. 
 Jos kategoria on käytössä, saat tästä virheviestin painettuasi **_Delete_** nappia, eikä kategoriaa poisteta. 
 
@@ -53,7 +53,7 @@ Käytä merkkejä a-z, A-Z, 0-9 ja _. Herokussa hyväksytään myös merkit ä, 
 ## Tuotteiden listaus, päivitys ja poisto
 
 1. Siirry **_Manage Products_** linkin kautta tuotteiden hallinnointiin.
-2. Siirry muokkaamaan tuotetta klikkaamalla tuotteen nimeä. Anna tuotteelle sitten (uusi) nimi ja hinta. Tuotteeb nimeämistä koskevat samat säännöt kuin sen luomisessa[kohta 2](). Päivitä muutokset **_Update_** nappia painamalla. **Huomaa**, että voit päivittää nimen vain sellaiseen tuotteen nimen, joka ei vielä ole käytössä (tämänhetkinen nimi sallitaan). Jos haluat päivittää vain hinnan, onnistuu se antamalla tuotteen nimeksi sen tämänhetkinen nimi ja uusi hinta.
+2. Siirry muokkaamaan tuotetta klikkaamalla tuotteen nimeä. Anna tuotteelle sitten (uusi) nimi ja hinta. Tuotteen nimeämistä koskevat samat säännöt kuin sen luomisessa (kohta 2). Päivitä muutokset **_Update_** nappia painamalla. **Huomaa**, että voit päivittää nimen vain sellaiseen tuotteen nimen, joka ei vielä ole käytössä (tämänhetkinen nimi sallitaan). Jos haluat päivittää vain hinnan, onnistuu se antamalla tuotteen nimeksi sen tämänhetkinen nimi ja uusi hinta.
 3. Tuotteen poistamiseksi paina **_Delete_** nappia.
 
 ## Ostoslistan luonti

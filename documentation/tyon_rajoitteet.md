@@ -12,3 +12,4 @@ Alla listattuna muutamia jatkokehitys ideoita.
 * Esilisättyjä tuotteita valmiina tuotelistassa.
 * Haun tuloksen näyttäminen pylväsdiagrammina.
 * Ostoslistan tuotelistauksen tulosten järjestäminen hinnan, kategorian tai tuotteen mukaan.
+* Käyttö- ja asennusohjeisiin selkeyttävien kuvien lisäys.

@@ -3,7 +3,7 @@
 {% block body %}
 <p style="color:red">{{ error }}</p>
 <p style="color:green">Update category</p>
-<p style="color:green">Use characters A-Z, a-z</p>
+<p style="color:green">Use characters A-Z, a-z, 0-9 _ and spaces only between words.</p>
 <form method="POST" action="{{ url_for('category_update', category_id=category_id) }}">
   <table>
     <tr>

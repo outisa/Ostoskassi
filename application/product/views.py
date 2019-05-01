@@ -65,7 +65,7 @@ def product_create():
     form = ProductForm(request.form)
     if not form.validate():
         for error in form.name.errors:
-            flash(error + ' Example of the name: "my Product_22"')
+            flash(error + ' Chracters: 0-9, A-Z, a-z, _, spaces only between words. Example of the name: "my Product_22"')
         for error in form.price.errors:
             flash(error)
         return redirect(url_for("product_index"))

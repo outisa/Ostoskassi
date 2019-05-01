@@ -52,11 +52,11 @@ def shoppinglist_update(shoppinglist_id):
         Shoppinglistproduct.update_product_total(form.amount.data, shoppinglist_id, product.id)
         return redirect(url_for("shoppinglist_show", shoppinglist_id=shoppinglist_id))
 
-    a = Shoppinglistproduct(form.amount.data)
-    a.product_id = product.id
-    a.shoppinglist_id = shoppinglist.id
-    a.total_product = form.amount.data
-    db.session().add(a)
+    shoppinglistproduct = Shoppinglistproduct(form.amount.data)
+    shoppinglistproduct.product_id = product.id
+    shoppinglistproduct.shoppinglist_id = shoppinglist.id
+    shoppinglistproduct.total_product = form.amount.data
+    db.session().add(shoppinglistproduct)
     db.session.commit()
     return redirect(url_for("shoppinglist_show", shoppinglist_id=shoppinglist_id))
 
@@ -73,11 +73,11 @@ def shoppinglist_remove(product_id, shoppinglist_id):
 @app.route("/shoppinglist/delete/<shoppinglist_id>", methods=["POST"])
 @login_required
 def shoppinglist_delete(shoppinglist_id):
-    t = Shoppinglist.query.get(shoppinglist_id)
-    isOnList = db.session.query(Shoppinglistproduct).filter_by(shoppinglist_id=t.id).all()
+    shoppinglist = Shoppinglist.query.get(shoppinglist_id)
+    isOnList = db.session.query(Shoppinglistproduct).filter_by(shoppinglist_id=shoppinglist.id).all()
     for isOn in isOnList:
         db.session().delete(isOn)
-    db.session().delete(t)
+    db.session().delete(shoppinglist)
     db.session().commit()
 
     return redirect(url_for("shoppinglist_index"))
@@ -90,9 +90,9 @@ def shoppinglist_create():
         flash('Word must be 3-50 characters long. Example "New list_23".')
         return redirect(url_for("shoppinglist_index"))
 
-    t = Shoppinglist(form.name.data)
-    t.account_id = current_user.id
-    db.session().add(t)
+    shoppinglist = Shoppinglist(form.name.data)
+    shoppinglist.account_id = current_user.id
+    db.session().add(shoppinglist)
     db.session().commit()
 
     return redirect(url_for("shoppinglist_index"))

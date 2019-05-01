@@ -57,8 +57,6 @@ event.listen(Category.__table__, 'after_create',
 def load_user(user_id):
     return User.query.get(user_id)
 
-
-
 # database creation
 try:
     db.create_all()

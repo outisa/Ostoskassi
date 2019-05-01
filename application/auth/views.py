@@ -68,20 +68,20 @@ def auth_are_you_sure(user_id):
 @app.route("/auth/delete/<user_id>", methods = ["POST", "GET"])
 @login_required
 def auth_delete(user_id):
-    t =  User.query.get(user_id)
+    user =  User.query.get(user_id)
     # Following loop deletes user related data from product and shoppinglist tables.
-    for p in db.session().query(Product).filter_by(account_id=user_id):
-        onList =  db.session.query(Shoppinglistproduct).filter_by(product_id=p.id).all()
+    for product in db.session().query(Product).filter_by(account_id=user_id):
+        onList =  db.session.query(Shoppinglistproduct).filter_by(product_id=product.id).all()
         for listed in onList:
             db.session().delete(listed)
-        db.session().delete(p)
+        db.session().delete(product)
     # Following first loop deletes user related data from category table and second one from shoppinglist table.
-    for c in db.session().query(Category).filter_by(account_id=user_id):
-        db.session().delete(c)
-    for s in db.session().query(Shoppinglist).filter_by(account_id=user_id):
-        db.session().delete(s)
+    for category in db.session().query(Category).filter_by(account_id=user_id):
+        db.session().delete(category)
+    for shoppinglist in db.session().query(Shoppinglist).filter_by(account_id=user_id):
+        db.session().delete(shoppinglist)
     # And finally user will be deleted.
-    db.session().delete(t)
+    db.session().delete(user)
     db.session().commit()
 
     flash('Your account and all your data has been deleted!')

@@ -9,9 +9,9 @@
         <td>{{ form.username }}</td>
         <td>
           <ul>
-          {{ for error in form.username.data }}
+          {% for error in form.username.errors %}
             <li>{{ error }}</li>
-          {{ endfor }}
+          {% endfor %}
           </ul>
         </td> 
       </tr>
@@ -20,9 +20,9 @@
         <td>{{ form.password }}</td>
         <td>
           <ul>
-          {{ for error in form.password.data }}
+          {% for error in form.password.errors %}
             <li>{{ error }}</li>
-          {{ endfor }}
+          {% endfor %}
           </ul>
         </td>
 

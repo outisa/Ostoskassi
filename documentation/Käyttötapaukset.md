@@ -36,7 +36,7 @@ _Tapahtuma:_ | Kategorioiden muokkaus ja poisto
 _Käyttäjä:_ | Sovelluksen käyttäjä
 _Tavoite:_ | Kategorialistan muokkaus 
 _Laukaisija:_ | Halutaan muokata jotakin kategoriaa sopivammaksi.
-_Esiehto:_ | Käyttäjä on kirjautunut ja kategorioiden listauksessa
+_Esiehto:_ | Käyttäjä on kirjautunut ja on kategorioiden listauksessa
 _Jälkiehto:_ | Kategorian nimi on muokattu
 _Käyttötapauksen kulku:_ | 1. Käyttäjä painaa kategoriaa, jolla päästään päivittämään kategoria. 2. Käyttäjä muokkaa kategoriaa. 3. Käyttäjä voi poistaa itselleen ylimääräisen kategorian.
  _Poikkeuksellinen toiminta:_ | 1a. Kategoria ei ole oma (ei tapahdu mitään). 3a. Kategoria on jollakin tuotteella käytössä. 3b. Syöte ei ole validi.
@@ -97,7 +97,7 @@ _Tapahtuma:_ | Ostoslistan luominen
  _Käyttäjä:_ | Sovelluksen käyttäjä 
  _Tavoite:_ | Ostoslistan luominen
 _Laukaisija:_ | Käyttäjän halu luoda ostoslista. 
-_Esiehto:_ | Käyttäjä on kirjautunut sovellukseen ja ostoslistojen listauksessa.
+_Esiehto:_ | Käyttäjä on kirjautunut sovellukseen ja on ostoslistojen listauksessa.
 _Jälkiehto:_ | Ostoslista on luotu.
  _Käyttötapauksen kulku:_  |1. Käyttäjä antaa uudelle ostoslistalle nimen. 2. Käyttäjä luo kategorian. 
  _Poikkeuksellinen toiminta:_ | 1a. Syöte ei ole validi.
@@ -129,7 +129,7 @@ _Tapahtuma:_ | Ostoslistan muokkaus ja sisällön katselu
 _Käyttäjä:_ | Sovelluksen käyttäjä
 _Tavoite:_ | Ostoslistan muokkaus
 _Laukaisija:_ | Ostoslistan sisältö ei vastaa käyttäjän toiveita
-_Esiehto:_ | Ostoslista on luotu, käyttäjä on kirjautuneena ja ostoslistojen listauksessa
+_Esiehto:_ | Ostoslista on luotu, käyttäjä on kirjautuneena ja on ostoslistojen listauksessa
 _Jälkiehto:_ | Ostoslistan sisältö on muokattu
 _Käyttötapauksen kulku:_ | 1. Käyttäjä avaa sen ostoslistan listauksen, jota hän haluaa muokata. 2. Käyttäjä voi lisätä listaan uuden tuotteen. 3. Käyttäjä voi muokata tuotteen määrää listalla antamalla uuden halutun tuotemäärän väliltä 1-100. 4. Käyttäjä voi poistaa tuotteen listalta. 
 _Poikkeuksellinen toiminta:_ | 1a. Käyttäjän haluama tuote puuttuu tuotelistalta. 3a Syöte ei ole validi.
@@ -164,7 +164,7 @@ _Tapahtuma:_ | Ostoslistan poisto
 _Käyttäjä:_ | Sovelluksen käyttäjä
 _Tavoite:_ | Ostoslistan poisto
 _Laukaisija:_ | Ostoslista halutaan poistaa
-_Esiehto:_ | Ostoslista on luotu, käyttäjä on kirjautuneena ja ostoslistojen listauksessa
+_Esiehto:_ | Ostoslista on luotu, käyttäjä on kirjautuneena ja on ostoslistojen listauksessa
 _Jälkiehto:_ | Ostoslista on poistettu
 _Käyttötapauksen kulku:_ | 1. Käyttäjä poistaa haluamansa listan.
 _Poikkeuksellinen toiminta:_ | 
@@ -231,7 +231,7 @@ _Tapahtuma:_  | Tuotelistan päivitys
 _Käyttäjä:_ |  Sovelluksen käyttäjä
 _Tavoite:_ | Tuotelistan päivitys
 _Laukaisija:_ | Tuotteella on väärä hinta ja/tai nimi on väärin
-_Esiehto:_ | Muokattava tuote löytyy tuotelistalta ja käyttäjä on kirjautuneena
+_Esiehto:_ | Muokattava tuote löytyy tuotelistalta, käyttäjä on kirjautuneena ja on tuotteiden listauksessa
 _Jälkiehto:_ | Tuoteen tiedot ovat päivitetty.
 _Käyttötapauksen kulku:_ | 1. Käyttäjä avaa tuotelistan ja klikkaa tuotteen nimeä. 2. Päivitettävältä tuotteelle annetaan uusi nimi ja hinta. 3. Tehdään päivitys.
 _Poikkeuksellinen toiminta:_ | 3a. Syöte ei ole validi. 3b. Tuotteen uusi nimi on käytössä jollakin muulla käyttäjän tuotteella.

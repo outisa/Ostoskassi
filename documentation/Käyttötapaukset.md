@@ -31,23 +31,30 @@ SELECT category FROM Category WHERE account_id = ? OR account.id = 0;
 
 Parametrit: käyttäjän id
 
-_Tapahtuma:_ | Kategorioiden muokkaus ja poisto
+_Tapahtuma:_ | Kategorioiden muokkaus
 --- | ---
 _Käyttäjä:_ | Sovelluksen käyttäjä
-_Tavoite:_ | Kategorialistan muokkaus 
+_Tavoite:_ | Kategorian muokkaus 
 _Laukaisija:_ | Halutaan muokata jotakin kategoriaa sopivammaksi.
 _Esiehto:_ | Käyttäjä on kirjautunut ja on kategorioiden listauksessa
 _Jälkiehto:_ | Kategorian nimi on muokattu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä painaa kategoriaa, jolla päästään päivittämään kategoria. 2. Käyttäjä muokkaa kategoriaa. 3. Käyttäjä voi poistaa itselleen ylimääräisen kategorian.
- _Poikkeuksellinen toiminta:_ | 1a. Kategoria ei ole oma (ei tapahdu mitään). 3a. Kategoria on jollakin tuotteella käytössä. 3b. Syöte ei ole validi.
-
-Päivitys:
+_Käyttötapauksen kulku:_ | 1. Käyttäjä klikkaa kategorian nimeä, jolla päästään päivittämään kategoria. 2. Käyttäjä muokkaa kategorian nimeä. 
+ _Poikkeuksellinen toiminta:_ | 1a. Kategoria ei ole oma (ei tapahdu mitään). 2b. Syöte ei ole validi.
 
 4. UPDATE CATEGORY SET category = ? WHERE Category.id = ?;
 
 Parametrit: päivitettävän kategorian id
 
-Poisto:
+
+_Tapahtuma:_ | Kategorioiden poisto
+--- | ---
+_Käyttäjä:_ | Sovelluksen käyttäjä
+_Tavoite:_ | Kategorian poisto 
+_Laukaisija:_ | Halutaan poistaa kategoria.
+_Esiehto:_ | Käyttäjä on kirjautunut ja on kategorioiden listauksessa
+_Jälkiehto:_ | Kategoria on poistettu.
+_Käyttötapauksen kulku:_ | 1. Käyttäjä klikkaa itse luomansa kategorian vieressä olevaa _Delete_ nappia.
+ _Poikkeuksellinen toiminta:_ | 1a. Kategoria on jollakin tuotteella käytössä.
 
 Tarkistetaan ensin onko kategoria käytössä
 
@@ -55,7 +62,7 @@ SELECT * FROM Product JOIN Category ON Category.id = Product.category_id WHERE c
 
 Jos yhtään tuotetta ei löytynyt, poistetaan kategoria. (Jos kategoria on käytössä, kerrotaan käyttäjälle poiston olevan mahdotonta.)
 
-5. DELETE FROM Category WHERE Category.id = ?;
+DELETE FROM Category WHERE Category.id = ?;
 
 Parametrit: poistettavan kategorian id
 
@@ -124,24 +131,26 @@ WHERE account_id = ? ORDER_BY Shoppinglist.date DESC;
 
 Parametrit: Käyttäjän id
 
-_Tapahtuma:_ | Ostoslistan muokkaus ja sisällön katselu
+_Tapahtuma:_ | Ostoslistan sisällön muokkaus ja katselu
 --- | ---
 _Käyttäjä:_ | Sovelluksen käyttäjä
-_Tavoite:_ | Ostoslistan muokkaus
+_Tavoite:_ | Ostoslistan sisällön muokkaus
 _Laukaisija:_ | Ostoslistan sisältö ei vastaa käyttäjän toiveita
 _Esiehto:_ | Ostoslista on luotu, käyttäjä on kirjautuneena ja on ostoslistojen listauksessa
 _Jälkiehto:_ | Ostoslistan sisältö on muokattu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä avaa sen ostoslistan listauksen, jota hän haluaa muokata. 2. Käyttäjä voi lisätä listaan uuden tuotteen. 3. Käyttäjä voi muokata tuotteen määrää listalla antamalla uuden halutun tuotemäärän väliltä 1-100. 4. Käyttäjä voi poistaa tuotteen listalta. 
+_Käyttötapauksen kulku:_ | 1. Käyttäjä klikkaa sen ostoslistan _Show content_ nappia, jota hän haluaa muokata. 2. Käyttäjä voi lisätä listaan uuden tuotteen. 3. Käyttäjä voi muokata tuotteen määrää listalla antamalla uuden halutun tuotemäärän väliltä 1-100. 4. Käyttäjä voi poistaa tuotteen listalta. 
 _Poikkeuksellinen toiminta:_ | 1a. Käyttäjän haluama tuote puuttuu tuotelistalta. 3a Syöte ei ole validi.
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
-1. SELECT Shoppinglist.id, Product.id, Product.name, Category.category, Product.price, Shoppinglistproduct.product_total  
-   (Shoppinglistproduct.product_total * Product.Price) FROM Shoppinglist  
-   JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id  
+1. SELECT Product.id, Product.name, Category.category, Product.price, Shoppinglistproduct.product_total,  
+   (Shoppinglistproduct.product_total * Product.Price),  
+   (SELECT SUM(Shoppinglistproduct.product_total * Product.Price) FROM Shoppinglistproduct JOIN Product ON Shoppinglistproduct.product_id = Product.id WHERE Shoppinglistproduct.shoppinglist_id = ?) FROM Shoppinglistproduct   
    JOIN Product ON Shoppinglistproduct.product_id = Product.id  
-   JOIN Category ON Product.category_id = Category.id  
-   WHERE Shoppinglist.id = ? ORDER BY Category.category;
+   JOIN Category ON Product.category_id = Category.id 
+   WHERE Shoppinglistproduct.shoppinglist_id = ?  
+   GROUP BY Product.id, Product.name, Category.category, Product.price, Shoppinglistproduct.product_total  
+   ORDER BY Category.category;
  
 Parametrit: ostoslistan id
    
@@ -166,7 +175,7 @@ _Tavoite:_ | Ostoslistan poisto
 _Laukaisija:_ | Ostoslista halutaan poistaa
 _Esiehto:_ | Ostoslista on luotu, käyttäjä on kirjautuneena ja on ostoslistojen listauksessa
 _Jälkiehto:_ | Ostoslista on poistettu
-_Käyttötapauksen kulku:_ | 1. Käyttäjä poistaa haluamansa listan.
+_Käyttötapauksen kulku:_ | 1. Käyttäjä poistaa haluamansa listan painamalla _Delete_ nappia poistettavan ostoslistan vierestä.
 _Poikkeuksellinen toiminta:_ | 
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
@@ -248,7 +257,7 @@ _Tavoite:_ | Tuotteen poisto tuotelistalta
 _Laukaisija:_ | Tuotetta ei haluta pitää tuotelistalla
 _Esiehto:_ | Käyttäjä on kirjautuneena, tuote on olemassa ja käyttäjä on tuotelistauksessa
 _Jälkiehto:_ | Tuote on poistettu.
-_Käyttötapauksen kulku:_ | 1. Painetaan delete nappia.
+_Käyttötapauksen kulku:_ | 1. Painetaan _delete_ nappia sen tuotteen kohdalta, joka halutaan poistaa.
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
@@ -271,11 +280,16 @@ Parametrit: Tuotteen id.
  _Laukaisija:_ | Halutaan tietää kategoriakohtaiset menot
  _Esiehto:_ | Ainakin yksi ostoslista on luotu ja käyttäjä on ostoslistojen listaussivulla.
  _Jälkiehto:_ | Käyttäjä saa haluamansa haun tulokset
- _Käyttötapauksen kulku:_ | 1. Painetaan Show nappia, jolloin päästään näkymään, jossa on maksimissaan 15 kategoriaa listattuna. Jokaiselle kategorialle listauksessa näytetään käytetty rahasumma ja sen prosenttiosuus kokonaishinnasta. Kategorioista näytetään vain ne, joille on kertynyt ostoksia.
+ _Käyttötapauksen kulku:_ | 1. Painetaan _Show_ nappia, jolloin päästään näkymään, jossa on maksimissaan 15 kategoriaa listattuna. Jokaiselle kategorialle listauksessa näytetään käytetty rahasumma ja sen prosenttiosuus kokonaishinnasta. Kategorioista näytetään vain ne, joille on kertynyt ostoksia.
 
 Käyttötapaukseen liittyvät SQL-kyselyt:
 
 SELECT DISTINCT Category.category, SUM(shoppinglistproduct.product_total * product.price) AS sum,  
-SUM(shoppinglistproduct.product_total * product.price) * 100 / (SELECT SUM(shoppinglistproduct.product_total * product.price)   FROM Shoppinglist JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id JOIN Product ON   Shoppinglistproduct.product_id = product.id JOIN account ON account.id = Shoppinglist.account_id WHERE Product.account_id = ?) AS   percent FROM Shoppinglistproduct JOIN Product ON Shoppinglistproduct.product_id = product.id JOIN Shoppinglist ON   Shoppinglistproduct.shoppinglist_id = Shoppinglist.id JOIN account ON account.id = Product.account_id JOIN Category ON     Category.id = Product.category_id WHERE Product.account_id = ? GROUP BY Category.category ORDER BY sum DESC LIMIT 15  
+SUM(shoppinglistproduct.product_total * product.price) * 100 / (SELECT SUM(shoppinglistproduct.product_total * product.price)   FROM Shoppinglist JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id JOIN Product ON   Shoppinglistproduct.product_id = product.id JOIN account ON account.id = Shoppinglist.account_id WHERE Product.account_id = ?) AS   percent FROM Shoppinglistproduct 
+JOIN Product ON Shoppinglistproduct.product_id = product.id  
+JOIN Shoppinglist ON   Shoppinglistproduct.shoppinglist_id = Shoppinglist.id  
+JOIN account ON account.id = Product.account_id  
+JOIN Category ON Category.id = Product.category_id WHERE Product.account_id = ?  
+GROUP BY Category.category ORDER BY sum DESC LIMIT 15  
 
 Parametrit: Käyttäjän id

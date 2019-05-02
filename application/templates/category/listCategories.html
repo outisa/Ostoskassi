@@ -39,7 +39,7 @@
             <tr>
             {% elif category.account_id != 0 %}
               <td>
-                <a href="{{ url_for('category_update_form', category_id=category.id) }}">{{ category.category }}</a>
+                <a href="{{ url_for('category_update_form', category_id=category.id, category_category=category.category) }}">{{ category.category }}</a>
               </td>
               <td>
                 <form method="POST" action="{{ url_for('category_delete', category_id=category.id) }}">

@@ -1,17 +1,17 @@
 from flask import redirect, render_template, request, url_for, flash
-from flask_login import login_required, current_user
+from flask_login import current_user
 from flask_paginate import Pagination, get_page_args
 
 from sqlalchemy import and_
 
-from application import app, db
+from application import app, db, login_required, login_manager
 from application.shoppinglist.models import Shoppinglist
 from application.shoppinglist.forms import ListForm, NameForm
 from application.product.models import Product
 from application.shoppinglistProduct.models import Shoppinglistproduct
 
 @app.route("/shoppinglist/list", methods=["GET","POST"])
-@login_required
+@login_required(role="ANY")
 def shoppinglist_index():
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
 
@@ -24,8 +24,15 @@ def shoppinglist_index():
                            per_page=per_page, pagination=pagination, form = NameForm())
 
 @app.route("/shoppinglist/show/<shoppinglist_id>", methods=["POST", "GET"])
-@login_required
+@login_required(role="ANY")
 def shoppinglist_show(shoppinglist_id):
+    shoppinglist = Shoppinglist.query.get(shoppinglist_id)
+    # Avoids error, if shoppinglist_id is NoneType
+    if not shoppinglist:
+        return login_manager.unauthorized()
+    if shoppinglist.account_id != current_user.id:
+        return login_manager.unauthorized()
+
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
 
     list = Shoppinglist.shoppinglist_show_contents(shoppinglist_id)
@@ -38,8 +45,15 @@ def shoppinglist_show(shoppinglist_id):
                            slist_id=shoppinglist_id, total=Shoppinglist.shoppinglist_total_price(shoppinglist_id))
 
 @app.route("/shoppinglist/update/<shoppinglist_id>", methods=["POST", "GET"])
-@login_required
+@login_required(role="ANY")
 def shoppinglist_update(shoppinglist_id):
+    shoppinglist = Shoppinglist.query.get(shoppinglist_id)
+    # Avoids error, if product is NoneType
+    if not shoppinglist:
+        return login_manager.unauthorized()
+    if shoppinglist.account_id != current_user.id:
+        return login_manager.unauthorized()
+
     form = ListForm(request.form)
     if not form.validate():
         for error in form.amount.errors:
@@ -62,8 +76,15 @@ def shoppinglist_update(shoppinglist_id):
 
 # Removes chosen product from the shoppinglist. (Deletes a row with this product_id and shoppinglist_id combination from shoppinglistproduct)
 @app.route("/shoppinglist/remove/<product_id>/<shoppinglist_id>", methods=["POST"])
-@login_required
+@login_required(role="ANY")
 def shoppinglist_remove(product_id, shoppinglist_id):
+    shoppinglist = Shoppinglist.query.get(shoppinglist_id)
+    # Avoids error, if product is NoneType
+    if not shoppinglist:
+        return login_manager.unauthorized()
+    if shoppinglist.account_id != current_user.id:
+        return login_manager.unauthorized()
+
     product_on_list = db.session.query(Shoppinglistproduct).filter(and_(Shoppinglistproduct.product_id==product_id, Shoppinglistproduct.shoppinglist_id==shoppinglist_id)).first()
     db.session().delete(product_on_list)
     db.session().commit()
@@ -71,8 +92,15 @@ def shoppinglist_remove(product_id, shoppinglist_id):
 
 
 @app.route("/shoppinglist/delete/<shoppinglist_id>", methods=["POST"])
-@login_required
+@login_required(role="ANY")
 def shoppinglist_delete(shoppinglist_id):
+    shoppinglist = Shoppinglist.query.get(shoppinglist_id)
+    # Avoids error, if product is NoneType
+    if not shoppinglist:
+        return login_manager.unauthorized()
+    if shoppinglist.account_id != current_user.id:
+        return login_manager.unauthorized()
+
     shoppinglist = Shoppinglist.query.get(shoppinglist_id)
     isOnList = db.session.query(Shoppinglistproduct).filter_by(shoppinglist_id=shoppinglist.id).all()
     for isOn in isOnList:
@@ -83,7 +111,7 @@ def shoppinglist_delete(shoppinglist_id):
     return redirect(url_for("shoppinglist_index"))
 
 @app.route("/shoppinglist/create", methods=["POST","GET"])
-@login_required
+@login_required(role="ANY")
 def shoppinglist_create():
     form = NameForm(request.form)
     if not form.validate():
@@ -98,6 +126,6 @@ def shoppinglist_create():
     return redirect(url_for("shoppinglist_index"))
 
 @app.route("/shoppinglist/", methods=["POST","GET"])
-@login_required
+@login_required(role="ANY")
 def shoppinglist_costs_per_category():
     return render_template("shoppinglist/costsPerCategory.html", costs = Shoppinglistproduct.show_total_costs_per_category(current_user.id))

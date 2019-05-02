@@ -4,11 +4,11 @@
 <p style="color:red">{{ error }}</p>
 <p style="color:green">Update category</p>
 <p style="color:green">Use characters A-Z, a-z, 0-9 _ and spaces only between words.</p>
-<form method="POST" action="{{ url_for('category_update', category_id=category_id) }}">
+<form method="POST" action="{{ url_for('category_update', category_id=category_id, category_category=category_category) }}">
   <table>
     <tr>
       <td> {{ form.category.label }}</td>
-      <td style="padding:15">{{ form.category }}</td>
+      <td>{{ form.category(placeholder=category_category) }} </td>
       <td>
         <ul>
           {% for error in form.category.errors %}

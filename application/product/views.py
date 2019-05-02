@@ -1,22 +1,29 @@
 from flask import redirect, render_template, request, url_for, flash
-from flask_login import login_required, current_user
+from flask_login import current_user
 from flask_paginate import Pagination, get_page_args
 from sqlalchemy import and_
 
-from application import app, db
+from application import app, db, login_required, login_manager
 from application.category.models import Category
 from application.product.models import Product
 from application.product.forms import ProductForm, UpdateForm
 from application.shoppinglistProduct.models import Shoppinglistproduct
 
 
-@app.route("/product/updateProduct/<product_id>")
-@login_required
-def update_product_form(product_id):
-    return render_template("product/updateProduct.html", form = UpdateForm(), product_id=product_id)
+@app.route("/product/updateProduct/<product_id>/<product_name>/<product_price>")
+@login_required(role="ANY")
+def update_product_form(product_id, product_name, product_price):
+    product = Product.query.get(product_id)
+    # Avoids error, if product is NoneType
+    if not product:
+        return login_manager.unauthorized()
+    if product.account_id != current_user.id:
+        return login_manager.unauthorized()
+
+    return render_template("product/updateProduct.html", form = UpdateForm(), product_id=product_id, product_name=product_name, product_price=product_price)
 
 @app.route("/product/list", methods=["GET","POST"])
-@login_required
+@login_required(role="ANY")
 def product_index():
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
 
@@ -31,9 +38,15 @@ def product_index():
 
 
 @app.route("/product/delete/<product_id>/", methods=["POST"])
-@login_required
+@login_required(role="ANY")
 def product_delete(product_id):
-    product =  Product.query.get(product_id)
+    product = Product.query.get(product_id)
+    # Avoids error, if product is NoneType
+    if not product:
+        return login_manager.unauthorized()
+    if product.account_id != current_user.id:
+        return login_manager.unauthorized()
+
     # Checks, if product is on shoppinglist table. If so, first deletes this row from shoppinglist table.
     product_on_list = db.session.query(Shoppinglistproduct).filter_by(product_id=product.id).all()
     for on_list in product_on_list:
@@ -42,16 +55,23 @@ def product_delete(product_id):
     db.session().commit()
     return redirect(url_for("product_index"))
 
-@app.route("/product/update/<product_id>/", methods=["POST", "GET"])
-@login_required
-def product_update(product_id):
+@app.route("/product/update/<product_id>/<product_name>/<product_price>", methods=["POST", "GET"])
+@login_required(role="ANY")
+def product_update(product_id, product_name, product_price):
+    product = Product.query.get(product_id)
+    # Avoids error, if product is NoneType
+    if not product:
+        return login_manager.unauthorized()
+    if product.account_id != current_user.id:
+        return login_manager.unauthorized()
+
     form = UpdateForm(request.form)
     if not form.validate():
-        return render_template("product/updateProduct.html", form = form, product_id=product_id)
+        return render_template("product/updateProduct.html", form = form, product_id=product_id, product_name=product_name, product_price=product_price)
     name = form.name.data
     product = Product.query.filter(and_(Product.name==name, Product.account_id==current_user.id, Product.id!=product_id)).first()
     if product:
-        return render_template("product/updateProduct.html", form=form, product_id=product_id,
+        return render_template("product/updateProduct.html", form=form, product_id=product_id, product_name=product_name, product_price=product_price,
                              error = "Product exists already")
     update_product = Product.query.get(product_id)
     update_product.name = form.name.data
@@ -60,7 +80,7 @@ def product_update(product_id):
     return redirect(url_for("product_index"))
 
 @app.route("/product/", methods=["POST", "GET"])
-@login_required
+@login_required(role="ANY")
 def product_create():
     form = ProductForm(request.form)
     if not form.validate():
@@ -81,3 +101,4 @@ def product_create():
     db.session().commit()
 
     return redirect(url_for("product_index"))
+

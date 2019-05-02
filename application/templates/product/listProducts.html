@@ -44,7 +44,7 @@
           <tr>
             <td> {{ loop.index + (page - 1) * per_page }}</td>
             <td>
-              <a href="{{ url_for('update_product_form', product_id=product.id) }}">{{ product.name }}</a>
+              <a href="{{ url_for('update_product_form', product_id=product.id, product_name=product.name, product_price=product.price) }}">{{ product.name }}</a>
             </td>
             <td>{{ product.price }}</td>
             <td>{{ product.category}}</td> 

@@ -5,10 +5,10 @@
 <p style="color:green">Change name and price here.</p>
 <div class="table-responsive">
   <table class="table table-hover">
-    <form method="POST" action="{{ url_for('product_update', product_id=product_id) }}">
+    <form method="POST" action="{{ url_for('product_update', product_id=product_id, product_name=product_name, product_price=product_price) }}">
       <tr>
         <td>{{ form.name.label }}</td>
-        <td>{{ form.name(placeholder="Give new name here") }}</td>
+        <td>{{ form.name(placeholder=product_name) }}</td>
         <td>
           <ul>
           {% for error in form.name.errors %}
@@ -19,7 +19,7 @@
       </tr>
       <tr>
         <td>{{ form.price.label }}</td>
-        <td>{{ form.price }}</td>
+        <td>{{ form.price(placeholder=product_price) }}</td>
         <td>
           <ul>
           {% for error in form.price.errors %}

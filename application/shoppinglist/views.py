@@ -42,7 +42,7 @@ def shoppinglist_show(shoppinglist_id):
                             css_framework='bootstrap4')
     return render_template("shoppinglist/showShoppinglist.html", contents=pagination_list, page=page,
                            per_page=per_page, pagination=pagination, form = ListForm(),
-                           slist_id=shoppinglist_id, total=Shoppinglist.shoppinglist_total_price(shoppinglist_id))
+                           slist_id=shoppinglist_id)
 
 @app.route("/shoppinglist/update/<shoppinglist_id>", methods=["POST", "GET"])
 @login_required(role="ANY")

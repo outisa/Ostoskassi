@@ -32,7 +32,7 @@ Käytä merkkejä a-z, A-Z, 0-9 tai _, Herokussa hyväksytään myös merkit ä,
 1. Siirry sivun ylälaidassa olevan **_Manage Categories_** linkin kautta luomaan kategoria
 2. Anna kategorialle haluamasi nimi, jossa on merkkejä 3-100. Välilyönnit sallitaan sanojen välillä.
 Käytä merkkejä a-z, A-Z, 0-9 tai _. Herokussa hyväksytään myös merkit ä, Ä, ö ja Ö.  
-3. Paina **_Create_** nappia, jolloin lisäämäsi kategoria ilmestyy kategorialistaan. Jos kategoria on jo listallasi, saat virheilmoituksen, eikä duplikaattia lisätä listaan.
+3. Paina **_Create_** nappia, jolloin lisäämäsi kategoria ilmestyy kategorialistaan. Jos kategoria on kirjoittamassasi kirjoitusasussa jo listallasi, saat virheilmoituksen, eikä duplikaattia lisätä listaan.
 
 ## Kategorian listaus, päivitys ja poisto
 
@@ -48,7 +48,7 @@ Jos kategoria on käytössä, saat tästä virheviestin painettuasi **_Delete_**
 Käytä merkkejä a-z, A-Z, 0-9 ja _. Herokussa hyväksytään myös merkit ä, Ä, ö ja Ö 
 3. Anna tuotteelle hinta väliltä 0.01 - 10000.00
 4. Valitse mieleisesi kategoria valikosta. 
-5. Klikkaa **_Add_** nappia, jolloin tuote lisätään listaan, jos sen nimistä tuotetta ei ole olemassa omalla tuotelistallasi.
+5. Klikkaa **_Add_** nappia, jolloin tuote lisätään listaan, jos sen nimistä tuotetta (täsmälleen sama kirjoitusasu) ei ole olemassa omalla tuotelistallasi.
 
 ## Tuotteiden listaus, päivitys ja poisto
 

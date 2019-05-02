@@ -41,7 +41,7 @@ class Shoppinglist(db.Model):
                     " JOIN Shoppinglistproduct ON Shoppinglistproduct.shoppinglist_id = Shoppinglist.id"
                     " JOIN Product ON Shoppinglistproduct.product_id = Product.id"
                     " JOIN Category ON Product.category_id = Category.id"
-                    " WHERE (Shoppinglist.id = :list)"
+                    " WHERE (Shoppinglist.id = :list) GROUP BY Shoppinglist.id, Product.id"
                     " ORDER BY Category.category").params(list=list)
 
         res = db.engine.execute(stmt)

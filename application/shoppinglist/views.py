@@ -27,7 +27,7 @@ def shoppinglist_index():
 @login_required(role="ANY")
 def shoppinglist_show(shoppinglist_id):
     shoppinglist = Shoppinglist.query.get(shoppinglist_id)
-    # Avoids error, if shoppinglist_id is NoneType
+    # Avoids error, if shoppinglist is NoneType
     if not shoppinglist:
         return login_manager.unauthorized()
     if shoppinglist.account_id != current_user.id:
@@ -48,7 +48,7 @@ def shoppinglist_show(shoppinglist_id):
 @login_required(role="ANY")
 def shoppinglist_update(shoppinglist_id):
     shoppinglist = Shoppinglist.query.get(shoppinglist_id)
-    # Avoids error, if product is NoneType
+    # Avoids error, if shoppinglist is NoneType
     if not shoppinglist:
         return login_manager.unauthorized()
     if shoppinglist.account_id != current_user.id:
@@ -79,7 +79,7 @@ def shoppinglist_update(shoppinglist_id):
 @login_required(role="ANY")
 def shoppinglist_remove(product_id, shoppinglist_id):
     shoppinglist = Shoppinglist.query.get(shoppinglist_id)
-    # Avoids error, if product is NoneType
+    # Avoids error, if shoppinglist is NoneType
     if not shoppinglist:
         return login_manager.unauthorized()
     if shoppinglist.account_id != current_user.id:
@@ -95,7 +95,7 @@ def shoppinglist_remove(product_id, shoppinglist_id):
 @login_required(role="ANY")
 def shoppinglist_delete(shoppinglist_id):
     shoppinglist = Shoppinglist.query.get(shoppinglist_id)
-    # Avoids error, if product is NoneType
+    # Avoids error, if shoppinglist is NoneType
     if not shoppinglist:
         return login_manager.unauthorized()
     if shoppinglist.account_id != current_user.id:

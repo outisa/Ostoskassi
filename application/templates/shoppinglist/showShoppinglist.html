@@ -53,7 +53,7 @@
               <td>{{ content.in_total }}</td>
               <td>{{ content.total }}</td>
               <td>
-                <form method="POST" action="{{ url_for('shoppinglist_remove', product_id=content.product_id, shoppinglist_id=content.list_id) }}">
+                <form method="POST" action="{{ url_for('shoppinglist_remove', product_id=content.product_id, shoppinglist_id=slist_id) }}">
                   <input type="Submit" value="Delete"/>
                 </form>
               </td>

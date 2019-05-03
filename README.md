@@ -9,6 +9,9 @@ Käyttäjälle annetaan mahdollisuus tehdä haku, jonka perusteella käyttäjä 
 
 Käyttäjälle tarjotaan myös mahdollisuus kirjautua ulos sovelluksesta. Lisäksi käyttötilin poisto onnistuu, jolloin poistetaan myös käyttäjän luoma data.
 
+Seuraava käyttäjätunnus on lisätty tähän muun muassa sivutuksen tarkistuksen nopeuttamiseksi. tunnus: hello salasana: world1
+Poistan tämän arvionnin valmistuttua.
+
 [Asennusohje](https://github.com/outisa/Ostoskassi/blob/master/documentation/Asennusohje.md)
 
 [Käyttöohje](https://github.com/outisa/Ostoskassi/blob/master/documentation/k%C3%A4ytt%C3%B6ohje.md)

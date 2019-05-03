@@ -110,7 +110,7 @@ def shoppinglist_delete(shoppinglist_id):
 
     return redirect(url_for("shoppinglist_index"))
 
-@app.route("/shoppinglist/create", methods=["POST","GET"])
+@app.route("/shoppinglist/create", methods=["POST"])
 @login_required(role="ANY")
 def shoppinglist_create():
     form = NameForm(request.form)

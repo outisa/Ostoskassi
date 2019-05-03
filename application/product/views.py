@@ -79,7 +79,7 @@ def product_update(product_id, product_name, product_price):
     db.session().commit()
     return redirect(url_for("product_index"))
 
-@app.route("/product/", methods=["POST","GET"])
+@app.route("/product/", methods=["POST"])
 @login_required(role="ANY")
 def product_create():
     form = ProductForm(request.form)

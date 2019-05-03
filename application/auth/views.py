@@ -1,12 +1,12 @@
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_user, logout_user, login_required, current_user
+from flask_login import login_user, logout_user, current_user
 from passlib.hash import pbkdf2_sha256
 
 from application.category.models import Category
 from application.product.models import Product
 from application.shoppinglist.models import Shoppinglist
 from application.shoppinglistProduct.models import Shoppinglistproduct
-from application import app, db
+from application import app, db, login_manager, login_required
 from application.auth.models import User
 from application.auth.forms import LoginForm, CreateForm
 
@@ -65,7 +65,7 @@ def auth_create():
 
 # Checks, if user wants to delete his/her account
 @app.route("/auth/areYouSure/<user_id>", methods = ["GET","POST"])
-@login_required
+@login_required(role="ANY")
 def auth_are_you_sure(user_id):
     user = User.query.get(user_id)
     # Avoids error, if user is NoneType
@@ -77,7 +77,7 @@ def auth_are_you_sure(user_id):
     return render_template("auth/areYouSure.html", user_id=user_id )
 
 @app.route("/auth/delete/<user_id>", methods = ["POST", "GET"])
-@login_required
+@login_required(role="ANY")
 def auth_delete(user_id):
     user = User.query.get(user_id)
     # Avoids error, if user is NoneType

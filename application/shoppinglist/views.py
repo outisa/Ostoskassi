@@ -115,7 +115,7 @@ def shoppinglist_delete(shoppinglist_id):
 def shoppinglist_create():
     form = NameForm(request.form)
     if not form.validate():
-        flash('Length must be 3-50 characters. Charackters: A-z, A-z, 0-9, _ and empty spaces between words. Example name "New list_23".')
+        flash('Length must be 3-50 characters. Use charackters: A-z, A-z, 0-9, _ and empty spaces between words. Example name "New list_23".')
         return redirect(url_for("shoppinglist_index"))
 
     shoppinglist = Shoppinglist(form.name.data)

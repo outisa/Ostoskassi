@@ -89,7 +89,7 @@ def category_create():
     form = CategoryForm(request.form)
     if not form.validate():
         for error in form.category.errors:
-            flash(error + 'Use characters: A-Z, a-z, 0-9, _ and spaces only between words. Category example: "Summer clothes2"')
+            flash(error + ' Use characters: A-Z, a-z, 0-9, _ and spaces only between words. Category example: "Summer clothes2"')
             return redirect(url_for("category_index"))
 
     category = form.category.data
@@ -104,4 +104,5 @@ def category_create():
     db.session().commit()
 
     return redirect(url_for("category_index"))
+
 

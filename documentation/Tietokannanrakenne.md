@@ -47,9 +47,9 @@ shoppinglist_id | Ostoslistan id, johon tuote lisätään. Lisätään automaatt
 product_id | Tuotteen id, joka lisätään ostoskassiin. Lisäys tapahtuu automaattisesti. Product_id on samanaikaisesti sekä viite- että pääavain. | kyllä | 2
 product_total | Käyttäjän antama kokonaisluku, joka ilmentää lisättävän tuotteen määrää ostoslistassa. Määrä voi olla yhden ja sadan väliltä. Jos käyttäjä syöttää luvun 0, niin silloin tuotetta ei lisätä listalle tai olemassaoleva tuote poistetaan listalta. | kyllä | 4
 
-Tauluja ei olla denormalisoitu. Mietin ensin, että olisin lisännyt ostoslistaan sen kokonaishinnan nopeuttamaan hakuja. Luovuin Kuitenkin ajatuksesta, sillä ostoslistan kokonaishinta päivittyy jokaisen tuotteen tai tuotteen poiston yhteydessä. Täällöin pitäisi, joka kerta erikseen tehdä laskenta ja päivittää hinta tietokantaan. Kuitenkin, jos tietokantataulujen koko kasvaa ja tehokkuus kärsii, voitaisiin tätä vaihtoehtoa kokeilla.
+Tauluja ei olla denormalisoitu. Mietin ensin, että olisin lisännyt ostoslistaan sen kokonaishinnan nopeuttamaan hakuja. Luovuin Kuitenkin ajatuksesta, sillä ostoslistan kokonaishinta päivittyy jokaisen tuotteen tai tuotteen poiston yhteydessä. Täällöin pitäisi joka kerta erikseen tehdä laskenta ja päivittää hinta tietokantaan. Nyt hinta lasketaan samalla kun haetaan tiedot muille ostoslistan riveille. Muuten denormalisoinille sovelluksen tässä vaiheessa ei nähty tarvetta.
 
-Indeksejä ei olla luotu erikseen, mutta ainakin PostreSQL luo pääavaimille indeksit automaattisesti. Tällä hetkellä en näe tarvetta lisätä indeksöintiä muille sarakkeille.  
+Indeksejä ei olla luotu erikseen, mutta ainakin PostreSQL luo pääavaimille indeksit automaattisesti. Tällä hetkellä en näe tarvetta lisätä indeksöintiä muille sarakkeille.
 
 #### CREATE TABLE -lauseet:
 

@@ -1,21 +1,22 @@
 {% extends "layout.html" %}
 {% block body %}
-
-<h5 style="padding:10px">Costs per category</h5>
+  {% if current_user.is_authenticated %}
+  <h5 style="padding:10px">Costs per category</h5>
   <div class="table-responsive">
     <table class="table table-hover">
-
-    <tr>
-      <th>Category</th>
-      <th>Costs in euro</th>
-      <th>% from total</th>
-    </tr>
-    {% for item in costs %}
-    <tr>
-      <td>{{ item.category }}</td>
-      <td>{{ item.sum }}</td>
-      <td>{{ item.percent }} </td>
-    </tr>
-    {% endfor %}
-
+      <tr>
+        <th>Category</th>
+        <th>Costs in euro</th>
+        <th>% from total</th>
+      </tr>
+      {% for item in costs %}
+      <tr>
+        <td>{{ item.category }}</td>
+        <td>{{ item.sum }}</td>
+        <td>{{ item.percent }} </td>
+      </tr>
+      {% endfor %}
+    </table>
+   </div>
+  {% endif %}
 {% endblock %}

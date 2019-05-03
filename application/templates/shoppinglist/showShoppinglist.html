@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
+  {% if current_user.is_authenticated %}
   <body>
     <div class="table-responsive">
       <table class="table table-hover">
@@ -8,62 +9,62 @@
           <th>Add products on the list</th>
         </tr> 
         <form method="POST", action="{{ url_for('shoppinglist_update', shoppinglist_id=slist_id)  }}">
-        <tr>
-          <td>{{ form.product_id.label }}</td> 
-          <td>{{ form.product_id}}</td>     
-        </tr>
-        <tr>
-          <td>{{ form.amount.label }}</td>
-          <td>{{ form.amount }}</td>
-          <td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <input type="submit" value="Add"/>
-          </td>
-        </tr>
-      </form>
-      <li style="color:green">No product to choose? Please create some products first.
-        To change amount, add product again with correct amount.
-      </li>
-    </div>
-    <div class="container">
-      {{ pagination.links }}
-      <div class="table-responsive">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Product</th>
-              <th>Category:</th>
-              <th>Amount:</th>
-              <th>Price per kg/piece:</th>
-              <th>Total per product:</th>
-              <th>Total per Shoppinglist</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for content in contents %}
-            <tr>
-              <td>{{ loop.index + (page - 1) * per_page }}</td>
-              <td>{{ content.name }}</td>
-              <td>{{ content.category }}</td>
-              <td>{{ content.product_total }}</td>
-              <td>{{ content.price }}</td>
-              <td>{{ content.in_total }}</td>
-              <td>{{ content.total }}</td>
-              <td>
-                <form method="POST" action="{{ url_for('shoppinglist_remove', product_id=content.product_id, shoppinglist_id=slist_id) }}">
-                  <input type="Submit" value="Delete"/>
-                </form>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+          <tr>
+            <td>{{ form.product_id.label }}</td> 
+            <td>{{ form.product_id}}</td>     
+          </tr>
+          <tr>
+            <td>{{ form.amount.label }}</td>
+            <td>{{ form.amount }}</td>
+            <td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input type="submit" value="Add"/>
+            </td>
+          </tr>
+        </form>
+        <li style="color:green">No product to choose? Please create some products first.
+          To change amount, add product again with correct amount. </li>
       </div>
-      {{ pagination.links }}
-    </div>
-  </table>
-</body>
+      <div class="container">
+        {{ pagination.links }}
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Product</th>
+                <th>Category:</th>
+                <th>Amount:</th>
+                <th>Price per kg/piece:</th>
+                <th>Total per product:</th>
+                <th>Total per Shoppinglist</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for content in contents %}
+              <tr>
+                <td>{{ loop.index + (page - 1) * per_page }}</td>
+                <td>{{ content.name }}</td>
+                <td>{{ content.category }}</td>
+                <td>{{ content.product_total }}</td>
+                <td>{{ content.price }}</td>
+                <td>{{ content.in_total }}</td>
+                <td>{{ content.total }}</td>
+                <td>
+                  <form method="POST" action="{{ url_for('shoppinglist_remove', product_id=content.product_id, shoppinglist_id=slist_id) }}">
+                    <input type="Submit" value="Delete"/>
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {{ pagination.links }}
+      </div>
+    </table>
+  </body>
+ {% endif %}
 {% endblock %}

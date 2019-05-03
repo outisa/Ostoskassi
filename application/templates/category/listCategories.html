@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
+  {% if current_user.is_authenticated %}
   <div class="table-responsive">
     <table class="table table-hover">
       <p>Create new categories:</p>
@@ -55,4 +55,5 @@
       {{ pagination.links }}
     </div>
   </body>
+  {% endif %}
 {% endblock %}

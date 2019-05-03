@@ -1,6 +1,7 @@
-
 {% extends "layout.html" %}
+
 {% block body %}
+{% if current_user.is_authenticated %}
 <p style="color:red">{{ error }}</p>
 <p style="color:green">Change name and price here.</p>
 <div class="table-responsive">
@@ -36,4 +37,5 @@
     </form>
   </table>
 </div>
+{% endif %}
 {% endblock %}

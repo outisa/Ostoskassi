@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from passlib.hash import pbkdf2_sha256
 
 from application.category.models import Category
@@ -67,12 +67,25 @@ def auth_create():
 @app.route("/auth/areYouSure/<user_id>", methods = ["GET","POST"])
 @login_required
 def auth_are_you_sure(user_id):
+    user = User.query.get(user_id)
+    # Avoids error, if user is NoneType
+    if not user:
+        return login_manager.unauthorized()
+    if user.id != current_user.id:
+        return login_manager.unauthorized()
+
     return render_template("auth/areYouSure.html", user_id=user_id )
 
 @app.route("/auth/delete/<user_id>", methods = ["POST", "GET"])
 @login_required
 def auth_delete(user_id):
-    user =  User.query.get(user_id)
+    user = User.query.get(user_id)
+    # Avoids error, if user is NoneType
+    if not user:
+        return login_manager.unauthorized()
+    if user.id != current_user.id:
+        return login_manager.unauthorized()
+
     # Following loop deletes user related data from product and shoppinglist tables.
     for product in db.session().query(Product).filter_by(account_id=user_id):
         onList =  db.session.query(Shoppinglistproduct).filter_by(product_id=product.id).all()

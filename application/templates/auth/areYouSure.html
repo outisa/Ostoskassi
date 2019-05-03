@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
+{% if current_user.is_authenticated %}
 <p>Are you sure you want delete your account?</p>
 <form method="POST" action="{{ url_for('auth_delete', user_id=current_user.id) }}">
   <table>
@@ -14,5 +15,6 @@
     </td>
   </form>
 </table>
+{% endif %}
 {% endblock %}
 

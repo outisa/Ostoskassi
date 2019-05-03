@@ -2,7 +2,6 @@
 
 {% block body %}
   {% if current_user.is_authenticated %}
-  <body>
     <div class="table-responsive">
       <table class="table table-hover">
         <tr>
@@ -26,7 +25,9 @@
         </form>
         <li style="color:green">No product to choose? Please create some products first.
           To change amount, add product again with correct amount. </li>
-      </div>
+      </table>
+    </div>
+    <body>
       <div class="container">
         {{ pagination.links }}
         <div class="table-responsive">

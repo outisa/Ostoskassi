@@ -32,12 +32,12 @@ Käytä merkkejä a-z, A-Z, 0-9 tai _, Herokussa hyväksytään myös merkit ä,
 1. Siirry sivun ylälaidassa olevan **_Manage Categories_** linkin kautta luomaan kategoria
 2. Anna kategorialle haluamasi nimi, jossa on merkkejä 3-100. Välilyönnit sallitaan sanojen välillä.
 Käytä merkkejä a-z, A-Z, 0-9 tai _. Herokussa hyväksytään myös merkit ä, Ä, ö ja Ö.  
-3. Paina **_Create_** nappia, jolloin lisäämäsi kategoria ilmestyy kategorialistaan. Jos kategoria on kirjoittamassasi kirjoitusasussa jo listallasi, saat virheilmoituksen, eikä duplikaattia lisätä listaan.
+3. Paina **_Create_** nappia, jolloin lisäämäsi kategoria ilmestyy kategorialistaan. Jos kategoria on jo kirjoittamassasi kirjoitusasussa listallasi, saat virheilmoituksen, eikä duplikaattia lisätä listaan.
 
 ## Kategorian listaus, päivitys ja poisto
 
 1. Siirry sivun ylälaidassa olevasta **_Manage Categories_** linkistä kategorioiden hallintaan.
-2. Voit muokata kategorian nimeä painamalla itse luomasi kategorian nimeä. Luomasi kategoriat on kirjoitettu sinisellä ja ovat linkkejä editoimissivulle. Sen jälkeen kirjoita uusi kategorian nimi sille varattuun kenttään editointi näkymässä. Kategorian uutta nimeä koskevat samat säännöt kuin sen luomisessa (kohta 2). Paina sitten **_update_** nappia, jonka jälkeen uusi kategoria päivittyy. **Huomaa**, että voit päivittää kategorian nimen vain sellaiseksi, joka ei ole vielä käytössä kategorialistallasi. Voit kuitenkin toistaa kategorian saman nimen, jolloin kategoria pysyy samana.
+2. Voit muokata kategorian nimeä painamalla itse luomasi kategorian nimeä. Luomasi kategoriat on kirjoitettu sinisellä ja ovat linkkejä editoimissivulle. Sen jälkeen kirjoita uusi kategorian nimi sille varattuun kenttään editointi näkymässä. Kategorian uutta nimeä koskevat samat säännöt kuin sen luomisessa (kohta 2). Paina sitten **_update_** nappia, jonka jälkeen uusi kategoria päivittyy. **Huomaa**, että voit päivittää kategorian nimen vain sellaiseksi, joka ei ole vielä käytössä kategorialistallasi (täsmälleen samassa kirjoitusasussa). Voit kuitenkin toistaa kategorian saman nimen, jolloin kategoria pysyy samana.
 3. Voit poistaa kategorian painamalla **_Delete_** nappia, jos kategoria ei ole jo jollakin tuotteella käytössä. 
 Jos kategoria on käytössä, saat tästä virheviestin painettuasi **_Delete_** nappia, eikä kategoriaa poisteta. 
 
@@ -53,7 +53,7 @@ Käytä merkkejä a-z, A-Z, 0-9 ja _. Herokussa hyväksytään myös merkit ä, 
 ## Tuotteiden listaus, päivitys ja poisto
 
 1. Siirry **_Manage Products_** linkin kautta tuotteiden hallinnointiin.
-2. Siirry muokkaamaan tuotetta klikkaamalla tuotteen nimeä. Anna tuotteelle sitten (uusi) nimi ja hinta. Tuotteen nimeämistä koskevat samat säännöt kuin sen luomisessa (kohta 2). Päivitä muutokset **_Update_** nappia painamalla. **Huomaa**, että voit päivittää nimen vain sellaiseen tuotteen nimen, joka ei vielä ole käytössä (tämänhetkinen nimi sallitaan). Jos haluat päivittää vain hinnan, onnistuu se antamalla tuotteen nimeksi sen tämänhetkinen nimi ja uusi hinta.
+2. Siirry muokkaamaan tuotetta klikkaamalla tuotteen nimeä. Anna tuotteelle sitten (uusi) nimi ja hinta. Tuotteen nimeämistä koskevat samat säännöt kuin sen luomisessa (kohta 2). Päivitä muutokset **_Update_** nappia painamalla. **Huomaa**, että voit päivittää nimeksi vain sellaiseen, joka ei vielä ole käytössä. Kuitenkin tämänhetkinen nimi sallitaan. Jos haluat päivittää vain hinnan, onnistuu se antamalla tuotteen nimeksi sen tämänhetkinen nimi ja uusi hinta.
 3. Tuotteen poistamiseksi paina **_Delete_** nappia.
 
 ## Ostoslistan luonti
@@ -65,16 +65,16 @@ Välilyönnit sallitaan sanojen keskellä.
 
 ## Ostoslistojen listaus ja poistaminen
 
-1. Siirry **_Manage Shoppinglists_** linkin kautta ostoslistojen hallinnointiin. 
+1. Siirry **_Manage Shoppinglists_** linkin kautta ostoslistojen hallinnointiin. Ostoslistat listataan luontijärjestyksessä uusin ensin. 
 2. Poistaaksesi ostoslistan paina **_Delete_** nappia.
 
-## Ostoslistan sisällön muokkaus
+## Ostoslistan sisällön listaus ja muokkaus
 
 **Ennen tätä toimintoa sinullä täytyy olla luotuna ostoslista. Katso tarkemmin kohtaa Ostoslistan luonti.**
 **Huom! Jos valikossa ei ole mieluisia tuotteita tai valikko on tyhjä, luo ensin tuotteita.**
 
 1. Siirry **_Manage Shoppinglists_** linkin kautta ostoslistojen listaukseen. 
-2. Paina **_Show content_** nappia haluamasi ostoslistan vierestä.
+2. Paina **_Show content_** nappia haluamasi ostoslistan vierestä. Ostoslistalla olevat tuotteet listataan kategorioittain lisäämistoiminnon alapuolelle.
 3. Lisää tuotteita tuotevalikosta.
 4. Anna tuotteelle määrä väliltä 1 - 100.
 6. Paina lopuksi **_Add_** nappia.

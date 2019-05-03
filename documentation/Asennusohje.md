@@ -48,7 +48,7 @@ Sovellus sammuu painamalla näppäimistöltä `Ctrl` ja `c`
 
 4. Lähetetään projekti Herokuun komennoilla
 
-`Ostoskassi$ git add .`  
+`git add .`  
 `git commit -m "Initial commit"`  
 `git push heroku master`  
 

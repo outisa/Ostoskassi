@@ -37,6 +37,10 @@ def login_required(role="ANY"):
             if not current_user.is_authenticated:
                 return login_manager.unauthorized()
 
+            # If somebody manages bypass login with this user id created because of adding default categories.
+            if current_user.get_id == 0:
+                return login_manager.unauthorized()
+
             unauthorized = False
 
             if role != "ANY":
